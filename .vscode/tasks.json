@@ -1,0 +1,101 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run all servers",
+            "dependsOn": [
+                "Run application server",
+                "Run database server",
+                "Run ftp server",
+                "Run exports cron"
+            ]
+        },
+        {
+            "label": "Run application servers only",
+            "dependsOn": [
+                "Run application server",
+                "Run database server"
+            ]
+        },
+        {
+            "label": "Run application server",
+            "type": "shell",
+            "command": "http-server -p 8081",
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            },
+            "presentation": {
+                "group": "All servers"
+            }
+        },
+        {
+            "label": "Run database server",
+            "type": "shell",
+            "command": "pouchdb-server --port 3000 --dir output/database",
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            },
+            "presentation": {
+                "group": "All servers"
+            }
+        },
+        {
+            "label": "Run ftp server",
+            "type": "shell",
+            "command": "npx ts-node components/ftp-server/ftp-server.ts",
+            "options": {
+                "statusbar": {
+                    "hide": false
+                }
+            },
+            "presentation": {
+                "group": "All servers"
+            }
+        },
+        {
+            "label": "Run exports cron",
+            "type": "shell",
+            "command": "node components/ftp-server/cron.js",
+            "options": {
+                "statusbar": {
+                    "hide": false
+                }
+            },
+            "presentation": {
+                "group": "All servers"
+            }
+        },
+        {
+            "label": "💚Run app server💚",
+            "type": "shell",
+            "command": "http-server server/public -p 8081",
+            "options": {
+                "statusbar": {
+                    "hide": false
+                }
+            },
+            "presentation": {
+                "group": "All servers"
+            }
+        },
+        {
+            "label": "💚Run database server💚",
+            "type": "shell",
+            "command": "pouchdb-server --port 3000 --dir output/database",
+            "options": {
+                "statusbar": {
+                    "hide": false
+                }
+            },
+            "presentation": {
+                "group": "All servers"
+            }
+        }
+    ]
+}
