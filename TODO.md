@@ -1,20 +1,5 @@
 # Aufgaben #
 
-
-
-### Aktueller Pfad ###
-- 🚩Durchstich schreiben
-  - ✅ Sende minimale UI an Client
-      - Create-Button
-      - Create-Popup
-  - ⬜️ UI sendet minimale Daten an Server
-      - im JSON Format
-  - ⬜️ Server speichert Daten Server-Site-DB
-  - ⬜️ Server liest Daten aus Server-Site-DB
-  - ⬜️ Server sendet alert mit Speicherbestätigung an UI
-
-<br/><br/>
-
 # Nächste Pfade ##
 Release-fähige Client-Server-Anwendung
 - 🚩Excel Import

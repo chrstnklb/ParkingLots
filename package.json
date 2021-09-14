@@ -5,10 +5,11 @@
         "basic-ftp": "^4.6.3",
         "cron": "^1.8.2",
         "express": "^4.17.1",
+        "express-pouchdb": "^4.2.0",
         "ftp": "^0.3.10",
         "ftp-srv": "^4.4.0",
-        "mongodb": "^4.1.0",
-        "nano": "^9.0.3",
+        "mongodb": "^4.1.1",
+        "nano": "^9.0.5",
         "pouchdb": "^7.2.2",
         "ssh2-sftp-client": "^6.0.1"
     },
