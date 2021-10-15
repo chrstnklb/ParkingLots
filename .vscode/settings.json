@@ -1,6 +1,9 @@
 {
     "files.exclude": {
-        "**/node_modules": true
+        "**/node_modules": false
     },
-    "workbench.editor.enablePreview": false
+    "workbench.editor.enablePreview": false,
+    "files.autoSave": "onFocusChange",
+    "workbench.sideBar.location": "right",
+    "editor.minimap.enabled": false
 }

@@ -1,37 +1,64 @@
 let wasSaved = false;
 
-function hideModalWithAlert() {
-    $('#exampleModal').modal('hide');
+function loginfunction() {
+    window.alert("Login functionality is under development.");
 }
 
-$(document).ready(function() {
+const savePermissionButton = document.getElementById('savePermission');
+savePermissionButton.addEventListener('click', function (e) {
 
-    $('#exampleModal').on('hidden.bs.modal', function() {
-        alert("Parkerlaubnis wurde " + (wasSaved ? "erfolgreich" : "NICHT") + " gespeichert!");
-        wasSaved = false;
-    })
+    console.log('savePermission button was clicked');
 
-
-    $('#exampleModal').on('show.bs.modal', function(e) {
-
-        setKennzeichenFromSearchText();
-
-        e.relatedTarget.className.includes("editButton");
-        document.getElementById("savePermission").removeEventListener("click", updatePermission);
-        document.getElementById("savePermission").removeEventListener("click", createElementFromUi);
-
-        if (e.relatedTarget.className.includes("editButton")) {
-            document
-                .getElementById("savePermission")
-                .addEventListener("click", updatePermission);
-        } else { // createMode
-            document
-                .getElementById("savePermission")
-                .addEventListener("click", createElementFromUi);
-        }
-    })
-
+    fetch('/clicked', { method: 'POST' })
+        .then(function (response) {
+            if (response.ok) {
+                console.log('savePermission click was recorded');
+                console.log('Click was recorded');
+                return;
+            } else
+                throw new Error('Request failed.');
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 });
+
+// export function doSave(){
+//     console.log('savePermission button was clicked');
+// }
+
+// function hideModalWithAlert() {
+//     $('#staticBackdrop').modal('hide');
+// }
+
+// $(document).ready(function () {
+
+//     $('#exampleModal').on('hidden.bs.modal', function () {
+//         alert("Parkerlaubnis wurde " + (wasSaved ? "erfolgreich" : "NICHT") + " gespeichert!");
+//         wasSaved = false;
+//     })
+
+
+//     $('#exampleModal').on('show.bs.modal', function (e) {
+
+//         setKennzeichenFromSearchText();
+
+//         e.relatedTarget.className.includes("editButton");
+//         document.getElementById("savePermission").removeEventListener("click", updatePermission);
+//         document.getElementById("savePermission").removeEventListener("click", createElementFromUi);
+
+//         if (e.relatedTarget.className.includes("editButton")) {
+//             document
+//                 .getElementById("savePermission")
+//                 .addEventListener("click", updatePermission);
+//         } else { // createMode
+//             document
+//                 .getElementById("savePermission")
+//                 .addEventListener("click", createElementFromUi);
+//         }
+//     })
+
+// });
 
 function updatePermission() {
     updateElement(grabInputFieldsForErlaubnis(true));
@@ -46,8 +73,9 @@ function setKennzeichenFromSearchText() {
 }
 
 function doCancel() {
-    deleteInputFieldsTexts();
-    hideModalWithAlert();
+    // deleteInputFieldsTexts();
+    // hideModalWithAlert();
+    $('#exampleModal').modal('hide');
 }
 
 function setInputFieldText(id, isNewText) {

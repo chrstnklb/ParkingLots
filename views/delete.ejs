@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Löschen</title>
+</head>
+<body>
+
+<!-- <script type="text/javascript" src="js/delete.js"></script> -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Eintrag löschen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>VORSICHT! Dieser Eintrag wird DAUERHAFT gelöscht.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="deleteEntry(false)">Abbrechen</button>
+                <button type="button" class="btn btn-danger" onclick="deleteEntry(true)" data-dismiss="modal">Löschen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

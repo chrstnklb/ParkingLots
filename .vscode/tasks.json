@@ -59,8 +59,8 @@
             }
         },
         {
-            "label": "Run exports cron",
             "type": "shell",
+            "label": "Run exports cron",
             "command": "node components/ftp-server/cron.js",
             "options": {
                 "statusbar": {

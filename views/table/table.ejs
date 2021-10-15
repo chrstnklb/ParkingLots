@@ -1,0 +1,67 @@
+<div>
+
+    <table class="table table-sm table-striped table-hover" id="resultTableId">
+        
+        <thead class="thead thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Vorname</th>
+                <th>Unternehmen</th>
+                <th>Bereich</th>
+                <th>Telefon</th>
+                <th>Kennzeichen</th>
+                <th>Land</th>
+                <th>Fahrzeug</th>
+                <th>Farbe</th>
+                <th>Bemerkung</th>
+                <th>Parkplätze</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0; i < total_rows; i++) { %>
+                <tr>
+                    <th scope="row">
+                        <%= locals.table.rows[i].doc._id %>
+                    </th>
+                    <td>
+                        <%= locals.table.rows[i].doc.name %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.vorname %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.unternehmen %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.bereich %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.telefon %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.kennzeichen %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.land %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.fahrzeug %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.farbe %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.bemerkung %>
+                    </td>
+                    <td>
+                        <%= locals.table.rows[i].doc.parkplaetze %>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+
+        </table>
+
+</div>
