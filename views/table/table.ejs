@@ -1,67 +1,79 @@
 <div>
 
     <table class="table table-sm table-striped table-hover" id="resultTableId">
-        
+
         <thead class="thead thead-dark">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>Kennzeichen</th>
                 <th>Vorname</th>
+                <th>Name</th>
+                <th>Parkplätze</th>
                 <th>Unternehmen</th>
                 <th>Bereich</th>
                 <th>Telefon</th>
-                <th>Kennzeichen</th>
                 <th>Land</th>
                 <th>Fahrzeug</th>
                 <th>Farbe</th>
                 <th>Bemerkung</th>
-                <th>Parkplätze</th>
+                <th>Letzte Änderung</th>
             </tr>
         </thead>
 
         <tbody>
             <% for(var i=0; i < total_rows; i++) { %>
                 <tr>
-                    <th scope="row">
-                        <%= locals.table.rows[i].doc._id %>
-                    </th>
                     <td>
-                        <%= locals.table.rows[i].doc.name %>
+                        <%= locals.table[i].doc.kennzeichen %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.vorname %>
+                        <%= locals.table[i].doc.vorname %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.unternehmen %>
+                        <%= locals.table[i].doc.name %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.bereich %>
+                        <%= locals.table[i].doc.parkplaetze %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.telefon %>
+                        <%= locals.table[i].doc.unternehmen %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.kennzeichen %>
+                        <%= locals.table[i].doc.bereich %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.land %>
+                        <%= locals.table[i].doc.telefon %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.fahrzeug %>
+                        <%= locals.table[i].doc.land %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.farbe %>
+                        <%= locals.table[i].doc.fahrzeug %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.bemerkung %>
+                        <%= locals.table[i].doc.farbe %>
                     </td>
                     <td>
-                        <%= locals.table.rows[i].doc.parkplaetze %>
+                        <%= locals.table[i].doc.bemerkung %>
+                    </td>
+                    <td>
+                        <%
+                            let year = locals.table[i].doc.letzteAenderung.slice(6,10);
+                            let month = locals.table[i].doc.letzteAenderung.slice(3,5);
+                            let day = locals.table[i].doc.letzteAenderung.slice(0,2);
+                            let lastChangeDate = new Date(year, month-1 , day);
+                            let today = (new Date());
+                            let diff = Math.floor((today - lastChangeDate)/1000/60/60/24);
+                        %>
+                        <%= locals.table[i].doc.letzteAenderung %>
+                        <% if (diff!=0) { %>
+                            <%= "(vor " + diff + " Tagen)" %>                                
+                          <% } %>
                     </td>
                 </tr>
-                <% } %>
-            </tbody>
 
-        </table>
+                <% } %>
+        </tbody>
+
+    </table>
 
 </div>

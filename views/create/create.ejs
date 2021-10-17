@@ -6,24 +6,31 @@
 
 
     <!-- Create -->
-    <link rel="stylesheet" href="create.css">
+    <link rel="stylesheet" href="../create/create.css">
+
+    <script type="text/javascript" src="../create/create-router.js"></script>
+    <script type="text/javascript" src="../create/create-steps.js"></script>
+    <script type="text/javascript" src="../create/parking-places.js"></script>
+    <script type="text/javascript" src="../create/permission-details.js"></script>
+    <script type="text/javascript" src="../dom-utils.js"></script>
 
 </head>
 
 <body>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPermissionModal">
         Neue Parkerlaubnis
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createPermissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="createPermissionModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
+
                 <div class="modal-header">
-                    <h1 class="modal-title" id="exampleModalLabel">Neue Parkerlaubnis</h1>
+                    <h1 class="modal-title" id="createPermissionModalLabel">Neue Parkerlaubnis</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -280,29 +287,14 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Abbrechen</button>
-                    <!-- <button type="button" class="btn btn-danger" onclick="doCancel()">Abbrechen</button> -->
-                    <button type="button" class="btn btn-success" id="savePermission">Speichere
-                        Parkerlaubnis</button>
+                    <button type="button" class="btn btn-success" onclick="savePermission()" id="savePermission">
+                        Speichere Parkerlaubnis
+                    </button>
                 </div>
 
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function () {
-            $("#savePermission").click(function () {
-                $("#exampleModal").modal("hide");
-            });
-
-            $("#exampleModal").on('hide.bs.modal', function () {
-                alert('The modal is about to be hidden!');
-            });
-            $("#exampleModal").on('hidden.bs.modal', function () {
-                alert('The modal is completely hidden now!');
-            });
-        });
-    </script>
 
 </body>
 

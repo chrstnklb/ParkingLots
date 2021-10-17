@@ -1,10 +1,13 @@
 //#region express config
 
-const express = require('express')
-const expressApp = express()
+const exp = require('constants');
+const express = require('express');
+const expressApp = express();
 const expressAppPort = 3000;
 
-expressApp.use(express.static("views"))
+expressApp.use(express.static("views"));
+expressApp.use(express.urlencoded({ extended: true }));
+expressApp.use(express.json());
 expressApp.set('view engine', 'ejs');
 
 //#endregion
@@ -29,7 +32,7 @@ expressApp.get('/', (req, res) => {
     include_docs: true
 
   }).then(function (result) {
-    res.render('index', { table: result, total_rows: result.total_rows });
+    res.render('index', { table: result.rows, total_rows: result.rows.length });
 
   }).catch(function (err) {
     console.log(err);
@@ -41,43 +44,41 @@ expressApp.listen(expressAppPort, () => {
   console.log("Server Started at http://localhost:" + expressAppPort)
 })
 
-expressApp.post('/clicked', (req, res) => {
-  const click = { clickTime: new Date() };
-  console.log(click);
-  let element = {
+expressApp.post('/clicked', function (req, res) {
 
-    _id: Date.now().toString(),
+  console.log('req.body.parkerlaubnis :>> ', req.body.parkerlaubnis);
 
-    name: 'Name',
-    vorname: 'Vorname',
-    unternehmen: 'Unternehmen',
-    bereich: 'Bereich',
-    telefon: 'Telefon',
-    kennzeichen: 'Kennzeichen',
-    land: 'Land',
-    fahrzeug: 'Fahrzeug',
-    farbe: 'Farbe',
-    bemerkung: 'Bemerkung',
-    parkplaetze:'P1, P2, P3, P3 Erw, P4, P5, P6, A75, Job Ticket, Werk'
-  }
-
-  db.put(element, function (err, response) {
-    console.log('createElement');
+  db.put(req.body.parkerlaubnis, function (err, response) {
     if (err) {
       return console.log(err);
     } else {
       console.log(response);
-      wasSaved = true;
     }
 
-    console.log('click added to db');
+    // console.log('click added to db');
   }).then(function (result) {
     res.sendStatus(200);
-    // res.end();
-    console.log("response??? it was saved");
+    // console.log("response??? it was saved");
   }).catch(function (err) {
     console.log(err);
   });
+})
+
+expressApp.post('/searched', (req, res) => {
+  db.allDocs({
+    include_docs: true
+  }).then(function (result) {
+
+    let searchStr = req.body;
+    console.log('searchStr :>> ', searchStr[0]);
+
+    let searchResult = result;
+    console.log('searchResult :>> ', searchResult);
+
+  }).catch(function (err) {
+    console.log(err);
+  });
+
 })
 
 //#region examples for later

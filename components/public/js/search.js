@@ -1,29 +1,29 @@
-function getSearchTexts() {
-    return getSearchInputField() === null
-        ? []
-        : getSearchInputField().value.trim().split(" ");
-}
+// function getSearchTexts() {
+//     return getSearchInputField() === null
+//         ? []
+//         : getSearchInputField().value.trim().split(" ");
+// }
 
 function displayPermissionsFilterResultCount() {
     showResult(getFilteredPermissions().length);
 }
 
-function searchAndShowPermissions(){
+// function searchAndShowPermissions(){
 
-    deleteFilteredPermissions();
-    let searchTexts = getSearchTexts();
-    enableAdminArea(searchTexts.join(""));
+//     deleteFilteredPermissions();
+//     let searchTexts = getSearchTexts();
+//     enableAdminArea(searchTexts.join(""));
 
-    let rowMatchesSearchText = false;
-    let rows = allPermissionsArray;
-    for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
-        let row = rows[rowIndex];
-        rowMatchesSearchText = thisRowFitsWithAllSearchTexts(searchTexts, Object.values(row.doc));
-        addPermissionToFilteredPermissions(rowMatchesSearchText, row);
-    }
-    displayPermissionsFilterResult();
-    displayPermissionsFilterResultCount();
-}
+//     let rowMatchesSearchText = false;
+//     let rows = allPermissionsArray;
+//     for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
+//         let row = rows[rowIndex];
+//         rowMatchesSearchText = thisRowFitsWithAllSearchTexts(searchTexts, Object.values(row.doc));
+//         addPermissionToFilteredPermissions(rowMatchesSearchText, row);
+//     }
+//     displayPermissionsFilterResult();
+//     displayPermissionsFilterResultCount();
+// }
 
 function thisRowFitsWithAllSearchTexts(searchTexts, row) {
 
@@ -81,10 +81,6 @@ function oneCellTextFitsSearchText(searchText, cells) {
 
 function isSubstringOf(subSearchString, cellString) {
     return cellString.toUpperCase().includes(subSearchString.toUpperCase());
-}
-
-function getSearchInputField(){
-    return document.getElementById("searchInput");
 }
 
 function setSearchFieldText(text) {
