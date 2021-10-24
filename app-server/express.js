@@ -106,8 +106,6 @@ expressApp.post('/edit', function (req, res) {
   });
 })
 
-
-
 expressApp.post('/delete', function (req, res) {
   let idToBeDeleted = req.body._id;
 

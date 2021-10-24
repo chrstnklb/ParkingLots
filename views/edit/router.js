@@ -40,7 +40,7 @@ function getInputValuesForParkingLotsAsStringForEdit() {
     let parkingLotsValues = "";
 
     Array.prototype.forEach.call(getParkingLotsForEdit(), parkingLot => {
-        if(parkingLot.checked) {
+        if (parkingLot.checked) {
             parkingLotsValues += getParkingLotName(parkingLot) + " ";
         }
     });

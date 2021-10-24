@@ -16,7 +16,7 @@ function generateDeleteButtons(id) {
 
 let wasDeleted = false;
 
-function runStepsForSuccessfulPermissionDeletion(){
+function runStepsForSuccessfulPermissionDeletion() {
     hideDeleteModal();
     showDeleteConfirmation();
     refreshPage();

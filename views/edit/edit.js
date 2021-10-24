@@ -11,7 +11,7 @@ function generateEditButtons(id) {
     button.setAttribute("onclick", "setInsertMode(\"edit\")");
     button.addEventListener("click", function () { editSteps(id) });
 
-    
+
     return button;
 }
 
@@ -73,11 +73,11 @@ function editParkingPlacesCheckboxes(checkBoxState, parkingPlaces) {
 
     let parkingLotsCheckBoxes = document.getElementsByClassName("parking-lot");
 
-    for (let parkingLotIndex = 0; parkingLotIndex < parkingLotsCheckBoxes.length; parkingLotIndex ++) {
+    for (let parkingLotIndex = 0; parkingLotIndex < parkingLotsCheckBoxes.length; parkingLotIndex++) {
 
         let parkingLot = parkingLotsCheckBoxes[parkingLotIndex];
 
-        if(parkingPlaces.includes(getParkingLotNameForEdit(parkingLot))) {
+        if (parkingPlaces.includes(getParkingLotNameForEdit(parkingLot))) {
             parkingLot.checked = checkBoxState;
         }
     }

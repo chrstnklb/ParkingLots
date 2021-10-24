@@ -146,6 +146,7 @@ function extendLetzteAenderung(letzteAenderung) {
     return letzteAenderung;
 }
 
+// TODO: Utils
 function calculateDaysSinceLetzteAenderung(letzteAenderung) {
     let year = letzteAenderung.slice(6, 10);
     let month = letzteAenderung.slice(3, 5);
