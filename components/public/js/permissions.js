@@ -1,145 +1,145 @@
-const permissionInformations = [
-    "Kennzeichen",
-    "Land",
-    "Bemerkung",
-    "Name",
-    "Vorname",
-    "Fahrzeug",
-    "Farbe",
-    "Unternehmen",
-    "Bereich",
-    "Telefon",
-    "Ergebnis"
-];
+// const permissionInformations = [
+//     "Kennzeichen",
+//     "Land",
+//     "Bemerkung",
+//     "Name",
+//     "Vorname",
+//     "Fahrzeug",
+//     "Farbe",
+//     "Unternehmen",
+//     "Bereich",
+//     "Telefon",
+//     "Ergebnis"
+// ];
 
-const parkingPlaces = [
-    "A75",
-    "Job Ticket",
-    "P1",
-    "P2",
-    "P3",
-    "P3 Erw",
-    "P4",
-    "P5",
-    "P6",
-    "Werk"
-];
+// const parkingPlaces = [
+//     "A75",
+//     "Job Ticket",
+//     "P1",
+//     "P2",
+//     "P3",
+//     "P3 Erw",
+//     "P4",
+//     "P5",
+//     "P6",
+//     "Werk"
+// ];
 
-const wantedInformations = [
-    "kennzeichen",
-    "land",
-    "name",
-    "vorname"
-];
+// const wantedInformations = [
+//     "kennzeichen",
+//     "land",
+//     "name",
+//     "vorname"
+// ];
 
-// let filteredPermissions = [];
+// // let filteredPermissions = [];
 
-// function getFilteredPermissions() {
-//     return filteredPermissions;
+// // function getFilteredPermissions() {
+// //     return filteredPermissions;
+// // }
+
+// // function setFilteredPermissions(permissions) {
+// //     filteredPermissions = permissions;
+// // }
+
+// // function deleteFilteredPermissions() {
+// //     filteredPermissions = [];
+// // }
+
+// function getIndexForPermissionInformation(demandedPermissionInformation) {
+//     let indexOfDemandedPermissionInformation;
+//     for (let informationIndex = 0; informationIndex < permissionInformations.length; informationIndex++) {
+//         if (permissionInformations[informationIndex] === demandedPermissionInformation) {
+//             indexOfDemandedPermissionInformation = informationIndex;
+//             break;
+//         }
+//     }
+//     return indexOfDemandedPermissionInformation;
 // }
 
-// function setFilteredPermissions(permissions) {
-//     filteredPermissions = permissions;
+// function getIndexesForPermissionInformations(demandedPermissionInformations) {
+//     let indexesOfDemandedPermissionInformations = [];
+//     for (let informationIndex = 0; informationIndex < demandedPermissionInformations.length; informationIndex++) {
+//         indexesOfDemandedPermissionInformations.push(getIndexForPermissionInformation(demandedPermissionInformations[informationIndex]));
+//     }
+//     return indexesOfDemandedPermissionInformations;
 // }
 
-// function deleteFilteredPermissions() {
-//     filteredPermissions = [];
+// function addPermissionToFilteredPermissions(shouldDisplay, permission) {
+//     if (shouldDisplay) {
+//         filteredPermissions.push(permission);
+//     }
 // }
 
-function getIndexForPermissionInformation(demandedPermissionInformation) {
-    let indexOfDemandedPermissionInformation;
-    for (let informationIndex = 0; informationIndex < permissionInformations.length; informationIndex++) {
-        if (permissionInformations[informationIndex] === demandedPermissionInformation) {
-            indexOfDemandedPermissionInformation = informationIndex;
-            break;
-        }
-    }
-    return indexOfDemandedPermissionInformation;
-}
+// function getNewId() {
 
-function getIndexesForPermissionInformations(demandedPermissionInformations) {
-    let indexesOfDemandedPermissionInformations = [];
-    for (let informationIndex = 0; informationIndex < demandedPermissionInformations.length; informationIndex++) {
-        indexesOfDemandedPermissionInformations.push(getIndexForPermissionInformation(demandedPermissionInformations[informationIndex]));
-    }
-    return indexesOfDemandedPermissionInformations;
-}
+//     let newId = 0;
 
-function addPermissionToFilteredPermissions(shouldDisplay, permission) {
-    if (shouldDisplay) {
-        filteredPermissions.push(permission);
-    }
-}
+//     loadDbToPermissionsArray();
+//     for (let i = 0; i < allPermissionsArray.length; i++) {
+//         let idToCheck = parseInt(allPermissionsArray[i].id);
+//         if (idToCheck >= newId)
+//             newId = idToCheck + 1;
+//     }
 
-function getNewId() {
+//     return newId;
+// }
 
-    let newId = 0;
+// function createErlaubnis(id, row) {
+//     return {
+//         _id: String(id),
 
-    loadDbToPermissionsArray();
-    for (let i = 0; i < allPermissionsArray.length; i++) {
-        let idToCheck = parseInt(allPermissionsArray[i].id);
-        if (idToCheck >= newId)
-            newId = idToCheck + 1;
-    }
+//         timestamp: Date.now().toString(),
 
-    return newId;
-}
+//         name: row['Name'],
+//         vorname: row['Vorname'],
+//         unternehmen: row['Unternehmen'],
+//         bereich: row['Bereich'],
+//         telefon: row['Telefon'],
+//         kennzeichen: row['Kennzeichen'],
+//         land: row['Land'],
+//         fahrzeug: row['Fahrzeug'],
+//         farbe: row['Farbe'],
+//         bemerkung: row['Bemerkung'],
+//         parkplaetze: row['Ergebnis']
+//     }
+// }
 
-function createErlaubnis(id, row) {
-    return {
-        _id: String(id),
+// function getPermissionsFor(parkingSpace) {
+//     let permissions = [];
+//     let permissionsArray = getPermissionsArray();
 
-        timestamp: Date.now().toString(),
+//     permissionsArray.forEach(item => addPermission(parkingSpace, item));
 
-        name: row['Name'],
-        vorname: row['Vorname'],
-        unternehmen: row['Unternehmen'],
-        bereich: row['Bereich'],
-        telefon: row['Telefon'],
-        kennzeichen: row['Kennzeichen'],
-        land: row['Land'],
-        fahrzeug: row['Fahrzeug'],
-        farbe: row['Farbe'],
-        bemerkung: row['Bemerkung'],
-        parkplaetze: row['Ergebnis']
-    }
-}
+//     function addPermission(parkingSpace, permission) {
 
-function getPermissionsFor(parkingSpace) {
-    let permissions = [];
-    let permissionsArray = getPermissionsArray();
+//         let permissionParkingSpaceInformation = permission.doc["parkplaetze"];
 
-    permissionsArray.forEach(item => addPermission(parkingSpace, item));
+//         if (isSubstringOf(parkingSpace, permissionParkingSpaceInformation))
+//             permissions.push(permission);
+//     }
 
-    function addPermission(parkingSpace, permission) {
+//     return permissions;
 
-        let permissionParkingSpaceInformation = permission.doc["parkplaetze"];
+// }
 
-        if (isSubstringOf(parkingSpace, permissionParkingSpaceInformation))
-            permissions.push(permission);
-    }
+// function slicePermissionsToThisInformations(permissions) {
+//     let slicedPermissions = [];
+//     for (let permissionsIndex = 0; permissionsIndex < permissions.length; permissionsIndex++) {
+//         let slicedPermission = "";
 
-    return permissions;
+//         slicedPermission += permissions[permissionsIndex].doc["kennzeichen"].replace("-", "");
+//         slicedPermission += ";";
+//         slicedPermission += permissions[permissionsIndex].doc["land"];
+//         slicedPermission += ";";
+//         slicedPermission += permissions[permissionsIndex].doc["name"];
+//         slicedPermission += ", ";
+//         slicedPermission += permissions[permissionsIndex].doc["vorname"];
+//         slicedPermission += "\n";
 
-}
+//         slicedPermissions.push(slicedPermission);
+//     }
+//     return slicedPermissions;
+// }
 
-function slicePermissionsToThisInformations(permissions) {
-    let slicedPermissions = [];
-    for (let permissionsIndex = 0; permissionsIndex < permissions.length; permissionsIndex++) {
-        let slicedPermission = "";
-
-        slicedPermission += permissions[permissionsIndex].doc["kennzeichen"].replace("-", "");
-        slicedPermission += ";";
-        slicedPermission += permissions[permissionsIndex].doc["land"];
-        slicedPermission += ";";
-        slicedPermission += permissions[permissionsIndex].doc["name"];
-        slicedPermission += ", ";
-        slicedPermission += permissions[permissionsIndex].doc["vorname"];
-        slicedPermission += "\n";
-
-        slicedPermissions.push(slicedPermission);
-    }
-    return slicedPermissions;
-}
-
-exports.parkingPlaces = parkingPlaces
+// exports.parkingPlaces = parkingPlaces

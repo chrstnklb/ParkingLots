@@ -58,17 +58,71 @@ expressApp.listen(expressAppPort, () => {
 expressApp.post('/create', function (req, res) {
 
   console.log('req.body.parkerlaubnis :>> ', req.body.parkerlaubnis);
+
   db.put(req.body.parkerlaubnis, function (err, response) {
     if (err) {
       return console.log(err);
     } else {
       console.log(response);
     }
+
   }).then(function (result) {
     res.sendStatus(200);
+
   }).catch(function (err) {
     console.log(err);
   });
+})
+
+expressApp.post('/edit', function (req, res) {
+
+  let idToBeUpdated = req.body.parkerlaubnis._id;
+
+  db.get(idToBeUpdated).then(function(doc){
+
+    doc._id = idToBeUpdated,
+    
+    doc.letzteAenderung = req.body.parkerlaubnis.letzteAenderung,
+
+    doc.name = req.body.parkerlaubnis.nachname,
+    doc.vorname = req.body.parkerlaubnis.vorname,
+    doc.unternehmen = req.body.parkerlaubnis.unternehmen,
+    doc.bereich = req.body.parkerlaubnis.bereich,
+    doc.telefon = req.body.parkerlaubnis.telefon,
+    doc.kennzeichen = req.body.parkerlaubnis.kennzeichen,
+    doc.land = req.body.parkerlaubnis.land,
+    doc.fahrzeug = req.body.parkerlaubnis.fahrzeug,
+    doc.farbe = req.body.parkerlaubnis.farbe,
+    doc.bemerkung = req.body.parkerlaubnis.bemerkung,
+    doc.parkplaetze = req.body.parkerlaubnis.parkplaetze
+
+    return db.put(doc);
+
+  }).then(() => {
+    res.sendStatus(200);
+
+  }).catch(function (err) {
+    console.log(err);
+  });
+})
+
+
+
+expressApp.post('/delete', function (req, res) {
+  let idToBeDeleted = req.body._id;
+
+  db.get(idToBeDeleted, () => {
+
+  }).then(function (doc) {
+    return db.remove(doc);
+
+  }).then(() => {
+    res.sendStatus(200);
+
+  }).catch(function (err) {
+    console.log(err);
+  });
+
 })
 
 

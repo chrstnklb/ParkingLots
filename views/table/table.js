@@ -174,19 +174,7 @@ function createTableBodyCellWithActionButtons(text) {
     return td;
 }
 
-function generateEditButtons(id) {
 
-    let button = document.createElement("button");
-
-    button.setAttribute("class", "btn btn-success editButton bi bi-pencil");
-    button.setAttribute("type", "button");
-    button.setAttribute("data-toggle", "modal");
-    button.setAttribute("data-target", "#exampleModal");
-    button.setAttribute("title", "Öffnet diesen Eintrag für die Bearbeitung");
-    button.addEventListener("click", function () { editPermission(id) });
-
-    return button;
-}
 
 function appendTableHead(table) {
     let thead = document.createElement("thead");

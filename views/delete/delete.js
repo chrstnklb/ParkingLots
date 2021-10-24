@@ -12,27 +12,26 @@ function generateDeleteButtons(id) {
     button.addEventListener("click", function () { rememberIdOfEntryToDelete(id) });
 
     return button;
-
 }
 
 let wasDeleted = false;
 
-function hideCreateModal() {
-    $('#createPermissionModal').modal('hide');
+function runStepsForSuccessfulPermissionDeletion(){
+    hideDeleteModal();
+    showDeleteConfirmation();
+    refreshPage();
 }
 
-
-$('#deleteModal').on('hidden.bs.modal', function () {
-    alert("Parkerlaubnis wurde " + (wasDeleted ? "erfolgreich" : "NICHT") + " gelöscht!");
-    wasDeleted = false;
-})
-
-function hideDeleteModalWithAlert() {
+function hideDeleteModal() {
     $('#deleteModal').modal('hide');
 }
 
+function showDeleteConfirmation() {
+    alert("Parkerlaubnis wurde " + (wasDeleted ? "erfolgreich" : "NICHT") + " gelöscht!");
+    wasDeleted = false;
+};
 
-let idOfEntryToDelete = undefineVariable;
+let idOfEntryToDelete = undefined;
 
 function rememberIdOfEntryToDelete(entryId) {
     idOfEntryToDelete = entryId;
@@ -40,15 +39,20 @@ function rememberIdOfEntryToDelete(entryId) {
 
 function deleteEntry(doDelete) {
 
-    alert("deleteEntry \n NOT YET IMPLEMENTED: Delete permission from database via fetch expressjs.")
+    console.log("deleteEntry \n NOT YET IMPLEMENTED: Delete permission from database via fetch expressjs.")
 
-    // if (doDelete) {
-    //     deleteElementFromDb(idOfEntryToDelete);
-    //     undefineVariable(idOfEntryToDelete);
-    // } else {
-    //     wasDeleted = false;
-    //     hideDeleteModalWithAlert();
-    // }
+    if (doDelete) {
+        deletePermission(idOfEntryToDelete);
+        undefineVariable(idOfEntryToDelete);
+    } else {
+        wasDeleted = false;
+        hideDeleteModalWithAlert();
+        showDeleteConfirmation();
+    }
+}
+
+function hideDeleteModalWithAlert() {
+    $('#deleteModal').modal('hide');
 }
 
 function undefineVariable(variableToUndefine) {

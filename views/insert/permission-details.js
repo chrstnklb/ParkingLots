@@ -1,17 +1,17 @@
-function deleteInputFieldsTexts() {
-    setInputFieldText("kennzeichen");
-    setInputFieldText("land", "DEU");
-    setInputFieldText("bemerkung");
-    setInputFieldText("nachname");
-    setInputFieldText("vorname");
-    setInputFieldText("fahrzeug");
-    setInputFieldText("farbe");
-    setInputFieldText("unternehmen");
-    setInputFieldText("bereich");
-    setInputFieldText("telefon");
-    uncheckAllParkingPlacesCheckboxes();
-    // console.log("Input fields from modal successfully cleared!");
-}
+// function deleteInputFieldsTexts() {
+//     setInputFieldText("kennzeichen");
+//     setInputFieldText("land", "DEU");
+//     setInputFieldText("bemerkung");
+//     setInputFieldText("nachname");
+//     setInputFieldText("vorname");
+//     setInputFieldText("fahrzeug");
+//     setInputFieldText("farbe");
+//     setInputFieldText("unternehmen");
+//     setInputFieldText("bereich");
+//     setInputFieldText("telefon");
+//     uncheckAllParkingPlacesCheckboxes();
+//     // console.log("Input fields from modal successfully cleared!");
+// }
 
 // function grabInputFieldsForErlaubnis(isEditMode) {
 //     return {

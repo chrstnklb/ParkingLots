@@ -1,18 +1,14 @@
-function saveNewPermission() {
+function saveEditedPermission() {
 
-    console.log("saveNewPermission");
-
-    let date = Date.now();
-
-    fetch('/create', {
+    fetch('/edit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             parkerlaubnis: {
+                // TODO: diese getInputs verallgemeinern mit denen von create
+                _id: ID_OF_ACTUAL_ENTRY,
 
-                _id: date.toString(),
-
-                letzteAenderung: (new Date(date)).toLocaleDateString(),
+                letzteAenderung: (new Date(Date.now())).toLocaleDateString(),
 
                 name: getInputValueViaId("nachname"),
                 vorname: getInputValueViaId("vorname"),
@@ -24,7 +20,7 @@ function saveNewPermission() {
                 fahrzeug: getInputValueViaId("fahrzeug"),
                 farbe: getInputValueViaId("farbe"),
                 bemerkung: getInputValueViaId("bemerkung"),
-                parkplaetze: getInputValuesForParkingLotsAsString()
+                parkplaetze: getInputValuesForParkingLotsAsStringForEdit()
             }
         })
 
@@ -39,3 +35,20 @@ function saveNewPermission() {
         console.log(error);
     });
 };
+// TODO diese und die nächste Funktion mit create erbinden
+function getInputValuesForParkingLotsAsStringForEdit() {
+    let parkingLotsValues = "";
+
+    Array.prototype.forEach.call(getParkingLotsForEdit(), parkingLot => {
+        if(parkingLot.checked) {
+            parkingLotsValues += getParkingLotName(parkingLot) + " ";
+        }
+    });
+    return parkingLotsValues;
+}
+
+function getParkingLotsForEdit() {
+    let result = document.getElementsByClassName("parking-lot");
+    console.log("result" + result.length);
+    return document.getElementsByClassName("parking-lot");
+}

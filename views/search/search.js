@@ -20,6 +20,8 @@ function searchAndShowPermissions() {
 
 }
 
+
+
 function getFilteredPermissions() {
     return filteredPermissions
 }
@@ -74,7 +76,7 @@ function fetchAllPermissions() {
             allPermissions.push(element.doc)
         });
 
-    }).then(function (data) {
+    }).then(() => {
         console.log('searchAndShowPermissions :>>');
         searchAndShowPermissions();
 
@@ -88,7 +90,7 @@ function displayPermissionsFilterResultCount() {
     showResult(filteredPermissions.length);
 }
 
-function showResult(filteredPermissionsCount){
+function showResult(filteredPermissionsCount) {
 
     pollDOM();
     let resultCount = pollDOM();
@@ -110,6 +112,6 @@ function pollDOM() {
     }
 }
 
-function getShowCount(filteredPermissionsCount){
+function getShowCount(filteredPermissionsCount) {
     return filteredPermissionsCount < SHOWN_ROWS_LIMIT ? filteredPermissionsCount : SHOWN_ROWS_LIMIT;
 }

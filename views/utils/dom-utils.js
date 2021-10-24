@@ -45,3 +45,7 @@ function domSetAttribute(element, attribute, attributeValue){
 function domAppendChild(parent, child){
     parent.appendChild(child);
 }
+
+function refreshPage() {
+    location.reload();
+}

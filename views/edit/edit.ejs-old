@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ändern</title>
+
+    <script type="text/javascript" src="../edit/edit.js"></script>
+    <script type="text/javascript" src="../edit/router.js"></script>
+    <!-- <script type="text/javascript" src="../create/parking-places.js"></script> -->
+    <!-- <script type="text/javascript" src="../search/search.js"></script> -->
+</head>
+<body>
+
+ <!-- Modal -->
+ <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+ aria-labelledby="editPermissionModal" aria-hidden="true">
+
+ <div class="modal-dialog modal-lg">
+     <div class="modal-content">
+
+         <div class="modal-header">
+             <h1 class="modal-title" id="editPermissionModalLabel">Eintrag ändern</h1>
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+
+             <form>
+                 <div class="container">
+                     <div class="row create-row">
+                         <div class="col">
+                             <div class="row detail-row">
+
+                                 <div class="col-sm-6">
+
+                                     <h3>Personen Details</h3>
+                                     <h3></h3>
+
+                                     <!-- Vorname -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="vorname">
+                                                 <h5>Vorname</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="vorname">
+                                         </div>
+                                     </div>
+
+                                     <!-- Nachname -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="nachname">
+                                                 <h5>Nachname</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="nachname">
+                                         </div>
+                                     </div>
+
+                                     <!-- Unternehmen -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="unternehmen">
+                                                 <h5>Unternehmen</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="unternehmen">
+                                         </div>
+                                     </div>
+
+                                     <!-- Bereich -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="bereich">
+                                                 <h5>Bereich</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="bereich">
+                                         </div>
+                                     </div>
+
+                                     <!-- Telefon -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="telefon">
+                                                 <h5>Telefon</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="telefon">
+                                         </div>
+                                     </div>
+
+                                 </div>
+
+                                 <div class="col-sm-6">
+
+                                     <h3>Fahrzeug Details</h3>
+                                     <h3></h3>
+                                     <!-- Land -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="land">
+                                                 <h5>Land</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="land" value="DEU">
+                                         </div>
+                                     </div>
+
+                                     <!-- Kennzeichen -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="kennzeichen">
+                                                 <h5>Kennzeichen</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="kennzeichen">
+                                         </div>
+                                     </div>
+
+                                     <!-- Fahrzeug -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="fahrzeug">
+                                                 <h5>Fahrzeug</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="fahrzeug">
+                                         </div>
+                                     </div>
+
+                                     <!-- Farbe -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="farbe">
+                                                 <h5>Farbe</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="farbe">
+                                         </div>
+                                     </div>
+
+                                     <!-- Bermerkung -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label for="bemerkung">
+                                                 <h5>Bemerkung</h5>
+                                             </label>
+                                         </div>
+                                         <div class="col-sm-8">
+                                             <input type="text" class="form-control" id="bemerkung">
+                                         </div>
+                                     </div>
+
+
+                                 </div>
+
+                             </div>
+
+                             <div class="row parking-places-row">
+
+                                 <div class="col">
+
+                                     <!-- Parkplätze -->
+                                     <div class="row">
+                                         <div class="col-sm-4">
+                                             <label>
+                                                 <h3>Parkplätze</h3>
+                                             </label>
+                                         </div>
+                                     </div>
+
+                                     <!-- Checkboxes -->
+                                     <div class="row">
+
+                                         <div class="col-sm-1">
+                                             <label>
+                                                 <h5>P1</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-p1"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-1">
+                                             <label>
+                                                 <h5>P2</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-p2"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-1">
+                                             <label>
+                                                 <h5>P3</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-p3"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-2 broad-col">
+                                             <label>
+                                                 <h5>P3 Erw</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-p3-erw"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-1">
+                                             <label>
+                                                 <h5>P4</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-p4"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-1">
+                                             <label>
+                                                 <h5>P5</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-p5"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-1">
+                                             <label>
+                                                 <h5>P6</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-p6"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-2 broad-col">
+                                             <label>
+                                                 <h5>Job Ticket</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-jobticket"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-1 broad-col">
+                                             <label>
+                                                 <h5>Werk</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-werk"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                         <div class="col-sm-1">
+                                             <label>
+                                                 <h5>A75</h5>
+                                             </label>
+                                             <input class="big-checkbox parking-lot-edit" id="parking-space-a75"
+                                                 type="checkbox" aria-label="Checkbox for following text input">
+                                         </div>
+
+                                     </div>
+                                 </div>
+
+                             </div>
+
+                         </div>
+
+                     </div>
+                 </div>
+             </form>
+         </div>
+
+         <div class="modal-footer">
+             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Abbrechen</button>
+             <button type="button" class="btn btn-success" onclick=saveEditedPermission() id="savePermission">
+                 Speichere Parkerlaubnis
+             </button>
+         </div>
+
+     </div>
+ </div>
+</div>
+
+</body>
+</html>
