@@ -1,6 +1,5 @@
 function generateEditButtons(id) {
 
-    //TODO: schreiben als html, einbinden und dann mittels document.get ... gezielt bestimmte attribute hinzufügen
     let button = document.createElement("button");
     button.setAttribute("id", "editButtonId" + id)
     button.setAttribute("class", "btn btn-primary editButton bi bi-pencil");
@@ -35,7 +34,7 @@ function getPermissionViaId(id) {
 
 function getParkingLotsToEnableCheckboxes(parkingLots) {
 
-    parkingLots = parkingLots.trim().split(" ")
+    parkingLots = parkingLots.trim().split("-")
 
     let parkingLotsToCheck = [];
 
@@ -52,7 +51,7 @@ function fillEditFields(doc) {
     setInputFieldText("kennzeichen", doc["kennzeichen"]);
     setInputFieldText("land", doc["land"]);
     setInputFieldText("bemerkung", doc["bemerkung"]);
-    setInputFieldText("nachname", doc["name"]);
+    setInputFieldText("nachname", doc["nachname"]);
     setInputFieldText("vorname", doc["vorname"]);
     setInputFieldText("fahrzeug", doc["fahrzeug"]);
     setInputFieldText("farbe", doc["farbe"]);

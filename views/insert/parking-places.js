@@ -11,7 +11,7 @@ function getInputValuesForParkingLotsAsString() {
 
     Array.prototype.forEach.call(getParkingLots(), parkingLot => {
         if(parkingLot.checked) {
-            parkingLotsValues += getParkingLotName(parkingLot) + " ";
+            parkingLotsValues += getParkingLotName(parkingLot) + "-";
         }
     });
     return parkingLotsValues;

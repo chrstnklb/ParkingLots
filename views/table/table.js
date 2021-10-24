@@ -7,7 +7,7 @@ const columnOrder = {
     kennzeichen: "Kennzeichen",
     land: "Land",
     bemerkung: "Bemerkung",
-    name: "Name",
+    nachname: "Nachname",
     vorname: "Vorname",
     fahrzeug: "Fahrzeug",
     farbe: "Farbe",
@@ -126,6 +126,10 @@ function createBodyRow(permission) {
             case "letzteAenderung":
                 child = createTableBodyCell(extendLetzteAenderung(permission["letzteAenderung"]));
                 break;
+            case "parkplaetze":
+                let parkplaetze = permission["parkplaetze"].split("-").toString().slice(0, -1);
+                child = createTableBodyCell(parkplaetze.replaceAll(",",", "));
+                break;
             default:
                 child = createTableBodyCell(permission[key]);
         }
@@ -144,16 +148,6 @@ function extendLetzteAenderung(letzteAenderung) {
         letzteAenderung += " (vor " + diff + " Tagen)";
     }
     return letzteAenderung;
-}
-
-// TODO: Utils
-function calculateDaysSinceLetzteAenderung(letzteAenderung) {
-    let year = letzteAenderung.slice(6, 10);
-    let month = letzteAenderung.slice(3, 5);
-    let day = letzteAenderung.slice(0, 2);
-    let lastChangeDate = new Date(year, month - 1, day);
-    let today = (new Date());
-    return Math.floor((today - lastChangeDate) / 1000 / 60 / 60 / 24);
 }
 
 function createTableBodyCell(text) {

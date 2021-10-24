@@ -13,7 +13,6 @@ const parkingPlaces = [
 
 let insertMode;
 
-//TODO: Der scheint hier aber sehr spezifisch zu sein - löschbar?
 let ID_OF_ACTUAL_ENTRY;
 
 function setIdOfEntryToEdit(id) {

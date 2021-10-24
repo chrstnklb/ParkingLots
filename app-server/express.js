@@ -84,7 +84,7 @@ expressApp.post('/edit', function (req, res) {
     
     doc.letzteAenderung = req.body.parkerlaubnis.letzteAenderung,
 
-    doc.name = req.body.parkerlaubnis.nachname,
+    doc.nachname = req.body.parkerlaubnis.nachname,
     doc.vorname = req.body.parkerlaubnis.vorname,
     doc.unternehmen = req.body.parkerlaubnis.unternehmen,
     doc.bereich = req.body.parkerlaubnis.bereich,

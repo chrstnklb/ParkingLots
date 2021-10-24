@@ -9,18 +9,12 @@ function searchAndShowPermissions() {
 
         let rowFitsSearch = checkIfPermissionFitsAllSearchTexts(permission);
 
-        // rowFitsSearch ? console.log('yes :>> ', permission) : console.log('nope :>> ', permission);
-
         if (rowFitsSearch) filteredPermissions.push(permission);
 
     })
 
-    console.log('filteredRows :>> ', filteredPermissions);
     showPermission();
-
 }
-
-
 
 function getFilteredPermissions() {
     return filteredPermissions
@@ -42,7 +36,6 @@ function getSearchInputField() {
 }
 
 function checkIfPermissionFitsAllSearchTexts(permission) {
-    // TODO: map oder irgendwas
     let result = true;
 
     if (getSearchTexts().length > 0) {
@@ -61,7 +54,6 @@ function extractPermissionAsString(permission) {
 }
 
 function fetchAllPermissions() {
-    console.log("Welcome to fetchAllPermissions");
 
     fetch('/search', {
         method: 'GET',
@@ -77,7 +69,6 @@ function fetchAllPermissions() {
         });
 
     }).then(() => {
-        console.log('searchAndShowPermissions :>>');
         searchAndShowPermissions();
 
     }).catch(function (error) {
