@@ -1,5 +1,10 @@
+.farbtest{
+    background: #004297;
+}
+
 .table>tbody>tr>td{
     vertical-align: middle;
+    /* background: #004297; */
 }
 
 .table>tbody>tr> td:nth-child(1){
@@ -21,10 +26,6 @@
     padding-right: 2px;
 }
 
-.table-hover>tbody>tr:hover{
-    background-color: yellow;
-}
-
 /* no results were found */
 #noResult{
     font-size:50px;
@@ -34,23 +35,24 @@
 
 /* vehicle color tags */
 
-.glyphicon-stop{
+.glyphicon-stop, .bi-tags-fill{
+    /* font-size: 2rem; */
     font-size: 26px;
     color:black;
     top:1px;
 }
 
-span.inside{
+span.inside, i.inside{
     position:absolute;
     font-size: 24px;
     left:1px;
     top:1px;
 }
 
-.colorText{
+/* .colorText{
     position:relative;
     bottom:6px;
-}
+} */
 
 .hellblau   { color: #5cc1f8;   }
 .hellbraun  { color: #995f33;   }

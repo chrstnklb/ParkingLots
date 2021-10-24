@@ -1,118 +1,118 @@
-// function getSearchTexts() {
-//     return getSearchInputField() === null
-//         ? []
-//         : getSearchInputField().value.trim().split(" ");
+// // function getSearchTexts() {
+// //     return getSearchInputField() === null
+// //         ? []
+// //         : getSearchInputField().value.trim().split(" ");
+// // }
+
+// function displayPermissionsFilterResultCount() {
+//     showResult(getFilteredPermissions().length);
 // }
 
-function displayPermissionsFilterResultCount() {
-    showResult(getFilteredPermissions().length);
-}
+// // function searchAndShowPermissions(){
 
-// function searchAndShowPermissions(){
+// //     deleteFilteredPermissions();
+// //     let searchTexts = getSearchTexts();
+// //     enableAdminArea(searchTexts.join(""));
 
-//     deleteFilteredPermissions();
-//     let searchTexts = getSearchTexts();
-//     enableAdminArea(searchTexts.join(""));
+// //     let rowMatchesSearchText = false;
+// //     let rows = allPermissionsArray;
+// //     for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
+// //         let row = rows[rowIndex];
+// //         rowMatchesSearchText = thisRowFitsWithAllSearchTexts(searchTexts, Object.values(row.doc));
+// //         addPermissionToFilteredPermissions(rowMatchesSearchText, row);
+// //     }
+// //     displayPermissionsFilterResult();
+// //     displayPermissionsFilterResultCount();
+// // }
 
-//     let rowMatchesSearchText = false;
-//     let rows = allPermissionsArray;
-//     for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
-//         let row = rows[rowIndex];
-//         rowMatchesSearchText = thisRowFitsWithAllSearchTexts(searchTexts, Object.values(row.doc));
-//         addPermissionToFilteredPermissions(rowMatchesSearchText, row);
+// function thisRowFitsWithAllSearchTexts(searchTexts, row) {
+
+//     let allSearchTextsFindMatchInSomeCellText = false;
+
+//     for (let searchTextIndex = 0; searchTextIndex < searchTexts.length; searchTextIndex++) {
+//         if(oneCellTextFitsSearchText(searchTexts[searchTextIndex],row)){
+//             allSearchTextsFindMatchInSomeCellText = true;
+//         }else{
+//             allSearchTextsFindMatchInSomeCellText = false;
+//             break;
+//         }
 //     }
-//     displayPermissionsFilterResult();
-//     displayPermissionsFilterResultCount();
+
+//     return allSearchTextsFindMatchInSomeCellText;
 // }
 
-function thisRowFitsWithAllSearchTexts(searchTexts, row) {
+// function cellHasContent(cellTexts) {
+//     let hasContent = false;
 
-    let allSearchTextsFindMatchInSomeCellText = false;
+//     if(cellTexts !== null) {
+//         if(cellTexts.length > 0) {
+//             hasContent = true;
+//         }
+//     }
+//     return hasContent;
+// }
 
-    for (let searchTextIndex = 0; searchTextIndex < searchTexts.length; searchTextIndex++) {
-        if(oneCellTextFitsSearchText(searchTexts[searchTextIndex],row)){
-            allSearchTextsFindMatchInSomeCellText = true;
-        }else{
-            allSearchTextsFindMatchInSomeCellText = false;
-            break;
-        }
-    }
+// function cellIsTimeStamp(cellsIndex) {
+//     return  cellsIndex === 0    ||  // timestamp
+//             cellsIndex === 12   ||  // id
+//             cellsIndex === 13;      // pouchdb revision number
+// }
 
-    return allSearchTextsFindMatchInSomeCellText;
-}
+// function oneCellTextFitsSearchText(searchText, cells) {
 
-function cellHasContent(cellTexts) {
-    let hasContent = false;
+//     let oneTextFits = false;
 
-    if(cellTexts !== null) {
-        if(cellTexts.length > 0) {
-            hasContent = true;
-        }
-    }
-    return hasContent;
-}
+//     for (let cellsIndex = 0; cellsIndex < cells.length; cellsIndex++) {
 
-function cellIsTimeStamp(cellsIndex) {
-    return  cellsIndex === 0    ||  // timestamp
-            cellsIndex === 12   ||  // id
-            cellsIndex === 13;      // pouchdb revision number
-}
+//         let cellTexts = cells[cellsIndex];
+//         if(cellHasContent(cellTexts) && !cellIsTimeStamp(cellsIndex)){
+//             cellTexts = cellTexts.split(" ");
+//             for (let cellTextsIndex = 0; cellTextsIndex < cellTexts.length; cellTextsIndex++) {
+//                 if(isSubstringOf(searchText, cellTexts[cellTextsIndex])){
+//                     oneTextFits = true;
+//                     break;
+//                 }
+//             }
+//         }
+//     }
 
-function oneCellTextFitsSearchText(searchText, cells) {
+//     return oneTextFits;
+// }
 
-    let oneTextFits = false;
+// function isSubstringOf(subSearchString, cellString) {
+//     return cellString.toUpperCase().includes(subSearchString.toUpperCase());
+// }
 
-    for (let cellsIndex = 0; cellsIndex < cells.length; cellsIndex++) {
+// function setSearchFieldText(text) {
+//     getSearchInputField().value = text;
+// }
 
-        let cellTexts = cells[cellsIndex];
-        if(cellHasContent(cellTexts) && !cellIsTimeStamp(cellsIndex)){
-            cellTexts = cellTexts.split(" ");
-            for (let cellTextsIndex = 0; cellTextsIndex < cellTexts.length; cellTextsIndex++) {
-                if(isSubstringOf(searchText, cellTexts[cellTextsIndex])){
-                    oneTextFits = true;
-                    break;
-                }
-            }
-        }
-    }
+// function showResult(filteredPermissionsCount){
 
-    return oneTextFits;
-}
+//     pollDOM();
+//     let resultCount = pollDOM();
+//     resultCount.textContent =
+//         getShowCount(filteredPermissionsCount) + " / " + filteredPermissionsCount;
+// }
 
-function isSubstringOf(subSearchString, cellString) {
-    return cellString.toUpperCase().includes(subSearchString.toUpperCase());
-}
+// function pollDOM() {
+//     const el = document.getElementById("resultCount");
 
-function setSearchFieldText(text) {
-    getSearchInputField().value = text;
-}
+//     if (el !== null) {
+//         if (el !== undefined) {
+//             if (el.textContent !== undefined) {
+//                 return el;
+//             }
+//         }
+//     } else {
+//         setTimeout(pollDOM, 1000); // try again in 300 milliseconds
+//     }
+// }
 
-function showResult(filteredPermissionsCount){
+// function getShowCount(filteredPermissionsCount){
+//     return filteredPermissionsCount < SHOWN_ROWS_LIMIT ? filteredPermissionsCount : SHOWN_ROWS_LIMIT;
+// }
 
-    pollDOM();
-    let resultCount = pollDOM();
-    resultCount.textContent =
-        getShowCount(filteredPermissionsCount) + " / " + filteredPermissionsCount;
-}
-
-function pollDOM() {
-    const el = document.getElementById("resultCount");
-
-    if (el !== null) {
-        if (el !== undefined) {
-            if (el.textContent !== undefined) {
-                return el;
-            }
-        }
-    } else {
-        setTimeout(pollDOM, 1000); // try again in 300 milliseconds
-    }
-}
-
-function getShowCount(filteredPermissionsCount){
-    return filteredPermissionsCount < SHOWN_ROWS_LIMIT ? filteredPermissionsCount : SHOWN_ROWS_LIMIT;
-}
-
-function setFocusToSearchField(){
-    getSearchInputField().focus();
-}
+// function setFocusToSearchField(){
+//     getSearchInputField().focus();
+// }

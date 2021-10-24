@@ -10,6 +10,14 @@ function hideCreateModal() {
     $('#createPermissionModal').modal('hide');
 }
 
+function setSearchFieldText(text) {
+    getSearchInputField().value = text;
+}
+
+function getSearchInputField() {
+    return getElementById("searchInput");
+}
+
 function refreshPage() {
     location.reload();
 }
@@ -19,12 +27,6 @@ function showCreateConfirmation(vorname, nachname) {
 }
 
 // $(document).ready(function () {
-
-//     $('#exampleModal').on('hidden.bs.modal', function () {
-//         alert("Parkerlaubnis wurde " + (wasSaved ? "erfolgreich" : "NICHT") + " gespeichert!");
-//         wasSaved = false;
-//     })
-
 
 //     $('#exampleModal').on('show.bs.modal', function (e) {
 
@@ -46,12 +48,4 @@ function showCreateConfirmation(vorname, nachname) {
 //     })
 
 // });
-
-// function updatePermission() {
-//     updateElement(grabInputFieldsForErlaubnis(true));
-// }
-
-// function createElementFromUi() {
-//     createElementViaUi(grabInputFieldsForErlaubnis(false))
-// }
 

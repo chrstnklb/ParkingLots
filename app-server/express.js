@@ -1,5 +1,8 @@
+//#region express setup and config
+
 //#region express config
 
+const { table } = require('console');
 const exp = require('constants');
 const express = require('express');
 const expressApp = express();
@@ -9,6 +12,7 @@ expressApp.use(express.static("views"));
 expressApp.use(express.urlencoded({ extended: true }));
 expressApp.use(express.json());
 expressApp.set('view engine', 'ejs');
+expressApp.set('views', ['views', 'views/table']);
 
 //#endregion
 
@@ -26,13 +30,20 @@ const db = new PouchDB('http://' + dbUser + ':' + dbPassword + '@' + dbIpAddress
 
 //#endregion
 
-expressApp.get('/', (req, res) => {
+//#endregion
 
+expressApp.get('/', function (req, res, next) {
+  res.render('../views/main/index');
+  next()
+})
+
+expressApp.get('/search', (req, res) => {
+  console.log("coming from /search");
   db.allDocs({
     include_docs: true
 
   }).then(function (result) {
-    res.render('index', { table: result.rows, total_rows: result.rows.length });
+    res.json(result.rows);
 
   }).catch(function (err) {
     console.log(err);
@@ -44,42 +55,22 @@ expressApp.listen(expressAppPort, () => {
   console.log("Server Started at http://localhost:" + expressAppPort)
 })
 
-expressApp.post('/clicked', function (req, res) {
+expressApp.post('/create', function (req, res) {
 
   console.log('req.body.parkerlaubnis :>> ', req.body.parkerlaubnis);
-
   db.put(req.body.parkerlaubnis, function (err, response) {
     if (err) {
       return console.log(err);
     } else {
       console.log(response);
     }
-
-    // console.log('click added to db');
   }).then(function (result) {
     res.sendStatus(200);
-    // console.log("response??? it was saved");
   }).catch(function (err) {
     console.log(err);
   });
 })
 
-expressApp.post('/searched', (req, res) => {
-  db.allDocs({
-    include_docs: true
-  }).then(function (result) {
-
-    let searchStr = req.body;
-    console.log('searchStr :>> ', searchStr[0]);
-
-    let searchResult = result;
-    console.log('searchResult :>> ', searchResult);
-
-  }).catch(function (err) {
-    console.log(err);
-  });
-
-})
 
 //#region examples for later
 

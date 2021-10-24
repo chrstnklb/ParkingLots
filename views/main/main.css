@@ -1,9 +1,9 @@
 :root {
-    --main-bg-color: black;
-    --main-text-color: white;
+    --main-bg-color: #F8F9FA;
+    --main-text-color: #212529;
 
-    --main-hover-bg-color: black;
-    --main-hover-text-color: white;
+    --main-hover-bg-color: #212529;
+    --main-hover-text-color: #F8F9FA;
 
     --main-hover-highlight-row-color: yellow;
 }

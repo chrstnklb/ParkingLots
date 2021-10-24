@@ -29,17 +29,3 @@ function uncheckAllParkingPlacesCheckboxes() {
     });
 
 }
-
-// function editParkingPlacesCheckboxes(checkBoxState, parkingPlaces) {
-
-//     let parkingLotsCheckBoxes = document.getElementsByClassName("parking-lot");
-
-//     for (let parkingLotIndex = 0; parkingLotIndex < parkingLotsCheckBoxes.length; parkingLotIndex++) {
-
-//         let parkingLot = parkingLotsCheckBoxes[parkingLotIndex];
-
-//         if (parkingPlaces.includes(getParkingLotName(parkingLot))) {
-//             parkingLot.checked = checkBoxState;
-//         }
-//     }
-// }

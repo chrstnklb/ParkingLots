@@ -1,79 +1,17 @@
-<div>
+<!DOCTYPE html>
+<html lang="de">
 
-    <table class="table table-sm table-striped table-hover" id="resultTableId">
+<head>
+    <meta charset="UTF-8">
 
-        <thead class="thead thead-dark">
-            <tr>
-                <th>Kennzeichen</th>
-                <th>Vorname</th>
-                <th>Name</th>
-                <th>Parkplätze</th>
-                <th>Unternehmen</th>
-                <th>Bereich</th>
-                <th>Telefon</th>
-                <th>Land</th>
-                <th>Fahrzeug</th>
-                <th>Farbe</th>
-                <th>Bemerkung</th>
-                <th>Letzte Änderung</th>
-            </tr>
-        </thead>
+    <link rel="stylesheet" href="../table/table.css">
 
-        <tbody>
-            <% for(var i=0; i < total_rows; i++) { %>
-                <tr>
-                    <td>
-                        <%= locals.table[i].doc.kennzeichen %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.vorname %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.name %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.parkplaetze %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.unternehmen %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.bereich %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.telefon %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.land %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.fahrzeug %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.farbe %>
-                    </td>
-                    <td>
-                        <%= locals.table[i].doc.bemerkung %>
-                    </td>
-                    <td>
-                        <%
-                            let year = locals.table[i].doc.letzteAenderung.slice(6,10);
-                            let month = locals.table[i].doc.letzteAenderung.slice(3,5);
-                            let day = locals.table[i].doc.letzteAenderung.slice(0,2);
-                            let lastChangeDate = new Date(year, month-1 , day);
-                            let today = (new Date());
-                            let diff = Math.floor((today - lastChangeDate)/1000/60/60/24);
-                        %>
-                        <%= locals.table[i].doc.letzteAenderung %>
-                        <% if (diff!=0) { %>
-                            <%= "(vor " + diff + " Tagen)" %>                                
-                          <% } %>
-                    </td>
-                </tr>
+    <script type="text/javascript" src="../table/table.js"></script>
 
-                <% } %>
-        </tbody>
+</head>
 
-    </table>
+<body onload="fetchAllPermissions()" >
+    <div id="resultTablePlaceHolder"></div>
+</body>
 
-</div>
+</html>

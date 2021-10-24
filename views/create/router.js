@@ -3,7 +3,7 @@ function savePermission() {
     // console.log('savePermission button was clicked');
     let date = Date.now();
 
-    fetch('/clicked', {
+    fetch('/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

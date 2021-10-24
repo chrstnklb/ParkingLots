@@ -32,19 +32,19 @@ const wantedInformations = [
     "vorname"
 ];
 
-let filteredPermissions = [];
+// let filteredPermissions = [];
 
-function getFilteredPermissions() {
-    return filteredPermissions;
-}
+// function getFilteredPermissions() {
+//     return filteredPermissions;
+// }
 
-function setFilteredPermissions(permissions) {
-    filteredPermissions = permissions;
-}
+// function setFilteredPermissions(permissions) {
+//     filteredPermissions = permissions;
+// }
 
-function deleteFilteredPermissions() {
-    filteredPermissions = [];
-}
+// function deleteFilteredPermissions() {
+//     filteredPermissions = [];
+// }
 
 function getIndexForPermissionInformation(demandedPermissionInformation) {
     let indexOfDemandedPermissionInformation;

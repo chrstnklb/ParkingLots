@@ -8,11 +8,14 @@
     <!-- Create -->
     <link rel="stylesheet" href="../create/create.css">
 
-    <script type="text/javascript" src="../create/create-router.js"></script>
-    <script type="text/javascript" src="../create/create-steps.js"></script>
+    <script type="text/javascript" src="../create/router.js"></script>
+    <script type="text/javascript" src="../create/steps.js"></script>
     <script type="text/javascript" src="../create/parking-places.js"></script>
     <script type="text/javascript" src="../create/permission-details.js"></script>
-    <script type="text/javascript" src="../dom-utils.js"></script>
+
+    <script type="text/javascript" src="../search/search.js"></script>
+    
+    <script type="text/javascript" src="../utils/dom-utils.js"></script>
 
 </head>
 
@@ -287,7 +290,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Abbrechen</button>
-                    <button type="button" class="btn btn-success" onclick="savePermission()" id="savePermission">
+                    <button type="button" class="btn btn-success" onclick=savePermission() id="savePermission">
                         Speichere Parkerlaubnis
                     </button>
                 </div>
