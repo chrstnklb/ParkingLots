@@ -76,13 +76,8 @@ function editParkingPlacesCheckboxes(checkBoxState, parkingPlaces) {
 
         let parkingLot = parkingLotsCheckBoxes[parkingLotIndex];
 
-        if (parkingPlaces.includes(getParkingLotNameForEdit(parkingLot))) {
+        if (parkingPlaces.includes(getParkingLotName(parkingLot))) {
             parkingLot.checked = checkBoxState;
         }
     }
-}
-// TODO: Zusammenführen mit Create
-// TODO: alle document. * in die dom utils
-function getParkingLotNameForEdit(parkingLot) {
-    return parkingLot.parentNode.parentNode.getElementsByTagName("span")[0].textContent;
 }
