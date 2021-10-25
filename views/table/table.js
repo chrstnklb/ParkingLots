@@ -14,7 +14,7 @@ const columnOrder = {
     unternehmen: "Unternehmen",
     bereich: "Bereich",
     telefon: "Telefon",
-    parkplaetze: "Parkplaetze",
+    parkplaetze: "Parkplätze",
     letzteAenderung: "Letzte Änderung"
 }
 
@@ -142,7 +142,7 @@ function createBodyRow(permission) {
 
 function extendLetzteAenderung(letzteAenderung) {
 
-    let diff = calculateDaysSinceLetzteAenderung(letzteAenderung);
+    let diff = calculateDaysSinceDateDDMMYYYY(letzteAenderung.replaceAll(".",""));
 
     if (diff != 0) {
         letzteAenderung += " (vor " + diff + " Tagen)";

@@ -4,9 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
+
+    <script type="text/javascript" src="../admin/admin.js"></script>
+    <script type="text/javascript" src="../admin/excel/dataController.js"></script>
 </head>
 
 <body>
+
+    <!-- Load File To Database -->
+    <div class="dropdown-item">
+        <!-- <span class="glyphicon glyphicon-import"></span> -->
+        <!-- <input type="button" id="loadFileXml" value="Excel importieren"
+            onclick="document.getElementById('fileUpload').click();" /> -->
+            <!-- TODO: use https://github.com/SheetJS/sheetjs-->
+        <input type="file" name="file" id="fileUpload" onchange="importExcel()" />
+        <!-- <input type="file" style="display:none;" name="file" id="fileUpload" onchange="importExcel()" /> -->
+    </div>
 
     <!-- Example single danger button -->
     <div class="btn-group">
