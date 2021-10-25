@@ -32,7 +32,7 @@ function getSearchTexts() {
 }
 
 function getSearchInputField() {
-    return getElementViaId("searchInput");
+    return domGetElementViaId("searchInput");
 }
 
 function checkIfPermissionFitsAllSearchTexts(permission) {
@@ -48,9 +48,11 @@ function checkIfPermissionFitsAllSearchTexts(permission) {
 }
 
 function extractPermissionAsString(permission) {
+    delete permission._id;
+    delete permission._rev;
     return Object.keys(permission).map(function (key) {
         return permission[key];
-    }).join()
+    }).join().replaceAll(",","")
 }
 
 function fetchAllPermissions() {

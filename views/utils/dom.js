@@ -1,21 +1,20 @@
-
-function getInputValueViaId(id) {
-    return getValueOfElement(getElementViaId(id));
+function domGetInputValueViaId(id) {
+    return domGetValueOfElement(domGetElementViaId(id));
 }
 
-function getValueOfElement(element) {
+function domGetValueOfElement(element) {
     if (element === null) {
         element = "";
     }
     return element.value;
 }
 
-function getElementViaId(id) {
+function domGetElementViaId(id) {
     return document.getElementById(id);
 }
 
-function setInputFieldText(id, isNewText) {
-    getElementViaId(id).value = isNewText ? isNewText : "";
+function domSetInputFieldText(id, isNewText) {
+    domGetElementViaId(id).value = isNewText ? isNewText : "";
 }
 
 function domCreateWithAttribute(tagName, attribute, attributeValue) {
@@ -46,6 +45,6 @@ function domAppendChild(parent, child) {
     parent.appendChild(child);
 }
 
-function refreshPage() {
+function domRefreshPage() {
     location.reload();
 }
