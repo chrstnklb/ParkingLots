@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../insert/insert.css">
 
     <script type="text/javascript" src="../insert/insert.js"></script>
-    
+
     <script type="text/javascript" src="../insert/parking-places.js"></script>
     <script type="text/javascript" src="../insert/permission-details.js"></script>
 
@@ -18,14 +18,16 @@
 
 <body>
 
+    <!-- TODO: aus allen Textfeldern eine wiederbenutzbare komponenten machen, ebenso für Parkplätze-->
     <!-- Modal -->
     <div class="modal fade" id="insertPermissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="insertPermissionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h1 class="modal-title" id="insertPermissionModalLabel">Parkerlaubnis</h1>
+                    <!-- TODO: Titel je nachdem anpassen, entweder neu oder bearbeiten -->
+                    <h3 class="modal-title" id="insertPermissionModalLabel">Parkerlaubnis</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -38,243 +40,243 @@
 
                                         <div class="col-sm-6">
 
-                                            <h3>Personen Details</h3>
-                                            <h3></h3>
+                                            <br>
+                                            <h5>Personen Details</h5>
+                                            <br>
 
-                                            <!-- Vorname -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="vorname">
-                                                        <h5>Vorname</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="vorname">
-                                                </div>
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="vorname"
+                                                    placeholder="Vorname">
+                                                <label for="vorname">Vorname</label>
                                             </div>
 
-                                            <!-- Nachname -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="nachname">
-                                                        <h5>Nachname</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="nachname">
-                                                </div>
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="nachname"
+                                                    placeholder="Nachname">
+                                                <label for="nachname">Nachname</label>
                                             </div>
 
-                                            <!-- Unternehmen -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="unternehmen">
-                                                        <h5>Unternehmen</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="unternehmen">
-                                                </div>
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="unternehmen"
+                                                    placeholder="Unternehmen">
+                                                <label for="unternehmen">Unternehmen</label>
                                             </div>
 
-                                            <!-- Bereich -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="bereich">
-                                                        <h5>Bereich</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="bereich">
-                                                </div>
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="bereich"
+                                                    placeholder="Bereich">
+                                                <label for="bereich">Bereich</label>
                                             </div>
 
-                                            <!-- Telefon -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="telefon">
-                                                        <h5>Telefon</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="telefon">
-                                                </div>
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="telefon"
+                                                    placeholder="Telefon">
+                                                <label for="telefon">Telefon</label>
                                             </div>
 
                                         </div>
 
                                         <div class="col-sm-6">
 
-                                            <h3>Fahrzeug Details</h3>
-                                            <h3></h3>
-                                            <!-- Land -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="land">
-                                                        <h5>Land</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="land" value="DEU">
-                                                </div>
+                                            <br>
+                                            <h5>Fahrzeug Details</h5>
+                                            <br>
+
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="land" placeholder="Land"
+                                                    value="DEU">
+                                                <label for="land">Land</label>
                                             </div>
 
-                                            <!-- Kennzeichen -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="kennzeichen">
-                                                        <h5>Kennzeichen</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="kennzeichen">
-                                                </div>
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="kennzeichen"
+                                                    placeholder="Kennzeichen">
+                                                <label for="kennzeichen">Kennzeichen</label>
                                             </div>
 
-                                            <!-- Fahrzeug -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="fahrzeug">
-                                                        <h5>Fahrzeug</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="fahrzeug">
-                                                </div>
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="fahrzeug"
+                                                    placeholder="Fahrzeug">
+                                                <label for="fahrzeug">Fahrzeug</label>
                                             </div>
 
-                                            <!-- Farbe -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="farbe">
-                                                        <h5>Farbe</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="farbe">
-                                                </div>
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="farbe" placeholder="Farbe">
+                                                <label for="farbe">Farbe</label>
                                             </div>
 
-                                            <!-- Bermerkung -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label for="bemerkung">
-                                                        <h5>Bemerkung</h5>
-                                                    </label>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="bemerkung">
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row parking-places-row">
-
-                                        <div class="col">
-
-                                            <!-- Parkplätze -->
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label>
-                                                        <h3>Parkplätze</h3>
-                                                    </label>
-                                                </div>
-                                            </div>
-
-                                            <!-- Checkboxes -->
-                                            <div class="row">
-
-                                                <div class="col-sm-1">
-                                                    <label>
-                                                        <h5>P1</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-p1"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-1">
-                                                    <label>
-                                                        <h5>P2</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-p2"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-1">
-                                                    <label>
-                                                        <h5>P3</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-p3"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-2 broad-col">
-                                                    <label>
-                                                        <h5>P3 Erw</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-p3-erw"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-1">
-                                                    <label>
-                                                        <h5>P4</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-p4"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-1">
-                                                    <label>
-                                                        <h5>P5</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-p5"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-1">
-                                                    <label>
-                                                        <h5>P6</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-p6"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-2 broad-col">
-                                                    <label>
-                                                        <h5>Job Ticket</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-jobticket"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-1 broad-col">
-                                                    <label>
-                                                        <h5>Werk</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-werk"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
-                                                <div class="col-sm-1">
-                                                    <label>
-                                                        <h5>A75</h5>
-                                                    </label>
-                                                    <input class="big-checkbox parking-lot" id="parking-space-a75"
-                                                        type="checkbox" aria-label="Checkbox for following text input">
-                                                </div>
-
+                                            <div class="form-floating mb-1">
+                                                <input type="text" class="form-control" id="bemerkung"
+                                                    placeholder="Bemerkung">
+                                                <label for="bemerkung">Bemerkung</label>
                                             </div>
                                         </div>
 
-                                    </div>
 
+                                        <div class="col-sm-12 grid">
+
+                                            <br>
+                                            <h5>Parkplätze</h5>
+                                            <!-- <br> -->
+
+                                            <div class="row">
+
+                                                <!-- <div class="col-sm-3">
+                                                    <div class="container"></div>
+                                                    <div class="row row-cols-auto">
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-alle"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text" id="alle" <>Alle</span>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-sm-9">-->
+                                                <div class="col-sm-12">
+                                                    <div class="container"></div>
+
+                                                    <div class="row row-cols-auto">
+
+                                                        <!-- <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0" type="checkbox"
+                                                                        value=""
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">Alle</span>
+                                                            </div>
+                                                        </div> -->
+
+                                                        <!-- <div class="col">Column</div> -->
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-p1"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">P1</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parkin-lot" type="checkbox"
+                                                                        value="" id="parking-space-p2"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">P2</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-p3"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">P3</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-p4"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">P4</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-p5"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">P5</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-p6"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">P6</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-p3erw"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">P3 Erw</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-a75"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">A75</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-werk"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">Werk</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col  mx-3 my-2 px-0 py-1">
+                                                            <div class="input-group">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input mt-0 parking-lot" type="checkbox"
+                                                                        value="" id="parking-space-jobticket"
+                                                                        aria-label="Checkbox for following text input">
+                                                                </div>
+                                                                <span class="input-group-text">Job Ticket</span>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </form>

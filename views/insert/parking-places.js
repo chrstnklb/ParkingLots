@@ -1,9 +1,9 @@
 function getParkingLotName(parkingLot) {
-    return parkingLot
-        .parentNode
-        .getElementsByTagName("label")[0]
-        .getElementsByTagName("h5")[0]
-        .textContent;
+
+
+
+    return parkingLot.parentNode.parentNode.getElementsByTagName("span")[0].textContent;
+;
 }
 
 function getInputValuesForParkingLotsAsString() {

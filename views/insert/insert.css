@@ -30,5 +30,11 @@
 }
 
 .modal-dialog {
-    width: 725px;
+    width: 120%;
+    margin: auto;
 }
+
+modal-ku {
+    width: 750px;
+    margin: auto;
+  }

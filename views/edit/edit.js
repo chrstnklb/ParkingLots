@@ -81,11 +81,8 @@ function editParkingPlacesCheckboxes(checkBoxState, parkingPlaces) {
         }
     }
 }
-
+// TODO: Zusammenführen mit Create
+// TODO: alle document. * in die dom utils
 function getParkingLotNameForEdit(parkingLot) {
-    return parkingLot
-        .parentNode
-        .getElementsByTagName("label")[0]
-        .getElementsByTagName("h5")[0]
-        .textContent;
+    return parkingLot.parentNode.parentNode.getElementsByTagName("span")[0].textContent;
 }
