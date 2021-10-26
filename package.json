@@ -16,7 +16,8 @@
     "mongodb": "^4.1.1",
     "nodemon": "^2.0.13",
     "pouchdb": "^7.2.2",
-    "ssh2-sftp-client": "^6.0.1"
+    "ssh2-sftp-client": "^6.0.1",
+    "xlsx": "^0.17.3"
   },
   "devDependencies": {
     "ts-node": "^9.1.1",
@@ -39,7 +40,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon app-server/express.js"
+    "devStart": "nodemon server/express.js"
   },
   "author": "",
   "license": "ISC"
