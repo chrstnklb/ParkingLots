@@ -12,6 +12,7 @@ function getInputValuesForParkingLotsAsString() {
             parkingLotsValues += getParkingLotName(parkingLot) + "-";
         }
     });
+    parkingLotsValues = parkingLotsValues.slice(0,-1);
     return parkingLotsValues;
 }
 
