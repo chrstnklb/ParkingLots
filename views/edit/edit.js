@@ -48,16 +48,16 @@ function getParkingLotsToEnableCheckboxes(parkingLots) {
 
 function fillEditFields(doc) {
 
-    setInputFieldText("kennzeichen", doc["kennzeichen"]);
-    setInputFieldText("land", doc["land"]);
-    setInputFieldText("bemerkung", doc["bemerkung"]);
-    setInputFieldText("nachname", doc["nachname"]);
-    setInputFieldText("vorname", doc["vorname"]);
-    setInputFieldText("fahrzeug", doc["fahrzeug"]);
-    setInputFieldText("farbe", doc["farbe"]);
-    setInputFieldText("unternehmen", doc["unternehmen"]);
-    setInputFieldText("bereich", doc["bereich"]);
-    setInputFieldText("telefon", doc["telefon"]);
+    domSetInputFieldText("kennzeichen", doc["kennzeichen"]);
+    domSetInputFieldText("land", doc["land"]);
+    domSetInputFieldText("bemerkung", doc["bemerkung"]);
+    domSetInputFieldText("nachname", doc["nachname"]);
+    domSetInputFieldText("vorname", doc["vorname"]);
+    domSetInputFieldText("fahrzeug", doc["fahrzeug"]);
+    domSetInputFieldText("farbe", doc["farbe"]);
+    domSetInputFieldText("unternehmen", doc["unternehmen"]);
+    domSetInputFieldText("bereich", doc["bereich"]);
+    domSetInputFieldText("telefon", doc["telefon"]);
 
     uncheckAllParkingPlacesCheckboxes();
     editParkingPlacesCheckboxes(

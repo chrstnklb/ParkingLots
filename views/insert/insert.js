@@ -29,20 +29,20 @@ function insertPermission() {
         body: JSON.stringify({
             parkerlaubnis: {
 
-                _id: id,
+                _id: id.toString(),
 
                 letzteAenderung: (new Date(Date.now())).toLocaleDateString(),
 
-                nachname: getInputValueViaId("nachname"),
-                vorname: getInputValueViaId("vorname"),
-                unternehmen: getInputValueViaId("unternehmen"),
-                bereich: getInputValueViaId("bereich"),
-                telefon: getInputValueViaId("telefon"),
-                kennzeichen: getInputValueViaId("kennzeichen"),
-                land: getInputValueViaId("land"),
-                fahrzeug: getInputValueViaId("fahrzeug"),
-                farbe: getInputValueViaId("farbe"),
-                bemerkung: getInputValueViaId("bemerkung"),
+                nachname: domGetInputValueViaId("nachname"),
+                vorname: domGetInputValueViaId("vorname"),
+                unternehmen: domGetInputValueViaId("unternehmen"),
+                bereich: domGetInputValueViaId("bereich"),
+                telefon: domGetInputValueViaId("telefon"),
+                kennzeichen: domGetInputValueViaId("kennzeichen"),
+                land: domGetInputValueViaId("land"),
+                fahrzeug: domGetInputValueViaId("fahrzeug"),
+                farbe: domGetInputValueViaId("farbe"),
+                bemerkung: domGetInputValueViaId("bemerkung"),
                 parkplaetze: getInputValuesForParkingLotsAsString()
             }
         })
@@ -63,7 +63,7 @@ function insertPermission() {
 
 function runStepsForSuccessfulPermissionSaving() {
     showSuccessMessage(getVorname(), getNachname());
-    refreshPage();
+    domRefreshPage();
 }
 
 function showSuccessMessage(vorname, nachname) {

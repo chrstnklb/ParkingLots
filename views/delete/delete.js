@@ -19,7 +19,7 @@ let wasDeleted = false;
 function runStepsForSuccessfulPermissionDeletion() {
     hideDeleteModal();
     showDeleteConfirmation();
-    refreshPage();
+    domRefreshPage();
 }
 
 function hideDeleteModal() {
@@ -39,7 +39,7 @@ function rememberIdOfEntryToDelete(entryId) {
 
 function deleteEntry(doDelete) {
 
-    console.log("deleteEntry \n NOT YET IMPLEMENTED: Delete permission from database via fetch expressjs.")
+    // console.log("deleteEntry \n NOT YET IMPLEMENTED: Delete permission from database via fetch expressjs.")
 
     if (doDelete) {
         deletePermission(idOfEntryToDelete);

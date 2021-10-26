@@ -1,11 +1,11 @@
 function setKennzeichenFromSearchText() {
-    setInputFieldText("kennzeichen", getSearchTexts().join(" "));
+    domSetInputFieldText("kennzeichen", getSearchTexts().join(" "));
 }
 
 function getVorname() {
-    return getInputValueViaId("vorname");
+    return domGetInputValueViaId("vorname");
 }
 
 function getNachname() {
-    return getInputValueViaId("nachname");
+    return domGetInputValueViaId("nachname");
 }
