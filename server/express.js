@@ -51,8 +51,7 @@ expressApp.get('/search', (req, res) => {
   console.log("/search Start: " + (new Date(Date.now())).toLocaleTimeString());
 
   db.allDocs({
-    include_docs: true,
-    limit: 50
+    include_docs: true
 
   }).then(function (result) {
 
@@ -142,24 +141,7 @@ expressApp.post('/delete', function (req, res) {
 
 //#endregion
 
-// setTimeout(function () {
-
-//   alert('hello');
-// }, 2);
-
-// let lastId = Date.now().toString();
-
-// function calculateIdFromTime() {
-//   let now = Date.now().toString()
-//   while (!(now > lastId)) {
-//     // do nothing but wait
-//     now = Date.now().toString()
-//   }
-//   lastId = now;
-//   return now;
-// }
-
-expressApp.post('/upload', (req, res, next) => {
+expressApp.post('/upload', (req, res) => {
   console.log("/upload Start: " + (new Date(Date.now())).toLocaleTimeString());
 
   console.log("/upload");
@@ -170,7 +152,6 @@ expressApp.post('/upload', (req, res, next) => {
     console.log('fileName :>> ', fileName);
 
     file.mv(`././server/incoming-files/${fileName}`, err => {
-      // TODO: error, wenn nicht xlsx
 
       let count = getMaxId();
 
@@ -203,33 +184,28 @@ expressApp.post('/upload', (req, res, next) => {
           )
         })
 
-        db.bulkDocs(parkerlaubnisArray, function (err, response) {
+        db.bulkDocs(parkerlaubnisArray, function (err) {
 
           if (err) { return console.log(err); }
-          else {
-            // console.log(response);
-          }
+          else { /* console.log(response);*/ }
 
-        }).then(function (result) {
-          console.log("/bulkDocs Ende: " + (new Date(Date.now())).toLocaleTimeString());
+        }).then(() => {
+
           res.redirect('/');
-          // res.sendStatus(200);
+
         }).catch(function (err) {
+
           console.log(err);
+
         });
 
       }
     })
-  } else {
-    res.send('There are no files')
-  }
-  console.log("/upload Ende: " + (new Date(Date.now())).toLocaleTimeString());
+  } else { res.send('There are no files') }
 
 });
 
 function getMaxId() {
-
-  console.log("/getMaxId Start: " + (new Date(Date.now())).toLocaleTimeString());
 
   let count = Date.now();
   db.allDocs({ include_docs: true }).then(function (result) {
@@ -244,47 +220,48 @@ function getMaxId() {
     }
   }).catch(function (err) { console.log(err); });
 
-  console.log("/getMaxId Ende: " + (new Date(Date.now())).toLocaleTimeString());
-
   return count
 }
 
-// For savety in excel imports we want to know the smallest id and from there we gow lower in createing new id's in every excel import.
-// function getLowestId() {
+expressApp.get('/downloadDbAsXlsx', (req, res) => {
 
-//   // TODO: Methode auch in search etc nutzuen
-//   db.allDocs({
-//     include_docs: true
+  console.log("/downloadDbAsXlsx");
 
-//   }).then(function (result) {
+  const timestamp = "_" + (new Date(Date.now())).toLocaleDateString() + "_" + Date.now();
+  const folder = "./server/outgoing-files/"
+  const filename = folder + "erlaubnisse" + timestamp + ".xlsx";
 
-//     // console.log('allDocs :>> ', result);
+  let data = [];
 
-//     let allIds = [result.length];
-//     console.log('allIds :>> ', allIds);
+  db.allDocs({ include_docs: true }).then(function (result) {
 
-//     // allDocs.rows.forEach(doc => {
-//     //   allIds.push(parseInt(doc._id))
-//     // })
+    result.rows.forEach(row => {
 
-//     const min = Math.min(...allIds)
+      data.push(
+        {
+          "Nachname": row.doc.nachname,
+          "Vorname": row.doc.vorname,
+          "Unternehmen": row.doc.unternehmen,
+          "Bereich": row.doc.bereich,
+          "Telefon": row.doc.telefon,
+          "Kennzeichen": row.doc.kennzeichen,
+          "Land": row.doc.land,
+          "Fahrzeug": row.doc.fahrzeug,
+          "Farbe": row.doc.farbe,
+          "Bemerkung": row.doc.bemerkung,
+          "Parkplaetze": row.doc.parkplaetze
+        }
+      )
+    })
 
-//     console.log('min :>> ', min);
+  }).then(() => {
 
-//   }).catch(function (err) {
-//     console.log(err);
-//   });
-// }
+    excel.readExcelEntriesFromDatabase(data,filename);
 
-//#region [rgba(120, 120, 120, 0.2) ] examples for later
+  }).then(() => {
 
-expressApp.get('/DownloadP1', (req, res) => {
-  res.download("express.js")
+    res.download(filename)
+
+  }).catch(function (err) { console.log(err); });
+
 })
-
-expressApp.get('/ErrorInBrowserConsole', (req, res) => {
-  res.status(500).send('ERROR : Look at the browser console!')
-  res.status(500).json({ message: 'ERROR : Look at the browser console!' });
-})
-
-//#endregion

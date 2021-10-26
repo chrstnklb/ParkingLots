@@ -6,125 +6,69 @@
     <title>Admin</title>
 
     <script type="text/javascript" src="../admin/admin.js"></script>
-    <script type="text/javascript" src="../admin/excel/dataController.js"></script>
 </head>
 
 <body>
 
-    <h3>Upload files</h3>
-    <form action="upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="fileUploaded">
-        <button>upload </button>
-    </form>
-
-    <!-- Load File To Database -->
-    <div class="dropdown-item">
-        <!-- <span class="glyphicon glyphicon-import"></span> -->
-        <!-- <input type="button" id="loadFileXml" value="Excel importieren"
-            onclick="document.getElementById('fileUpload').click();" /> -->
-            <!-- TODO: use https://github.com/SheetJS/sheetjs-->
-        <!-- <input type="file" name="file" id="fileUpload" onchange="importExcel()" /> -->
-        <!-- <input type="file" style="display:none;" name="file" id="fileUpload" onchange="importExcel()" /> -->
-    </div>
-
     <!-- Example single danger button -->
     <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Action
+        <button type="button" class="btn dropdown-toggle btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
         </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li><a class="dropdown-item" href="#">
-                    <!-- Load File To Database -->
-                    <span class="glyphicon glyphicon-import"></span>
-                    <input type="button" id="loadFileXml" value="Excel importieren"
-                        onclick="document.getElementById('fileUpload').click();" />
-                    <input type="file" style="display:none;" name="file" id="fileUpload" onchange="importExcel()" />
+        <ul class="dropdown-menu dropdown-menu-dark">
 
-                </a></li>
+            <li>
+                <h2 class="dropdown-header" style="color: greenyellow;">Exporte für die Kameras</h2>
+            </li>
+
+            <li><a class="dropdown-item" onclick="exportPermissionsForAll()">Export für alle Parkplätze</a></li>
+
             <li>
                 <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-        </ul>
+
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('P1')">Export für P1 (NYI)</a></li>
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('P2')">Export für P2 (NYI)</a></li>
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('P3')">Export für P3 (NYI)</a></li>
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('P4')">Export für P4 (NYI)</a></li>
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('P5')">Export für P5 (NYI)</a></li>
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('P6')">Export für P6 (NYI)</a></li>
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('A75')">Export für A75 (NYI)</a></li>
+            <li>
+                <a class="dropdown-item" onclick="exportPermissionsFor('Job Ticket')">Export für Job Ticket (NYI)</a>
+            </li>
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('P3 Erw.')">Export für P3 Erw. (NYI)</a></li>
+            <li><a class="dropdown-item" onclick="exportPermissionsFor('Werk')">Export für Werk (NYI)</a></li>
+
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+
+            <li>
+                <h2 style="color: red;" class="dropdown-header">Importiere eine Excel-Datei in die DB.</h2>
+            </li>
+
+            <li>
+                <a class="dropdown-item" href="#">
+                    <%- include('admin/excel-upload'); %>
+                </a>
+            </li>
+
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+
+            <li>
+                <h2 style="color: red;" class="dropdown-header">Alle Einträge als Excel-Datei (XLSX) herunterladen</h2>
+            </li>
+
+            <li>
+                <a class="dropdown-item">
+                    <%- include('admin/excel-download'); %>
+                </a>
+            </li>
+
     </div>
-
-    <!-- Load File To Database -->
-    <!-- <div class="dropdown-item">
-        <span class="glyphicon glyphicon-import"></span>
-        <input type="button" id="loadFileXml" value="Excel importieren"
-            onclick="document.getElementById('fileUpload').click();" />
-        <input type="file" style="display:none;" name="file" id="fileUpload" onchange="importExcel()" />
-    </div> -->
-
-    <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        Admin
-    </button> -->
-
-    <!-- <div class="dropdown-menu">
-
-        <a class="dropdown-item" onclick="exportPermissionsForAll()">Export für alle Parkplätze</a>
-
-        <div class="dropdown-divider"></div>
-
-        <a class="dropdown-item" onclick="exportPermissionsFor('P1')">Export für P1</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('P2')">Export für P2</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('P3')">Export für P3</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('P4')">Export für P4</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('P5')">Export für P5</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('P6')">Export für P6</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('A75')">Export für A75</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('Job Ticket')">Export für Job Ticket</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('P3 Erw.')">Export für P3 Erw.</a>
-        <a class="dropdown-item" onclick="exportPermissionsFor('Werk')">Export für Werk</a>
-
-        <div class="dropdown-divider"></div> -->
-
-    <!-- Save locally as csv -->
-    <!-- <div class="dropdown-item" onclick="exportDbToCsv()">
-            <span class="glyphicon glyphicon-share-alt"></span>
-            Als CSV exportieren
-        </div>
-
-        <div class="dropdown-divider"></div> -->
-
-    <!-- Save Database Backup -->
-    <!-- <div class="dropdown-item" onclick="alert('Später!')">
-            <span class="glyphicon glyphicon-lock"></span>
-            Datenbank Backup erstellen
-        </div> -->
-
-    <!-- Load Database Backup -->
-    <!-- <div class="dropdown-item" onclick="alert('Später!')">
-            <span class="glyphicon glyphicon-repeat"></span>
-            Datenbank Backup laden
-        </div>
-
-        <div class="dropdown-divider"></div> -->
-
-    <!-- Load File To Database -->
-    <!-- <div class="dropdown-item">
-            <span class="glyphicon glyphicon-import"></span>
-            <input type="button" id="loadFileXml" value="Excel importieren"
-                onclick="document.getElementById('fileUpload').click();" />
-            <input type="file" style="display:none;" name="file" id="fileUpload" onchange="importExcel()" />
-        </div>
-
-        <div class="dropdown-divider"></div> -->
-
-    <!-- Delete Database -->
-    <!-- <div class="dropdown-item" id="deleteDataBase" onclick="deleteDataBase()">
-            Datenbank löschen - VORSICHT !
-        </div>
-
-        <div class="dropdown-divider"></div>
-
-        <div class="label-info">__Version: 2020.11.10__</div> -->
-
-    <!-- </div> -->
 
 </body>
 
