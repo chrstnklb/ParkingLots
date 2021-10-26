@@ -2,15 +2,17 @@
 
 //#region express config
 
-const { table } = require('console');
-const exp = require('constants');
 const express = require('express');
+const fileUpload = require('express-fileupload');
+
 const expressApp = express();
 const expressAppPort = 3000;
 
 expressApp.use(express.static("views"));
 expressApp.use(express.urlencoded({ extended: true }));
 expressApp.use(express.json());
+expressApp.use(fileUpload());
+
 expressApp.set('view engine', 'ejs');
 expressApp.set('views', ['views', 'views/table']);
 
@@ -78,23 +80,23 @@ expressApp.post('/edit', function (req, res) {
 
   let idToBeUpdated = req.body.parkerlaubnis._id;
 
-  db.get(idToBeUpdated).then(function(doc){
+  db.get(idToBeUpdated).then(function (doc) {
 
     doc._id = idToBeUpdated,
-    
-    doc.letzteAenderung = req.body.parkerlaubnis.letzteAenderung,
 
-    doc.nachname = req.body.parkerlaubnis.nachname,
-    doc.vorname = req.body.parkerlaubnis.vorname,
-    doc.unternehmen = req.body.parkerlaubnis.unternehmen,
-    doc.bereich = req.body.parkerlaubnis.bereich,
-    doc.telefon = req.body.parkerlaubnis.telefon,
-    doc.kennzeichen = req.body.parkerlaubnis.kennzeichen,
-    doc.land = req.body.parkerlaubnis.land,
-    doc.fahrzeug = req.body.parkerlaubnis.fahrzeug,
-    doc.farbe = req.body.parkerlaubnis.farbe,
-    doc.bemerkung = req.body.parkerlaubnis.bemerkung,
-    doc.parkplaetze = req.body.parkerlaubnis.parkplaetze
+      doc.letzteAenderung = req.body.parkerlaubnis.letzteAenderung,
+
+      doc.nachname = req.body.parkerlaubnis.nachname,
+      doc.vorname = req.body.parkerlaubnis.vorname,
+      doc.unternehmen = req.body.parkerlaubnis.unternehmen,
+      doc.bereich = req.body.parkerlaubnis.bereich,
+      doc.telefon = req.body.parkerlaubnis.telefon,
+      doc.kennzeichen = req.body.parkerlaubnis.kennzeichen,
+      doc.land = req.body.parkerlaubnis.land,
+      doc.fahrzeug = req.body.parkerlaubnis.fahrzeug,
+      doc.farbe = req.body.parkerlaubnis.farbe,
+      doc.bemerkung = req.body.parkerlaubnis.bemerkung,
+      doc.parkplaetze = req.body.parkerlaubnis.parkplaetze
 
     return db.put(doc);
 
@@ -122,6 +124,26 @@ expressApp.post('/delete', function (req, res) {
   });
 
 })
+
+expressApp.post('/upload', (req, res) => {
+
+  if (req.files) {
+    const file = req.files.fileUploaded
+    const fileName = file.name
+    console.log('fileName :>> ', fileName);
+    file.mv(`././server/incoming-files/${fileName}`, err => {
+      if (err) {
+        console.log(err)
+        res.send('There is error')
+      } else {
+        res.send('uploaded successfully')
+      }
+    })
+  } else {
+    res.send('There are no files')
+  }
+})
+
 
 
 //#region examples for later
