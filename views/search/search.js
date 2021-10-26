@@ -1,16 +1,17 @@
 let allPermissions = [];
 let filteredPermissions;
 
+const LENGTH_OF_ID = 13;
+const LENGTH_OF_REV = 13;
+const LENGTH_OF_ID_AND_REV = LENGTH_OF_ID + LENGTH_OF_REV;
+
 function searchAndShowPermissions() {
 
     filteredPermissions = []
 
     allPermissions.forEach(permission => {
-
         let rowFitsSearch = checkIfPermissionFitsAllSearchTexts(permission);
-
         if (rowFitsSearch) filteredPermissions.push(permission);
-
     })
 
     showPermission();
@@ -48,14 +49,15 @@ function checkIfPermissionFitsAllSearchTexts(permission) {
 }
 
 function extractPermissionAsString(permission) {
-    delete permission._id;
-    delete permission._rev;
     return Object.keys(permission).map(function (key) {
         return permission[key];
-    }).join().replaceAll(",","")
+    }).join().replaceAll(",", "")
 }
 
 function fetchAllPermissions() {
+
+    domShowOrHideElement(NO_RESULT_FOUND_ELEMENT_ID, false);
+    domShowOrHideElement(SPINNER_ELEMENT_ID, true);
 
     fetch('/search', {
         method: 'GET',
@@ -71,6 +73,7 @@ function fetchAllPermissions() {
         });
 
     }).then(() => {
+        domShowOrHideElement(SPINNER_ELEMENT_ID, false);
         searchAndShowPermissions();
 
     }).catch(function (error) {

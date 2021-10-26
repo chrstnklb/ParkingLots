@@ -1,6 +1,5 @@
 const SHOWN_ROWS_LIMIT = 50;
 const TABLE_ID = 'resultTableId';
-
 let table;
 
 const columnOrder = {
@@ -24,6 +23,7 @@ function displayPermissionsFilterResult() {
 
     if (getFilteredPermissions().length > 0) {
         createTable();
+        domShowOrHideElement(NO_RESULT_FOUND_ELEMENT_ID, false)
     } else {
         showNoResultHint();
     }
@@ -41,9 +41,7 @@ function showNoResultHint() {
 
         domRemoveId(TABLE_ID);
 
-        let hint = domCreateWithAttribute("div", "id", "noResult");
-        hint.innerText = '\n😕\n\nEs wurden keine Treffer für\n"' + getSearchTexts().join(" ") + ' ..."\ngefunden!';
-        domAppendChild(domGetId("resultTablePlaceHolder"), hint);
+        domShowOrHideElement(NO_RESULT_FOUND_ELEMENT_ID, true);
     }
 }
 
@@ -127,8 +125,8 @@ function createBodyRow(permission) {
                 child = createTableBodyCell(extendLetzteAenderung(permission["letzteAenderung"]));
                 break;
             case "parkplaetze":
-                let parkplaetze = permission["parkplaetze"].split("-").toString().slice(0, -1);
-                child = createTableBodyCell(parkplaetze.replaceAll(",",", "));
+                let parkplaetze = permission["parkplaetze"].split("-").toString();
+                child = createTableBodyCell(parkplaetze.replaceAll(",", ", "));
                 break;
             default:
                 child = createTableBodyCell(permission[key]);
@@ -142,7 +140,7 @@ function createBodyRow(permission) {
 
 function extendLetzteAenderung(letzteAenderung) {
 
-    let diff = calculateDaysSinceDateDDMMYYYY(letzteAenderung.replaceAll(".",""));
+    let diff = calculateDaysSinceDateDDMMYYYY(letzteAenderung.replaceAll(".", ""));
 
     if (diff != 0) {
         letzteAenderung += " (vor " + diff + " Tagen)";

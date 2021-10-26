@@ -48,3 +48,12 @@ function domAppendChild(parent, child) {
 function domRefreshPage() {
     location.reload();
 }
+
+function domShowOrHideElement(id, shouldShow) {
+    let element = domGetElementViaId(id);
+    
+    if (shouldShow)
+        element.style.display = "block";
+    else
+        element.style.display = "none";
+}

@@ -18,3 +18,7 @@ let ID_OF_ACTUAL_ENTRY;
 function setIdOfEntryToEdit(id) {
     ID_OF_ACTUAL_ENTRY = id;
 }
+
+const NO_RESULT_FOUND_ELEMENT_ID = "noResult";
+
+const SPINNER_ELEMENT_ID = "spinner";

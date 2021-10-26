@@ -1,18 +1,19 @@
 function enableAdminArea(searchText) {
-    if(searchText.includes("adminuwe")){
+    if (searchText.includes("adminuwe")) {
         showAdminButton(true);
-    }else{
+    } else {
         showAdminButton(false);
     }
 }
 
 function showAdminButton(shouldShow) {
-    let x = document.getElementById("admin");
-    if (shouldShow) {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
+    let element = document.getElementById("admin");
+
+    if (shouldShow)
+        element.style.display = "block";
+    else
+        element.style.display = "none";
+
 }
 
 function importExcel() {
