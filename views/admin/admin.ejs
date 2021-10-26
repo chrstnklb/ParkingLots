@@ -11,13 +11,19 @@
 
 <body>
 
+    <h3>Upload files</h3>
+    <form action="upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="fileUploaded">
+        <button>upload </button>
+    </form>
+
     <!-- Load File To Database -->
     <div class="dropdown-item">
         <!-- <span class="glyphicon glyphicon-import"></span> -->
         <!-- <input type="button" id="loadFileXml" value="Excel importieren"
             onclick="document.getElementById('fileUpload').click();" /> -->
             <!-- TODO: use https://github.com/SheetJS/sheetjs-->
-        <input type="file" name="file" id="fileUpload" onchange="importExcel()" />
+        <!-- <input type="file" name="file" id="fileUpload" onchange="importExcel()" /> -->
         <!-- <input type="file" style="display:none;" name="file" id="fileUpload" onchange="importExcel()" /> -->
     </div>
 
