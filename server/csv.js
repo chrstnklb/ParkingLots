@@ -1,23 +1,23 @@
 const fs = require('fs')
+const folder = "./server/outgoing-files/"
 
-module.exports.writeCsvFile = function (content, parkingLot) {
-
-    const folder = "./server/outgoing-files/"
-    let fileName = generateFileName(parkingLot);
-    let csvLines = generateFileContent(content);
+module.exports.writeCsvFile = function (fileName, content) {
     console.log("writeCsvFile");
 
-    fs.writeFile(folder + fileName, csvLines, err => {
+    let csvLines = generateFileContent(content);
+
+    fs.writeFile(fileName, csvLines, err => {
         if (err) { console.error(err); return }
         //file written successfully
     })
 }
 
-function generateFileName(parkingLot) {
+module.exports.generateFileName = function (parkingLot) {
 
     const timeServer = require("./time-server");
     // TODO: JobTicket mit Unterstrich?!
-    return parkingLot +
+    return folder +
+        parkingLot +
         "-" +
         timeServer.getNowAsYYYYMMDD() +
         "-" +

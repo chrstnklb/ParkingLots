@@ -50,7 +50,6 @@ expressApp.get('/', function (req, res, next) {
 expressApp.get('/search', (req, res) => {
   console.log("/search");
 
-
   db.allDocs({
     include_docs: true
 
@@ -266,11 +265,11 @@ expressApp.get('/downloadDbAsXlsx', (req, res) => {
 
 })
 
-expressApp.get('/download/:id', function (req, res, next) {
+expressApp.get('/download/:id', function (req, res) {
   console.log("/download/" + req.params.id);
-  
+
   let parkingLot = req.params.id;
-  console.log("/download/" + req.params.id);
+  let fileName = csv.generateFileName(parkingLot) ;
 
   db.createIndex({
     index: { fields: ['nachname', 'vorname'] }
@@ -283,8 +282,11 @@ expressApp.get('/download/:id', function (req, res, next) {
       sort: ["nachname", "vorname"]
 
     }).then((result) => {
-      csv.writeCsvFile(result, parkingLot);
+      csv.writeCsvFile(fileName, result);
 
+    }).then(() => {
+      res.download(fileName)
+      
     }).catch(function (err) { console.log(err); });
   }).catch(function (err) { console.log(err); });
 
