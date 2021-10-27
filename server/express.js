@@ -1,4 +1,5 @@
 var excel = require("./excel");
+var csv = require("./csv");
 
 //#region express setup and config [ rgba(255, 99, 71, 0.5) ]
 
@@ -22,8 +23,9 @@ expressApp.set('views', ['views', 'views/table']);
 
 //#region [rgba(120,120,120,0.1)] database config
 
+
 var PouchDB = require('pouchdb');
-const res = require("express/lib/response");
+PouchDB.plugin(require('pouchdb-find'));
 
 const dbUser = "adminuwe"
 const dbPassword = "adminuwe"
@@ -48,14 +50,12 @@ expressApp.get('/', function (req, res, next) {
 expressApp.get('/search', (req, res) => {
   console.log("/search");
 
-  console.log("/search Start: " + (new Date(Date.now())).toLocaleTimeString());
 
   db.allDocs({
     include_docs: true
 
   }).then(function (result) {
 
-    console.log("/search Ende: " + (new Date(Date.now())).toLocaleTimeString());
     res.json(result.rows);
 
   }).catch(function (err) {
@@ -256,7 +256,7 @@ expressApp.get('/downloadDbAsXlsx', (req, res) => {
 
   }).then(() => {
 
-    excel.readExcelEntriesFromDatabase(data,filename);
+    excel.readExcelEntriesFromDatabase(data, filename);
 
   }).then(() => {
 
@@ -265,3 +265,27 @@ expressApp.get('/downloadDbAsXlsx', (req, res) => {
   }).catch(function (err) { console.log(err); });
 
 })
+
+expressApp.get('/download/:id', function (req, res, next) {
+  console.log("/download/" + req.params.id);
+  
+  let parkingLot = req.params.id;
+  console.log("/download/" + req.params.id);
+
+  db.createIndex({
+    index: { fields: ['nachname', 'vorname'] }
+
+  }).then(() => {
+
+    db.find({
+      selector: { "parkplaetze": { "$regex": parkingLot } },
+      fields: ["kennzeichen", "land", "nachname", "vorname"],
+      sort: ["nachname", "vorname"]
+
+    }).then((result) => {
+      csv.writeCsvFile(result, parkingLot);
+
+    }).catch(function (err) { console.log(err); });
+  }).catch(function (err) { console.log(err); });
+
+});

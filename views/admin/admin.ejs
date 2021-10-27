@@ -27,18 +27,46 @@
                 <hr class="dropdown-divider">
             </li>
 
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('P1')">Export für P1 (NYI)</a></li>
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('P2')">Export für P2 (NYI)</a></li>
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('P3')">Export für P3 (NYI)</a></li>
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('P4')">Export für P4 (NYI)</a></li>
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('P5')">Export für P5 (NYI)</a></li>
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('P6')">Export für P6 (NYI)</a></li>
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('A75')">Export für A75 (NYI)</a></li>
-            <li>
-                <a class="dropdown-item" onclick="exportPermissionsFor('Job Ticket')">Export für Job Ticket (NYI)</a>
-            </li>
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('P3 Erw.')">Export für P3 Erw. (NYI)</a></li>
-            <li><a class="dropdown-item" onclick="exportPermissionsFor('Werk')">Export für Werk (NYI)</a></li>
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download', {parkingLot: "P1" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download', {parkingLot: "P2" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download', {parkingLot: "P3" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download',{parkingLot: "P3 Erw" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download', {parkingLot: "P4" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download', {parkingLot: "P5" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download', {parkingLot: "P6" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download',{parkingLot: "A75" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download',{parkingLot: "Job Ticket" }); %>
+                </a></li>
+
+            <li><a class="dropdown-item">
+                    <%- include('admin/parking-lot-download',{parkingLot: "Werk" }); %>
+                </a></li>
+
 
             <li>
                 <hr class="dropdown-divider">

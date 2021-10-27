@@ -6,3 +6,4 @@ function calculateDaysSinceDateDDMMYYYY(letzteAenderung) {
     let today = (new Date());
     return Math.floor((today - lastChangeDate) / 1000 / 60 / 60 / 24);
 }
+
