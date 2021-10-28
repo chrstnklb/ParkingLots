@@ -17,7 +17,7 @@ ftpServer.on("login", (data, resolve, reject) => {
     if ((data.username === "anonymous") || (data.username === "admin" && data.password === "admin")) {
         console.log("Successful login of " + data.username);
         console.log("resolve");
-        return resolve({ root: "/Users/christian/Projekte/Parkplatz/output/ftp-server/" });
+        return resolve({ root: "server\outgoing-files\ftp-server" });
     } else {
         console.log("reject");
         reject({});

@@ -4,6 +4,7 @@
     "cron": "^1.8.2",
     "cypress": "^8.7.0",
     "date-fns": "^2.25.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "ftp": "^0.3.10",
@@ -34,7 +35,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devStart": "nodemon server/express.js",
-    "cypress:open": "cypress open"
+    "start-application": "node server/express.js",
+    "start-ftp-server": "node server/ftp-server/ftp-server.js",
+    "start-cron-job": "node server/ftp-server/cron.js"
   },
   "author": "",
   "license": "ISC"

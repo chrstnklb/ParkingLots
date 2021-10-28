@@ -12,10 +12,10 @@
         {
             "label": "Run application server",
             "type": "shell",
-            "command": "http-server -p 8081",
+            "command": "npm run start-application",
             "options": {
                 "statusbar": {
-                    "hide": true
+                    "hide": false
                 }
             },
             "presentation": {
@@ -25,7 +25,7 @@
         {
             "label": "Run ftp server",
             "type": "shell",
-            "command": "npx ts-node components/ftp-server/ftp-server.ts",
+            "command": "npm run start-ftp-server",
             "options": {
                 "statusbar": {
                     "hide": false
@@ -38,7 +38,7 @@
         {
             "type": "shell",
             "label": "Run exports cron",
-            "command": "node components/ftp-server/cron.js",
+            "command": "npm run start-cron-job",
             "options": {
                 "statusbar": {
                     "hide": false
