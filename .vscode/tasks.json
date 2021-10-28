@@ -1,41 +1,18 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
             "label": "Run all servers",
             "dependsOn": [
                 "Run application server",
-                "Run database server",
                 "Run ftp server",
                 "Run exports cron"
-            ]
-        },
-        {
-            "label": "Run application servers only",
-            "dependsOn": [
-                "Run application server",
-                "Run database server"
             ]
         },
         {
             "label": "Run application server",
             "type": "shell",
             "command": "http-server -p 8081",
-            "options": {
-                "statusbar": {
-                    "hide": true
-                }
-            },
-            "presentation": {
-                "group": "All servers"
-            }
-        },
-        {
-            "label": "Run database server",
-            "type": "shell",
-            "command": "pouchdb-server --port 3000 --dir output/database",
             "options": {
                 "statusbar": {
                     "hide": true
@@ -71,39 +48,5 @@
                 "group": "All servers"
             }
         },
-        {
-            "label": "💚Run all new servers💚",
-            "dependsOn": [
-                "💚Run app server💚",
-                "💚Run database server💚"
-            ]
-        },
-        {
-            "label": "💚Run app server💚",
-            "type": "shell",
-            "command": "http-server server/public -p 8081",
-            "options": {
-                "statusbar": {
-                    "hide": false
-                }
-            },
-            "presentation": {
-                "group": "All new servers"
-            }
-        },
-        {
-            "label": "💚Run database server💚",
-            "type": "shell",
-            // 5984 is the default port
-            "command": "pouchdb-server --port 5984 --dir output/database",
-            "options": {
-                "statusbar": {
-                    "hide": false
-                }
-            },
-            "presentation": {
-                "group": "All new servers"
-            }
-        }
     ]
 }
