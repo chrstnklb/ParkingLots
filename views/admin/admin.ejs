@@ -1,105 +1,88 @@
-<!DOCTYPE html>
-<html lang="de">
+<div class="btn-group" id="admin">
+    <button type="button" class="btn dropdown-toggle btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
+        Admin
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Admin</title>
+        <li>
+            <h2 class="dropdown-header" style="color: greenyellow;">Exporte für die Kameras</h2>
+        </li>
 
-    <script type="text/javascript" src="../admin/admin.js"></script>
-</head>
-
-<body>
-
-    <!-- Example single danger button -->
-    <div class="btn-group">
-        <button type="button" class="btn dropdown-toggle btn-danger" data-bs-toggle="dropdown" aria-expanded="false">
-            Admin
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
-
-            <li>
-                <h2 class="dropdown-header" style="color: greenyellow;">Exporte für die Kameras</h2>
-            </li>
-
-            <li><a class="dropdown-item">
+        <li><a class="dropdown-item">
                 <%- include('admin/parking-lot-download', {parkingLot: "alle" }); %>
             </a></li>
 
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download', {parkingLot: "P1" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download', {parkingLot: "P1" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download', {parkingLot: "P2" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download', {parkingLot: "P2" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download', {parkingLot: "P3" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download', {parkingLot: "P3" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download',{parkingLot: "P3 Erw" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download',{parkingLot: "P3 Erw" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download', {parkingLot: "P4" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download', {parkingLot: "P4" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download', {parkingLot: "P5" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download', {parkingLot: "P5" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download', {parkingLot: "P6" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download', {parkingLot: "P6" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download',{parkingLot: "A75" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download',{parkingLot: "A75" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download',{parkingLot: "Job Ticket" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download',{parkingLot: "Job Ticket" }); %>
+            </a></li>
 
-            <li><a class="dropdown-item">
-                    <%- include('admin/parking-lot-download',{parkingLot: "Werk" }); %>
-                </a></li>
+        <li><a class="dropdown-item">
+                <%- include('admin/parking-lot-download',{parkingLot: "Werk" }); %>
+            </a></li>
 
 
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
 
-            <li>
-                <h2 style="color: red;" class="dropdown-header">Importiere eine Excel-Datei in die DB.</h2>
-            </li>
+        <li>
+            <h2 style="color: red;" class="dropdown-header">Importiere eine Excel-Datei in die DB.</h2>
+        </li>
 
-            <li>
-                <a class="dropdown-item" href="#">
-                    <%- include('admin/excel-upload'); %>
-                </a>
-            </li>
+        <li>
+            <a class="dropdown-item" href="#">
+                <%- include('admin/excel-upload'); %>
+            </a>
+        </li>
 
-            <li>
-                <hr class="dropdown-divider">
-            </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
 
-            <li>
-                <h2 style="color: red;" class="dropdown-header">Alle Einträge als Excel-Datei (XLSX) herunterladen</h2>
-            </li>
+        <li>
+            <h2 style="color: red;" class="dropdown-header">Alle Einträge als Excel-Datei (XLSX) herunterladen</h2>
+        </li>
 
-            <li>
-                <a class="dropdown-item">
-                    <%- include('admin/excel-download'); %>
-                </a>
-            </li>
+        <li>
+            <a class="dropdown-item">
+                <%- include('admin/excel-download'); %>
+            </a>
+        </li>
 
-    </div>
-
-</body>
-
-</html>
+</div>

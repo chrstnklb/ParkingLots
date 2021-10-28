@@ -14,8 +14,7 @@ module.exports.writeCsvFile = function (fileName, content) {
 
 module.exports.generateFileName = function (parkingLot) {
 
-    const timeServer = require("./time-server");
-    // TODO: JobTicket mit Unterstrich?!
+    const timeServer = require("./util/time-server");
     return folder +
         parkingLot +
         "-" +

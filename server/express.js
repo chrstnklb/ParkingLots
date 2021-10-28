@@ -69,13 +69,10 @@ expressApp.listen(expressAppPort, () => {
 
 expressApp.post('/create', function (req, res) {
   console.log("/create");
-  // console.log('req.body.parkerlaubnis :>> ', req.body.parkerlaubnis);
 
   db.put(req.body.parkerlaubnis, function (err, response) {
     if (err) {
       return console.log(err);
-    } else {
-      // console.log(response);
     }
 
   }).then(function (result) {
@@ -91,7 +88,6 @@ expressApp.post('/edit', function (req, res) {
   console.log("/edit");
 
   let idToBeUpdated = req.body.parkerlaubnis._id;
-  console.log('idToBeUpdated :>> ', idToBeUpdated);
 
   db.get(idToBeUpdated).then(function (doc) {
 
@@ -141,14 +137,11 @@ expressApp.post('/delete', function (req, res) {
 //#endregion
 
 expressApp.post('/upload', (req, res) => {
-  console.log("/upload Start: " + (new Date(Date.now())).toLocaleTimeString());
-
   console.log("/upload");
 
   if (req.files) {
     const file = req.files.fileUploaded
     const fileName = file.name
-    console.log('fileName :>> ', fileName);
 
     file.mv(`././server/incoming-files/${fileName}`, err => {
 
@@ -185,8 +178,7 @@ expressApp.post('/upload', (req, res) => {
 
         db.bulkDocs(parkerlaubnisArray, function (err) {
 
-          if (err) { return console.log(err); }
-          else { /* console.log(response);*/ }
+          if (err) return console.log(err);
 
         }).then(() => {
 
@@ -210,7 +202,6 @@ function getMaxId() {
   db.allDocs({ include_docs: true }).then(function (result) {
 
     if (result.total_rows === 0) {
-      console.log("zero");
       count = Date.now();
     } else {
       let allIds = [result.total_rows];
@@ -223,8 +214,6 @@ function getMaxId() {
 }
 
 expressApp.get('/downloadDbAsXlsx', (req, res) => {
-
-  console.log("/downloadDbAsXlsx");
 
   const timestamp = "_" + (new Date(Date.now())).toLocaleDateString() + "_" + Date.now();
   const folder = "./server/outgoing-files/"

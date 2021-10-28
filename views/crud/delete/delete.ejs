@@ -1,0 +1,18 @@
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Eintrag löschen</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>VORSICHT! Dieser Eintrag wird DAUERHAFT gelöscht.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="deleteEntry(false)">Abbrechen</button>
+                <button type="button" class="btn btn-danger" onclick="deleteEntry(true)"
+                    data-dismiss="modal">Löschen</button>
+            </div>
+        </div>
+    </div>
+</div>

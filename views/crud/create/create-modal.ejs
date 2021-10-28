@@ -1,0 +1,90 @@
+<div class="modal fade" id="insertPermissionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="insertPermissionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3 class="modal-title" id="insertPermissionModalLabel">Parkerlaubnis</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="container">
+                        <div class="row insert-row">
+                            <div class="col">
+                                <div class="row detail-row">
+
+                                    <div class="col-sm-6">
+
+                                        <br>
+                                        <h5>Personen Details</h5>
+                                        <br>
+
+                                        <%- include('detail-input', {label: "Vorname"}); %>
+                                        <%- include('detail-input', {label: "Nachname"}); %>
+                                        <%- include('detail-input', {label: "Unternehmen"}); %>
+                                        <%- include('detail-input', {label: "Bereich"}); %>
+                                        <%- include('detail-input', {label: "Telefon"}); %>
+
+                                    </div>
+
+                                    <div class="col-sm-6">
+
+                                        <br>
+                                        <h5>Fahrzeug Details</h5>
+                                        <br>
+
+                                        <%- include('detail-input', {label: "Land"}); %>
+                                        <%- include('detail-input', {label: "Kennzeichen"}); %>
+                                        <%- include('detail-input', {label: "Fahrzeug"}); %>
+                                        <%- include('detail-input', {label: "Farbe"}); %>
+                                        <%- include('detail-input', {label: "Bemerkung"}); %>
+
+                                    </div>
+
+                                    <div class="col-sm-12 grid">
+
+                                        <br>
+                                        <h5>Parkplätze</h5>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-12">
+                                                <div class="container"></div>
+
+                                                <div class="row row-cols-auto">
+
+
+                                                    <%- include('parking-lot-input', {parkingLot:"A75", id:"parking-space-a75"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"Job Ticket", id:"parking-space-jobticket"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"P1", id:"parking-space-p1"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"P2", id:"parking-space-p2"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"P3", id:"parking-space-p3"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"P3 Erw", id:"parking-space-3erw"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"P4", id:"parking-space-p4"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"P5", id:"parking-space-p5"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"P6", id:"parking-space-p6"}); %>
+                                                    <%- include('parking-lot-input', {parkingLot:"Werk", id:"parking-space-werk"}); %>
+            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Abbrechen</button>
+                <button type="button" class="btn btn-success" onclick=insertPermission() id="savePermission">
+                    Speichere Parkerlaubnis
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

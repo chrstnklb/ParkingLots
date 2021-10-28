@@ -12,61 +12,64 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-
-    <!--    Main    -->
-    <link rel="stylesheet" href="../main/main.css">
+    
+    <link rel="stylesheet" href="../main/index.css">
+    <link rel="stylesheet" href="../crud/create/create.css">
+    <link rel="stylesheet" href="../crud/read/table/table.css">
     <link rel="stylesheet" href="../darkmode/darkmode.css">
-
-    <!-- Assets -->
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./assets/stearing-wheel.svg">
 
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="../util/dom.js"></script>
+    <script type="text/javascript" src="../util/time.js"></script>
+    <script type="text/javascript" src="../util/global-variables.js"></script>
 
-    <script type="text/javascript" src="../utils/dom.js"></script>
-    <script type="text/javascript" src="../utils/time.js"></script>
+    <script type="text/javascript" src="../crud/create/create.js"></script>
+    <script type="text/javascript" src="../crud/create/parking-places.js"></script>
+    <script type="text/javascript" src="../crud/create/permission-details.js"></script>
+
+    <script type="text/javascript" src="../crud/read/search/search.js"></script>
+    <script type="text/javascript" src="../crud/read/table/table.js"></script>
+
+    <script type="text/javascript" src="../crud/update/update.js"></script>
+    
+    <script type="text/javascript" src="../crud/delete/delete.js"></script>
+    <script type="text/javascript" src="../crud/delete/router.js"></script>
 
     <script type="text/javascript" src="../darkmode/darkMode.js"></script>
-    
-    <script type="text/javascript" src="../main/global-variables.js"></script>
 
+
+    
 </head>
 
 <body>
 
     <div class="d-flex flex-row bd-highlight mb-3">
 
-        <!-- Create -->
         <div class="p-2 bd-highlight">
-            <%- include('create/create'); %>
+            <%- include('crud/create/create-button'); %>
         </div>
 
-        <!-- Add search -->
         <div id="search" class="p-2 bd-highlight flex-grow-1">
-            <%- include('search/search'); %>
+            <%- include('crud/read/search/search'); %>
         </div>
 
-        <!-- Save to database -->
         <div id="darkmode" class="p-2 bd-highlight">
             <%- include('darkmode/darkmode'); %>
         </div>
 
-        <!-- Delete -->
         <div id="delete" class="p-2 bd-highlight">
-            <%- include('delete/delete'); %>
+            <%- include('crud/delete/delete'); %>
         </div>
 
-        <!-- Insert -->
-        <div id="insert" class="p-2 bd-highlight">
-            <%- include('insert/insert'); %>
+        <div id="create" class="p-2 bd-highlight">
+            <%- include('crud/create/create-modal'); %>
         </div>
 
         <!-- Add admin area -->
-        <div id="admin" class="p-2 bd-highlight">
+        <div id="admin" class="p-2 bd-highlight" style="display: none;">
             <%- include('admin/admin'); %>
         </div>
 
@@ -75,9 +78,8 @@
 
     <div>
 
-        <!-- Add admin area -->
         <div id="table" class="p-2 bd-highlight">
-            <%- include('table/table'); %>
+            <%- include('crud/read/table/table'); %>
         </div>
 
     </div>
