@@ -269,7 +269,7 @@ expressApp.get('/download/:id', function (req, res) {
   console.log("/download/" + req.params.id);
 
   let parkingLot = req.params.id;
-  let fileName = csv.generateFileName(parkingLot) ;
+  let fileName = csv.generateFileName(parkingLot);
 
   db.createIndex({
     index: { fields: ['nachname', 'vorname'] }
@@ -286,8 +286,12 @@ expressApp.get('/download/:id', function (req, res) {
 
     }).then(() => {
       res.download(fileName)
-      
+
     }).catch(function (err) { console.log(err); });
   }).catch(function (err) { console.log(err); });
 
 });
+
+// TODO: Express und DB trennen, allgemein modularer und diesselben Dinge wiederverwenden
+// Suche auf 50 Treffer beschränken
+// Dann aber muss auch jede Suche neu in DB suchen
