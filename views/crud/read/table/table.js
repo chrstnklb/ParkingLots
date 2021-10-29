@@ -70,46 +70,6 @@ function appendTableBody(table) {
     table.appendChild(tbody);
 }
 
-function prepareColorTextArray(text) {
-    return text
-        .toLowerCase()
-        .replace(/ä/g, 'ae')
-        .replace(/ö/g, 'oe')
-        .replace(/ü/g, 'ue')
-        .replace(/ß/g, 'ss')
-        .replace("/", "")
-        .replace(".", "")
-        .replace("(", "")
-        .replace(")", "")
-        .replace("-", "")
-        .replace(",", "")
-        .replace(",", "")
-        .toLowerCase()
-        .split(" ").map(str => str.replace(/\s/g, ''))
-        .filter(String);
-}
-
-function createTableBodyCellForCarColor(colorTexts) {
-    let colorCell = document.createElement("td");
-    let attributeColorTexts = prepareColorTextArray(colorTexts);
-
-    for (let i = 0; i < attributeColorTexts.length; i++) {
-        let actualColorText = attributeColorTexts[i];
-        if (actualColorText.length > 2) { // no known color with two letters, but one with three letters: red
-            let frameSpan = domCreateWithAttribute("div", "class", "glyphicon glyphicon-stop");
-            let insideSpan = domCreateWithAttribute("span", "class", "glyphicon glyphicon-stop inside " + actualColorText);
-            // frameSpan.appendChild(insideSpan);
-            // colorCell.appendChild(frameSpan);
-        }
-    }
-
-    let textSpan = domCreateWithAttribute("span", "class", "colorText");
-    colorCell.appendChild(textSpan);
-    textSpan.innerText = " " + colorTexts.toLowerCase();
-
-    return colorCell;
-}
-
 function createBodyRow(permission) {
     let tr = document.createElement("tr");
 
@@ -118,15 +78,19 @@ function createBodyRow(permission) {
     Object.keys(columnOrder).forEach(key => {
         let child;
         switch (key) {
-            case "farbe":
-                child = createTableBodyCellForCarColor(permission["farbe"]);
-                break;
             case "letzteAenderung":
                 child = createTableBodyCell(extendLetzteAenderung(permission["letzteAenderung"]));
                 break;
             case "parkplaetze":
                 let parkplaetze = permission["parkplaetze"].split("-").toString();
                 child = createTableBodyCell(parkplaetze.replaceAll(",", ", "));
+                break;
+            case "kennzeichen":
+                let kennzeichen = permission["kennzeichen"];
+                if (kennzeichen.substring(kennzeichen.length - 1).toLowerCase() === "e") {
+                    kennzeichen += " ⚡"
+                }
+                child = createTableBodyCell(kennzeichen);
                 break;
             default:
                 child = createTableBodyCell(permission[key]);

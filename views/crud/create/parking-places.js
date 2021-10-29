@@ -1,6 +1,6 @@
 function getParkingLotName(parkingLot) {
 
-    return parkingLot.parentNode.parentNode.getElementsByTagName("span")[0].textContent;
+    return parkingLot.parentNode.parentNode.getElementsByTagName("label")[0].textContent;
 ;
 }
 

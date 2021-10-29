@@ -2,7 +2,7 @@ function generateEditButtons(id) {
 
     let button = document.createElement("button");
     button.setAttribute("id", "editButtonId" + id)
-    button.setAttribute("class", "btn btn-primary editButton bi bi-pencil");
+    button.setAttribute("class", "btn btn-primary editButton bi bi-pencil opacity-75");
     button.setAttribute("type", "button");
     button.setAttribute("data-bs-toggle", "modal");
     button.setAttribute("data-bs-target", "#insertPermissionModal");

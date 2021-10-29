@@ -46,14 +46,16 @@ function setThemeProperty(property, color) {
 }
 
 function setDarkModeButton() {
-    document.getElementById('darkModeButton').textContent = (activeModeIsDarkMode ? "Hell" : "Dunkel");
+    // document.getElementById('darkModeButton').textContent = (activeModeIsDarkMode ? " Hell" : " Dunkel");
+    document.getElementById('darkModeButton').classList.remove(activeModeIsDarkMode ? "bi-lightbulb-off" : "bi-lightbulb");
+    document.getElementById('darkModeButton').classList.add(activeModeIsDarkMode ? "bi-lightbulb" : "bi-lightbulb-off");
 }
 
 function setTableClassAttributesForTheme() {
     domSetAttribute(
        getTable(),
         "class",
-        'table table-sm table-hover'
+        'table table-lg table-hover'
         + (activeModeIsDarkMode ? ' table-dark' : ' table-light'));
 }
 

@@ -4,7 +4,7 @@ function generateDeleteButtons(id) {
     let button = document.createElement("button");
 
     button.setAttribute("id", "deleteButtonId" + id)
-    button.setAttribute("class", "btn btn-sm btn-danger deleteButton bi bi-trash");
+    button.setAttribute("class", "btn btn-xl btn-danger deleteButton bi bi-trash opacity-75");
     button.setAttribute("type", "button");
     button.setAttribute("data-bs-toggle", "modal");
     button.setAttribute("data-bs-target", "#deleteModal");
