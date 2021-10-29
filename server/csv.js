@@ -4,7 +4,7 @@ const folder = "./server/outgoing-files/"
 module.exports.writeCsvFile = function (fileName, content) {
     console.log("writeCsvFile");
 
-    let csvLines = generateFileContent(content);
+    let csvLines = generateFileContent(content.docs);
 
     fs.writeFile(fileName, csvLines, err => {
         if (err) { console.error(err); return }
@@ -24,16 +24,16 @@ module.exports.generateFileName = function (parkingLot) {
         ".csv";
 }
 
-function generateFileContent(content) {
-    // console.log('content :>> ', content.docs);
+function generateFileContent(docs) {
     let csvContent = "";
-    content.docs.forEach(element => {
+    docs.forEach(doc => {
         csvContent +=
-            element.kennzeichen + ";" +
-            element.land + ";" +
-            element.nachname + ", " +
-            element.vorname + "\n";
+            doc.kennzeichen + ";" +
+            doc.land + ";" +
+            doc.nachname + ", " +
+            doc.vorname + "\n";
     });
     return csvContent;
 }
 
+module.exports = generateFileContent;
