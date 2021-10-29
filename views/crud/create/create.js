@@ -22,6 +22,8 @@ function insertPermission() {
             break;
     }
 
+    let letzteAenderung = (new Date(Date.now())).toLocaleDateString()
+
     fetch(fetchMode, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -30,7 +32,7 @@ function insertPermission() {
 
                 _id: id.toString(),
 
-                letzteAenderung: (new Date(Date.now())).toLocaleDateString(),
+                letzteAenderung: letzteAenderung,
 
                 nachname: domGetInputValueViaId("nachname"),
                 vorname: domGetInputValueViaId("vorname"),
@@ -42,7 +44,20 @@ function insertPermission() {
                 fahrzeug: domGetInputValueViaId("fahrzeug"),
                 farbe: domGetInputValueViaId("farbe"),
                 bemerkung: domGetInputValueViaId("bemerkung"),
-                parkplaetze: getInputValuesForParkingLotsAsString()
+                parkplaetze: getInputValuesForParkingLotsAsString(),
+                searchHash:
+                    domGetInputValueViaId("nachname") +
+                    domGetInputValueViaId("vorname") +
+                    domGetInputValueViaId("unternehmen") +
+                    domGetInputValueViaId("bereich") +
+                    domGetInputValueViaId("telefon") +
+                    domGetInputValueViaId("kennzeichen") +
+                    domGetInputValueViaId("land") +
+                    domGetInputValueViaId("fahrzeug") +
+                    domGetInputValueViaId("farbe") +
+                    domGetInputValueViaId("bemerkung") +
+                    getInputValuesForParkingLotsAsString() + 
+                    letzteAenderung
             }
         })
 

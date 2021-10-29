@@ -39,7 +39,7 @@ function checkIfPermissionFitsAllSearchTexts(permission) {
 
     if (getSearchTexts().length > 0) {
         getSearchTexts().forEach(searchText => {
-            if (!extractPermissionAsString(permission).toLowerCase().includes(searchText.toLowerCase()))
+            if (!permission.searchHash.toLowerCase().includes(searchText.toLowerCase()))
                 result = false;
         })
     }
@@ -47,6 +47,7 @@ function checkIfPermissionFitsAllSearchTexts(permission) {
 }
 
 function extractPermissionAsString(permission) {
+    return permission.searchHash
     return Object.keys(permission).map(function (key) {
         return permission[key];
     }).join().replaceAll(",", "")

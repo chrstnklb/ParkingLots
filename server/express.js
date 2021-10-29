@@ -105,7 +105,9 @@ expressApp.post('/edit', function (req, res) {
       doc.fahrzeug = req.body.parkerlaubnis.fahrzeug,
       doc.farbe = req.body.parkerlaubnis.farbe,
       doc.bemerkung = req.body.parkerlaubnis.bemerkung,
-      doc.parkplaetze = req.body.parkerlaubnis.parkplaetze
+      doc.parkplaetze = req.body.parkerlaubnis.parkplaetze,
+
+      doc.searchHash = req.body.parkerlaubnis.searchHash
 
     return db.put(doc);
 
@@ -152,14 +154,14 @@ expressApp.post('/upload', (req, res) => {
 
         let rows = excel.writeExcelEntriesToDatabase(`././server/incoming-files/${fileName}`);
         let parkerlaubnisArray = [];
-
+        let letzteAenderung = (new Date(Date.now())).toLocaleDateString();
         rows.forEach(row => {
 
           parkerlaubnisArray.push(
             {
               "_id": (count++).toString(),
 
-              "letzteAenderung": (new Date(Date.now())).toLocaleDateString(),
+              "letzteAenderung": letzteAenderung,
 
               "nachname": row.Nachname,
               "vorname": row.Vorname,
@@ -171,7 +173,20 @@ expressApp.post('/upload', (req, res) => {
               "fahrzeug": row.Fahrzeug,
               "farbe": row.Farbe,
               "bemerkung": row.Bemerkung,
-              "parkplaetze": row.Parkplaetze
+              "parkplaetze": row.Parkplaetze,
+
+              "searchHash":
+                row.Nachname +
+                row.Vorname +
+                row.Unternehmen +
+                row.Bereich +
+                row.Telefon +
+                row.Kennzeichen +
+                row.Land +
+                row.Fahrzeug +
+                row.Farbe +
+                row.Bemerkung +
+                row.Parkplaetze
             }
           )
         })
@@ -238,6 +253,7 @@ expressApp.get('/downloadDbAsXlsx', (req, res) => {
           "Farbe": row.doc.farbe,
           "Bemerkung": row.doc.bemerkung,
           "Parkplaetze": row.doc.parkplaetze
+          // explicit: now searchHash as download
         }
       )
     })
