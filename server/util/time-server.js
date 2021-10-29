@@ -9,3 +9,5 @@ module.exports.getNowAsHHMMSS = function () {
 
     return date.format(new Date(), "HHmmss")
 }
+
+// TODO: andere ZEitabfragen her aufnehmen

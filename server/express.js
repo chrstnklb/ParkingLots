@@ -1,23 +1,23 @@
+const { folderIncoming, folderOutgoing, appPort, appUrl, dbUrl } = require('../config.js');
 var excel = require("./excel");
 var csv = require("./csv");
 
 //#region express setup and config [ rgba(255, 99, 71, 0.5) ]
 
-//#region [ rgba(255, 99, 71, 0.1) ] express config
+//#region [ rgba(255, 99, 71, 0.05) ] express config
 
 const express = require('express');
 const fileUpload = require('express-fileupload');
 
-const expressApp = express();
-const expressAppPort = 3000;
+const app = express();
 
-expressApp.use(express.static("views"));
-expressApp.use(express.urlencoded({ extended: true }));
-expressApp.use(express.json());
-expressApp.use(fileUpload());
+app.use(express.static("views"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(fileUpload());
 
-expressApp.set('view engine', 'ejs');
-expressApp.set('views', ['views', 'views/table']);
+app.set('view engine', 'ejs');
+app.set('views', ['views', 'views/table']);
 
 //#endregion
 
@@ -27,13 +27,7 @@ expressApp.set('views', ['views', 'views/table']);
 var PouchDB = require('pouchdb');
 PouchDB.plugin(require('pouchdb-find'));
 
-const dbUser = "adminuwe"
-const dbPassword = "adminuwe"
-const dbIpAddress = "localhost"
-const dbPort = "5984"
-const dbTableName = "erlaubnisse"
-
-const db = new PouchDB('http://' + dbUser + ':' + dbPassword + '@' + dbIpAddress + ':' + dbPort + '/' + dbTableName);
+const db = new PouchDB(dbUrl);
 
 //#endregion
 
@@ -41,13 +35,13 @@ const db = new PouchDB('http://' + dbUser + ':' + dbPassword + '@' + dbIpAddress
 
 //#region [ rgba(0, 255, 0, 0.2) ] express communication with client
 
-expressApp.get('/', function (req, res, next) {
+app.get('/', function (req, res, next) {
   console.log("/");
   res.render('../views/main/index');
   next()
 })
 
-expressApp.get('/search', (req, res) => {
+app.get('/search', (req, res) => {
   console.log("/search");
 
   db.allDocs({
@@ -63,19 +57,19 @@ expressApp.get('/search', (req, res) => {
 
 })
 
-expressApp.listen(expressAppPort, () => {
-  console.log("Server Started at http://localhost:" + expressAppPort)
+app.listen(appPort, () => {
+  console.log(`Server Started at ${appUrl}.`)
 })
 
-expressApp.post('/create', function (req, res) {
+app.post('/create', function (req, res) {
   console.log("/create");
 
-  db.put(req.body.parkerlaubnis, function (err, response) {
+  db.put(req.body.parkerlaubnis, function (err) {
     if (err) {
       return console.log(err);
     }
 
-  }).then(function (result) {
+  }).then(() => {
     res.sendStatus(200);
 
   }).catch(function (err) {
@@ -83,7 +77,7 @@ expressApp.post('/create', function (req, res) {
   });
 })
 
-expressApp.post('/edit', function (req, res) {
+app.post('/edit', function (req, res) {
 
   console.log("/edit");
 
@@ -119,7 +113,7 @@ expressApp.post('/edit', function (req, res) {
   });
 })
 
-expressApp.post('/delete', function (req, res) {
+app.post('/delete', function (req, res) {
   let idToBeDeleted = req.body._id;
 
   db.get(idToBeDeleted, () => {
@@ -138,21 +132,21 @@ expressApp.post('/delete', function (req, res) {
 
 //#endregion
 
-expressApp.post('/upload', (req, res) => {
+app.post('/upload', (req, res) => {
   console.log("/upload");
 
   if (req.files) {
     const file = req.files.fileUploaded
-    const fileName = file.name
+    const filePath = folderIncoming + file.name
 
-    file.mv(`././server/incoming-files/${fileName}`, err => {
+    file.mv(`${filePath}`, err => {
 
       let count = getMaxId();
 
       if (err) { console.log(err); res.send('There is error'); }
       else {
 
-        let rows = excel.writeExcelEntriesToDatabase(`././server/incoming-files/${fileName}`);
+        let rows = excel.writeExcelEntriesToDatabase(`${filePath}`);
         let parkerlaubnisArray = [];
         let letzteAenderung = (new Date(Date.now())).toLocaleDateString();
         rows.forEach(row => {
@@ -228,11 +222,11 @@ function getMaxId() {
   return count
 }
 
-expressApp.get('/downloadDbAsXlsx', (req, res) => {
+app.get('/downloadDbAsXlsx', (req, res) => {
 
   const timestamp = "_" + (new Date(Date.now())).toLocaleDateString() + "_" + Date.now();
-  const folder = "./server/outgoing-files/"
-  const filename = folder + "erlaubnisse" + timestamp + ".xlsx";
+  const folder = folderOutgoing
+  const filePath = folder + "erlaubnisse" + timestamp + ".xlsx";
 
   let data = [];
 
@@ -260,17 +254,17 @@ expressApp.get('/downloadDbAsXlsx', (req, res) => {
 
   }).then(() => {
 
-    excel.readExcelEntriesFromDatabase(data, filename);
+    excel.readExcelEntriesFromDatabase(data, filePath);
 
   }).then(() => {
 
-    res.download(filename)
+    res.download(filePath)
 
   }).catch(function (err) { console.log(err); });
 
 })
 
-expressApp.get('/download/:id', function (req, res) {
+app.get('/download/:id', function (req, res) {
   console.log("/download/" + req.params.id);
 
   let parkingLot = req.params.id;
