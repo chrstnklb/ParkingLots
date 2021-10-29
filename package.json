@@ -33,7 +33,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "devStart": "nodemon server/express.js",
     "start-application": "node server/express.js",
     "start-ftp-server": "node server/ftp-server/ftp-server.js",
