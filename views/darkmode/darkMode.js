@@ -39,6 +39,7 @@ function setAllThemeProperties(){
     setThemeProperty('--main-hover-bg-color',               ( activeModeIsDarkMode ? '#F8F9FA'  : '#212529'  ));
     setThemeProperty('--main-hover-text-color',             ( activeModeIsDarkMode ? '#212529'  : '#F8F9FA'  ));
     setThemeProperty('--main-hover-highlight-row-color',    ( activeModeIsDarkMode ? 'green'  : 'yellow' ));
+    
 }
 
 function setThemeProperty(property, color) {
@@ -55,7 +56,7 @@ function setTableClassAttributesForTheme() {
     domSetAttribute(
        getTable(),
         "class",
-        'table table-lg table-hover'
+        'table table-lg table-hover table-striped table-borderless'
         + (activeModeIsDarkMode ? ' table-dark' : ' table-light'));
 }
 
