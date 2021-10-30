@@ -1,4 +1,4 @@
-if (typeof require !== 'undefined') XLSX = require('xlsx');
+XLSX = require('xlsx');
 
 const EXCEL_SHEET_NUMBER = 0
 
@@ -13,7 +13,7 @@ module.exports.writeExcelEntriesToDatabase = function (filename) {
     return rows;
 }
 
-module.exports.readExcelEntriesFromDatabase = function (data, filename) {
+module.exports.writeExcelEntriesFromDatabase = function (data, filename) {
     const sheet = XLSX.utils.json_to_sheet(data)
     const workbook = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(workbook, sheet, 'Responses')
