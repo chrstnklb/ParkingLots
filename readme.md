@@ -15,6 +15,10 @@
 
 <span style="color:red">&cross; Cron-Timer in env verschieben</span>
 
+<span style="color:red">&cross; Cron Job verproben</span>
+
+<span style="color:red">&cross; Erreichbarkeit des FTP-Servers verproben</span>
+
 <span style="color:red">&cross; Cron-Teile in global variables verschieben</span>
 
 <span style="color:red">&cross; Wo stehen die Adressen (extra config file erstellen)</span>
