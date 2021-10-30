@@ -53,7 +53,7 @@ app.get('/search', (req, res) => {
 })
 
 app.listen(appPort, () => {
-  console.log(`Server Started at ${appUrl}.`)
+  console.log(`Server Started at ${appUrl}`)
 })
 
 app.post('/create', function (req, res) {
@@ -240,14 +240,14 @@ app.get('/downloadDbAsXlsx', (req, res) => {
           "Farbe": row.doc.farbe,
           "Bemerkung": row.doc.bemerkung,
           "Parkplaetze": row.doc.parkplaetze
-          // explicit: now searchHash as download
+          // explicit: no searchHash as download
         }
       )
     })
 
   }).then(() => {
 
-    excel.readExcelEntriesFromDatabase(data, filePath);
+    excel.writeExcelEntriesFromDatabase(data, filePath);
 
   }).then(() => {
 
