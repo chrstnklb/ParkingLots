@@ -1,5 +1,8 @@
 const fs = require('fs')
-const folder = "./server/outgoing-files/"
+const timeServer = require("./util/time-server");
+
+const { folderOutgoing } = require('../config');
+const folder = folderOutgoing
 
 module.exports.writeCsvFile = function (fileName, content) {
     console.log("writeCsvFile");
@@ -14,7 +17,6 @@ module.exports.writeCsvFile = function (fileName, content) {
 
 module.exports.generateFileName = function (parkingLot) {
 
-    const timeServer = require("./util/time-server");
     return folder +
         parkingLot +
         "-" +
