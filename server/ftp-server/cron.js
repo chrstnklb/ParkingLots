@@ -1,18 +1,6 @@
-const { ftpFolderOutgoing } = require('../../config.js');
+const { ftpFolderOutgoing, cronTime } = require('../../config.js');
 
 var PouchDB = require('pouchdb');
-
-let cronTime = '*/5 * * * * *'
-
-// * * * * * *
-// | | | | | |
-// | | | | | day of week
-// | | | | month
-// | | | day of month
-// | | hour
-// | minute
-// second ( optional )
-
 
 const parkingPlaces = [
     "A75",

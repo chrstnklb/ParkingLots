@@ -1,4 +1,3 @@
 node_modules
 server/incoming-files
 server/outgoing-files
-.env

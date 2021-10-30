@@ -20,11 +20,7 @@
 
 <span style="color:red">&cross; Erreichbarkeit des FTP-Servers verproben</span>
 
-<span style="color:red">&cross; Cron-Teile in global variables verschieben</span>
-
 <span style="color:red">&cross; Wo stehen die Adressen (extra config file erstellen)</span>
-
-<span style="color:red">&cross; Log Verzeichnis festlegen und logs dahin routen</span>
 
 # Quick Start
 

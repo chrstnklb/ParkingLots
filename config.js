@@ -14,5 +14,7 @@ module.exports = {
     folderIncoming: process.env.FOLDER_INCOMING,
     folderOutgoing: process.env.FOLDER_OUTGOING,
     
-    ftpFolderOutgoing: process.env.FTP_FOLDER_OUTGOING
+    ftpFolderOutgoing: process.env.FTP_FOLDER_OUTGOING,
+    
+    cronTime: process.env.CRON_TIME
 };
