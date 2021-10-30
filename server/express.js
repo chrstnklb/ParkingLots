@@ -2,8 +2,6 @@ const { folderIncoming, folderOutgoing, appPort, appUrl, dbUrl } = require('../c
 var excel = require("./excel");
 var csv = require("./csv");
 
-//#region express setup and config [ rgba(255, 99, 71, 0.5) ]
-
 //#region [ rgba(255, 99, 71, 0.05) ] express config
 
 const express = require('express');
@@ -21,8 +19,7 @@ app.set('views', ['views', 'views/table']);
 
 //#endregion
 
-//#region [rgba(120,120,120,0.1)] database config
-
+//#region [rgba(120,120,120,0.05)] database config
 
 var PouchDB = require('pouchdb');
 PouchDB.plugin(require('pouchdb-find'));
@@ -31,9 +28,7 @@ const db = new PouchDB(dbUrl);
 
 //#endregion
 
-//#endregion
-
-//#region [ rgba(0, 255, 0, 0.2) ] express communication with client
+//#region [ rgba(0, 255, 0, 0.05) ] express communication with client
 
 app.get('/', function (req, res, next) {
   console.log("/");
@@ -129,8 +124,6 @@ app.post('/delete', function (req, res) {
   });
 
 })
-
-//#endregion
 
 app.post('/upload', (req, res) => {
   console.log("/upload");
@@ -290,6 +283,8 @@ app.get('/download/:id', function (req, res) {
   }).catch(function (err) { console.log(err); });
 
 });
+
+//#endregion
 
 // TODO: Express und DB trennen, allgemein modularer und diesselben Dinge wiederverwenden
 // Suche auf 50 Treffer beschränken
