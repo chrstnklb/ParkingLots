@@ -1,6 +1,7 @@
 # Inhaltsverzeichnis
 
 0. [Offene Vorbereitungen](#Offene-Vorbereitungen)
+0. [Quick Start](#Quick-Start)
 1. [Einrichtung der Datenbank](#Einrichtung-der-Datenbank)
 2. [Projekt installieren](#Projekt-Installieren)
 3. [Anwendungsserver](#Anwendungsserver)
@@ -24,6 +25,16 @@
 <span style="color:red">&cross; Wo stehen die Adressen (extra config file erstellen)</span>
 
 <span style="color:red">&cross; Log Verzeichnis festlegen und logs dahin routen</span>
+
+# Quick Start
+
+1. Terminal: ```npminstall```
+2. Ordner erstellen für die Kameras (FTP-Server)
+3. Starte alle Anwendungen
+
+```
+concurrently --kill-others "npm run start-application" "npm run start-ftp-server" "npm run start-cron-job"
+```
 
 # Einrichtung der Datenbank
 Genutzt wird PouchDb, ein Ableger von CouchDB ([Dokumentation](https://docs.couchdb.org/en/stable/))
@@ -98,6 +109,10 @@ Generiert in festen zeitlichen Abständen CSV-Dateien für die verschiedenen Kam
 - **cron** (Starte zeitlich getriggerten Job)
 
 </details>
+
+<br>
+
+<span style="color:red">**Der Job geht davon aus, dass es für jede Kamera einen Unterordner im outgoing Ordner des FTP-Servers gibt.**</span>
 
 Starte Cron-Job:
 ```
