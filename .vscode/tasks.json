@@ -6,7 +6,7 @@
             "dependsOn": [
                 "Run application server",
                 "Run ftp server",
-                "Run exports cron"
+                "Run cron job"
             ]
         },
         {
@@ -37,7 +37,7 @@
         },
         {
             "type": "shell",
-            "label": "Run exports cron",
+            "label": "Run cron job",
             "command": "npm run start-cron-job",
             "options": {
                 "statusbar": {
