@@ -1,3 +1,9 @@
+const { ftpFolderOutgoing } = require('../../config.js');
+
+var PouchDB = require('pouchdb');
+
+let cronTime = '*/5 * * * * *'
+
 // * * * * * *
 // | | | | | |
 // | | | | | day of week
@@ -7,8 +13,6 @@
 // | minute
 // second ( optional )
 
-var PouchDB = require('pouchdb');
-let cronTime = '*/5 * * * * *'
 
 const parkingPlaces = [
     "A75",
@@ -69,7 +73,7 @@ function exportCsvForCameraFor(parking_space) {
 
     require('./fileWriter')
         .write(
-            "output/ftp-server/" + parking_space + "/" + parking_space,
+            ftpFolderOutgoing + parking_space + "/" + parking_space,
             "csv",
             data_entry,
             "UTF-8",
