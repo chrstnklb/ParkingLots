@@ -25,9 +25,13 @@ function showPermission() {
 }
 
 function getSearchTexts() {
-    return getSearchInputField() === null
-        ? []
-        : getSearchInputField().value.trim().split(" ");
+
+    if (getSearchInputField() === null || getSearchInputField().value.trim() == "") {
+        return [];
+    } else {
+        return getSearchInputField().value.trim().split(" ");
+    }
+
 }
 
 function getSearchInputField() {
@@ -43,14 +47,8 @@ function checkIfPermissionFitsAllSearchTexts(permission) {
                 result = false;
         })
     }
-    return result;
-}
 
-function extractPermissionAsString(permission) {
-    return permission.searchHash
-    return Object.keys(permission).map(function (key) {
-        return permission[key];
-    }).join().replaceAll(",", "")
+    return result;
 }
 
 function fetchAllPermissions() {
