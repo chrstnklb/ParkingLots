@@ -1,6 +1,5 @@
 const fs = require("fs")
 var consts = require('../../globals.js');
-var my_var = consts.parkingPlaces;
 
 const { folderIncoming, folderOutgoing, ftpFolderOutgoing } = require('../../config.js');
 
@@ -22,6 +21,6 @@ createRessourcesFolder(folderIncoming)
 createRessourcesFolder(folderOutgoing)
 createRessourcesFolder(ftpFolderOutgoing)
 
-my_var.forEach(parkingLot => {
+consts.parkingPlaces.forEach(parkingLot => {
     createRessourcesFolder(ftpFolderOutgoing + parkingLot)
 })
