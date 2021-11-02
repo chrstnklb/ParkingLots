@@ -1,7 +1,8 @@
 const fs = require("fs")
-var consts = require('../../globals.js');
 
 const { folderIncoming, folderOutgoing, ftpFolderOutgoing } = require('../../config.js');
+
+var consts = require('../../globals.js');
 
 function createRessourcesFolder(folder) {
     fs.mkdir(folder, function (err) {
