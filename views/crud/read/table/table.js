@@ -87,7 +87,7 @@ function createBodyRow(permission) {
                 break;
             case "kennzeichen":
                 let kennzeichen = permission["kennzeichen"];
-                if (kennzeichen.substring(kennzeichen.length - 1).toLowerCase() === "e") {
+                if (typeof kennzeichen !== 'undefined' && kennzeichen.substring(kennzeichen.length - 1).toLowerCase() === "e") {
                     kennzeichen += " ⚡"
                 }
                 child = createTableBodyCell(kennzeichen);
