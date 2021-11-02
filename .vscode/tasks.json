@@ -48,5 +48,15 @@
                 "group": "All servers"
             }
         },
+        {
+            "type": "shell",
+            "label": ">> Create Folder",
+            "command": "npm run start-create-ressources-folder",
+            "options": {
+                "statusbar": {
+                    "hide": false
+                }
+            },
+        },
     ]
 }
