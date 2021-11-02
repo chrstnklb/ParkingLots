@@ -82,8 +82,14 @@ function createBodyRow(permission) {
                 child = createTableBodyCell(extendLetzteAenderung(permission["letzteAenderung"]));
                 break;
             case "parkplaetze":
-                let parkplaetze = permission["parkplaetze"].split("-").toString();
-                child = createTableBodyCell(parkplaetze.replaceAll(",", ", "));
+                let parkplaetze = permission["parkplaetze"]
+                if(typeof parkplaetze !== 'undefined'){
+                    parkplaetze = parkplaetze.split("-").toString();
+                    parkplaetze = parkplaetze.replaceAll(",", ", ");
+                } else{
+                    parkplaetze = ""
+                }
+                child = createTableBodyCell(parkplaetze);
                 break;
             case "kennzeichen":
                 let kennzeichen = permission["kennzeichen"];
