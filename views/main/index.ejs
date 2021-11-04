@@ -12,7 +12,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-    
+
     <link rel="stylesheet" href="../main/index.css">
     <link rel="stylesheet" href="../crud/create/create.css">
     <link rel="stylesheet" href="../crud/read/table/table.css">
@@ -34,54 +34,58 @@
     <script type="text/javascript" src="../crud/read/table/table.js"></script>
 
     <script type="text/javascript" src="../crud/update/update.js"></script>
-    
+
     <script type="text/javascript" src="../crud/delete/delete.js"></script>
     <script type="text/javascript" src="../crud/delete/router.js"></script>
 
     <script type="text/javascript" src="../darkmode/darkMode.js"></script>
 
+    <script type="text/javascript" src="../admin/admin.js"></script>
 
-    
+
+
 </head>
 
 <body>
 
-    <div class="d-flex flex-row bd-highlight mb-3">
+    <nav class="navbar bg-dark navbar-expand-lg" id="navBar">
 
-        <div class="p-2 bd-highlight">
-            <%- include('crud/create/create-button'); %>
+        <div class="container-fluid">
+
+            <div class="col-sm-1 p-1" id="admin" style="display: none;">
+                <%- include('admin/admin'); %>
+            </div>
+
+            <div class="col-sm-1 p-1">
+                <%- include('crud/create/create-button'); %>
+            </div>
+
+            <div class="col-sm-9 p-1">
+                <%- include('crud/read/search/search-field'); %>
+            </div>
+
+            <div class="col-sm-1 p-1">
+                <%- include('crud/read/search/search-result-count'); %>
+            </div>
+
+            <div class="col-sm-1 p-1" id="darkmode" >
+                <%- include('darkmode/darkmode'); %>
+            </div>
+            
         </div>
 
-        <div id="search" class="p-2 bd-highlight flex-grow-1">
-            <%- include('crud/read/search/search'); %>
-        </div>
+    </nav>
 
-        <div id="darkmode" class="p-2 bd-highlight">
-            <%- include('darkmode/darkmode'); %>
-        </div>
-
-        <div id="delete" class="p-2 bd-highlight">
-            <%- include('crud/delete/delete'); %>
-        </div>
-
-        <div id="create" class="p-2 bd-highlight">
-            <%- include('crud/create/create-modal'); %>
-        </div>
-
-        <!-- Add admin area -->
-        <div id="admin" class="p-2 bd-highlight" style="display: none;">
-            <%- include('admin/admin'); %>
-        </div>
-
-
+    <div id="delete" class="p-2 bd-highlight">
+        <%- include('crud/delete/delete'); %>
     </div>
 
-    <div>
+    <div id="create" class="p-2 bd-highlight">
+        <%- include('crud/create/create-modal'); %>
+    </div>
 
-        <div id="table" class="p-2 bd-highlight">
-            <%- include('crud/read/table/table'); %>
-        </div>
-
+    <div id="table" class="p-2 bd-highlight">
+        <%- include('crud/read/table/table'); %>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

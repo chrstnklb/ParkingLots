@@ -1,4 +1,4 @@
-let activeModeIsDarkMode;
+let activeModeIsDarkMode = false;
 
 function triggerSwitchTheme(){
     loadDarkModeFromLocalStorage();
@@ -7,18 +7,21 @@ function triggerSwitchTheme(){
 
     logTriggerSwitch();
     setAllThemeProperties();
+
     setTableClassAttributesForTheme();
     setDarkModeButton();
-
+    setDarkModeNavbar();
 }
 
 function loadThemeStyleOnLoad(){
     loadDarkModeFromLocalStorage();
+
     logTriggerSwitch();
+
     setAllThemeProperties();
     setTableClassAttributesForTheme();
-
     setDarkModeButton();
+    setDarkModeNavbar();
 }
 
 function switchActiveMode() {
@@ -47,9 +50,14 @@ function setThemeProperty(property, color) {
 }
 
 function setDarkModeButton() {
-    // document.getElementById('darkModeButton').textContent = (activeModeIsDarkMode ? " Hell" : " Dunkel");
+    document.getElementById('darkModeButton').textContent = (activeModeIsDarkMode ? " Einschalten" : " Ausschalten");
     document.getElementById('darkModeButton').classList.remove(activeModeIsDarkMode ? "bi-lightbulb-off" : "bi-lightbulb");
     document.getElementById('darkModeButton').classList.add(activeModeIsDarkMode ? "bi-lightbulb" : "bi-lightbulb-off");
+}
+
+function setDarkModeNavbar() {
+    document.getElementById('navBar').classList.remove(activeModeIsDarkMode ? "bg-info" : "bg-secondary");
+    document.getElementById('navBar').classList.add(activeModeIsDarkMode ? "bg-secondary" : "bg-info");
 }
 
 function setTableClassAttributesForTheme() {
