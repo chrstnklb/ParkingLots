@@ -88,7 +88,7 @@ function showResult(filteredPermissionsCount) {
     pollDOM();
     let resultCount = pollDOM();
     resultCount.textContent =
-        getShowCount(filteredPermissionsCount) + " / " + filteredPermissionsCount;
+        getShowCount(filteredPermissionsCount) + " / " + filteredPermissionsCount + " Treffer";
 }
 
 function pollDOM() {
