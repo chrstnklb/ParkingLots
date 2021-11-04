@@ -99,12 +99,18 @@ function createBodyRow(permission) {
                 child = createTableBodyCell(extendLetzteAenderung(permission["letzteAenderung"]));
                 break;
             case "parkplaetze":
-                let parkplaetze = permission["parkplaetze"].split("-").toString();
-                child = createTableBodyCell(parkplaetze.replaceAll(",", ", "));
+                let parkplaetze = permission["parkplaetze"]
+                if(typeof parkplaetze !== 'undefined'){
+                    parkplaetze = parkplaetze.split("-").toString();
+                    parkplaetze = parkplaetze.replaceAll(",", ", ");
+                } else{
+                    parkplaetze = ""
+                }
+                child = createTableBodyCell(parkplaetze);
                 break;
             case "kennzeichen":
                 let kennzeichen = permission["kennzeichen"];
-                if (kennzeichen.substring(kennzeichen.length - 1).toLowerCase() === "e") {
+                if (typeof kennzeichen !== 'undefined' && kennzeichen.substring(kennzeichen.length - 1).toLowerCase() === "e") {
                     kennzeichen += " ⚡"
                 }
                 child = createTableBodyCell(kennzeichen);

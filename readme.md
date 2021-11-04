@@ -108,7 +108,12 @@ Generiert in festen zeitlichen Abständen CSV-Dateien für die verschiedenen Kam
 
 <br>
 
-<span style="color:red">**Der Job geht davon aus, dass es für jede Kamera einen Unterordner im outgoing Ordner des FTP-Servers gibt.**</span>
+<span style="color:red">**Der Job geht davon aus, dass es für jede Kamera einen Unterordner im outgoing Ordner des FTP-Servers gibt; daher:**</span>
+
+Starte Job der Ordner erstellt:
+```
+node server/util/folder.js
+```
 
 Starte Cron-Job:
 ```

@@ -36,7 +36,8 @@
     "devStart": "nodemon server/express.js",
     "start-application": "node server/express.js",
     "start-ftp-server": "node server/ftp-server/ftp-server.js",
-    "start-cron-job": "node server/ftp-server/cron.js"
+    "start-cron-job": "node server/ftp-server/cron.js",
+    "start-create-ressources-folder": "node server/util/folder.js"
   },
   "author": "",
   "license": "ISC"

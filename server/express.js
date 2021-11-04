@@ -39,16 +39,17 @@ app.get('/', function (req, res, next) {
 app.get('/search', (req, res) => {
   console.log("/search");
 
+  // const { performance } = require('perf_hooks');
+  // var startTime = performance.now()
+
   db.allDocs({
     include_docs: true
-
   }).then(function (result) {
 
+    // console.log(`/search took ${(performance.now() - startTime) / 1000} seconds`)
     res.json(result.rows);
 
-  }).catch(function (err) {
-    console.log(err);
-  });
+  }).catch(function (err) { console.log(err); });
 
 })
 
