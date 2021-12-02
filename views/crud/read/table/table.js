@@ -85,7 +85,7 @@ function createBodyRow(permission) {
         "\n Unternehmen:      " + permission["unternehmen"] + 
         "\n Bereich:                " + permission["bereich"] + 
         "\n Telefon:                " + permission["telefon"] + 
-        "\n Parkplätze:           " + permission["parkplaetze"].trim().replaceAll("-",", ") + 
+        "\n Parkplätze:           " + permission["parkplaetze"]?.trim().replaceAll("-",", ") + 
         "\n Letzte Änderung: " + permission["letzteAenderung"]
 
     let tr = domCreateWithAttribute("tr","title",rowTitle);
@@ -150,6 +150,7 @@ function createTableBodyCellWithActionButtons(text) {
 
     td.appendChild(deleteButton);
     td.appendChild(editButton);
+
     td.setAttribute("value", text);
 
     return td;

@@ -6,7 +6,7 @@ function write(filename, extension, data_s, encoding, preLogMessage) {
     fs.writeFile(fullFileName, data_s, encoding, function(err) {
         if (err)
             return console.log(err);
-        console.log('Wrote' + preLogMessage + fullFileName);
+        // console.log('Wrote' + preLogMessage + fullFileName);
     });
 }
 

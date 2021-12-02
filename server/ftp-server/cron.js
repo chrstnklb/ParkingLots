@@ -1,4 +1,4 @@
-const { ftpFolderOutgoing, cronTime } = require('../../config.js');
+const { ftpFolderOutgoing, cronTime, dbUrl } = require('../../config.js');
 
 var PouchDB = require('pouchdb');
 
@@ -15,7 +15,7 @@ const parkingPlaces = [
     "Werk"
 ];
 
-let cronDbConnection = new PouchDB('http://adminuwe:adminuwe@localhost:5984/erlaubnisse');
+let cronDbConnection = new PouchDB(dbUrl);
 
 let CronJob = require('cron').CronJob;
 let job = new CronJob(cronTime, function () {
@@ -49,19 +49,20 @@ function exportCsvForCameraFor(parking_space) {
     let parking_space_counter = 0
     read_db_rows = Object.values(read_db_rows);
     read_db_rows.forEach(element => {
-        if (element.doc["parkplaetze"].toString().includes(parking_space)) {
+        if (element.doc["parkplaetze"]?.toString().includes(parking_space)) {
             parking_space_counter++
             data_entry = data_entry +
-                element.doc["kennzeichen"] + ";" +
+                element.doc["kennzeichen"].replace("-","") + ";" +
                 element.doc["land"] + ";" +
-                element.doc["name"] + ", " +
+                element.doc["nachname"] + ", " +
                 element.doc["vorname"] + "\n"
         }
     });
 
     require('./fileWriter')
         .write(
-            ftpFolderOutgoing + parking_space + "/" + parking_space,
+            // ftpFolderOutgoing + parking_space + "/" + parking_space,
+            ftpFolderOutgoing + parking_space,
             "csv",
             data_entry,
             "UTF-8",

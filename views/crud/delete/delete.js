@@ -6,6 +6,7 @@ function generateDeleteButtons(id) {
     button.setAttribute("id", "deleteButtonId" + id)
     button.setAttribute("class", "btn btn-xl btn-danger deleteButton bi bi-trash opacity-75");
     button.setAttribute("type", "button");
+    button.textContent = "🗑"
     button.setAttribute("data-bs-toggle", "modal");
     button.setAttribute("data-bs-target", "#deleteModal");
     button.setAttribute("title", "Löscht diesen Eintrag");
