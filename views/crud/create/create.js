@@ -1,85 +1,89 @@
 function setInsertMode(mode) {
-    insertMode = mode;
+  insertMode = mode;
 }
 
 function insertPermission() {
+  let fetchMode;
+  let id;
 
-    let fetchMode;
-    let id;
+  switch (insertMode) {
+    case "create":
+      fetchMode = "/create";
+      id = Date.now().toString();
+      break;
 
-    switch (insertMode) {
+    case "edit":
+      fetchMode = "/edit";
+      id = ID_OF_ACTUAL_ENTRY;
+      break;
+    default:
+      break;
+  }
 
-        case "create":
-            fetchMode = '/create';
-            id = Date.now().toString()
-            break;
+  let letzteAenderung = new Date(Date.now()).toLocaleString(undefined, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
 
-        case "edit":
-            fetchMode = '/edit';
-            id = ID_OF_ACTUAL_ENTRY
-            break;
-        default:
-            break;
-    }
+  fetch(fetchMode, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      parkerlaubnis: {
+        _id: id.toString(),
 
-    let letzteAenderung = (new Date(Date.now())).toLocaleDateString()
+        letzteAenderung: letzteAenderung,
 
-    fetch(fetchMode, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            parkerlaubnis: {
-
-                _id: id.toString(),
-
-                letzteAenderung: letzteAenderung,
-
-                nachname: domGetInputValueViaId("nachname"),
-                vorname: domGetInputValueViaId("vorname"),
-                unternehmen: domGetInputValueViaId("unternehmen"),
-                bereich: domGetInputValueViaId("bereich"),
-                telefon: domGetInputValueViaId("telefon"),
-                kennzeichen: domGetInputValueViaId("kennzeichen"),
-                land: domGetInputValueViaId("land"),
-                fahrzeug: domGetInputValueViaId("fahrzeug"),
-                farbe: domGetInputValueViaId("farbe"),
-                bemerkung: domGetInputValueViaId("bemerkung"),
-                parkplaetze: getInputValuesForParkingLotsAsString(),
-                searchHash:
-                    domGetInputValueViaId("nachname") +
-                    domGetInputValueViaId("vorname") +
-                    domGetInputValueViaId("unternehmen") +
-                    domGetInputValueViaId("bereich") +
-                    domGetInputValueViaId("telefon") +
-                    domGetInputValueViaId("kennzeichen") +
-                    domGetInputValueViaId("land") +
-                    domGetInputValueViaId("fahrzeug") +
-                    domGetInputValueViaId("farbe") +
-                    domGetInputValueViaId("bemerkung") +
-                    getInputValuesForParkingLotsAsString() + 
-                    letzteAenderung
-            }
-        })
-
-    }).then(function (response) {
-        if (response.ok) {
-            runStepsForSuccessfulPermissionSaving();
-            return;
-        } else
-            throw new Error('Request failed.');
-
-    }).catch(function (error) {
-        console.log(error);
+        nachname: domGetInputValueViaId("nachname"),
+        vorname: domGetInputValueViaId("vorname"),
+        unternehmen: domGetInputValueViaId("unternehmen"),
+        bereich: domGetInputValueViaId("bereich"),
+        telefon: domGetInputValueViaId("telefon"),
+        kennzeichen: domGetInputValueViaId("kennzeichen"),
+        land: domGetInputValueViaId("land"),
+        fahrzeug: domGetInputValueViaId("fahrzeug"),
+        farbe: domGetInputValueViaId("farbe"),
+        bemerkung: domGetInputValueViaId("bemerkung"),
+        parkplaetze: getInputValuesForParkingLotsAsString(),
+        searchHash:
+          domGetInputValueViaId("nachname") +
+          domGetInputValueViaId("vorname") +
+          domGetInputValueViaId("unternehmen") +
+          domGetInputValueViaId("bereich") +
+          domGetInputValueViaId("telefon") +
+          domGetInputValueViaId("kennzeichen") +
+          domGetInputValueViaId("land") +
+          domGetInputValueViaId("fahrzeug") +
+          domGetInputValueViaId("farbe") +
+          domGetInputValueViaId("bemerkung") +
+          getInputValuesForParkingLotsAsString() +
+          letzteAenderung,
+      },
+    }),
+  })
+    .then(function (response) {
+      if (response.ok) {
+        runStepsForSuccessfulPermissionSaving();
+        return;
+      } else throw new Error("Request failed.");
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-
-
-};
+}
 
 function runStepsForSuccessfulPermissionSaving() {
-    showSuccessMessage(getVorname(), getNachname());
-    domRefreshPage();
+  showSuccessMessage(getVorname(), getNachname());
+  domRefreshPage();
 }
 
 function showSuccessMessage(vorname, nachname) {
-    alert('\nParkerlaubnis für \n' + vorname + ' ' + nachname + '\nwurde ERFOLGREICH gespeichert!');
+  alert(
+    "\nParkerlaubnis für \n" +
+      vorname +
+      " " +
+      nachname +
+      "\nwurde ERFOLGREICH gespeichert!"
+  );
 }
