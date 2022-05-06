@@ -38,8 +38,9 @@ Genutzt wird PouchDb, ein Ableger von CouchDB ([Dokumentation](https://docs.couc
 1. Download from http://couchdb.apache.org/#download
 2. [Installationsanweisungen für Windows](https://docs.couchdb.org/en/stable/install/windows.html)
 3. User und Passwort festlegen
-4. Datenbank ist einsehbar unter http://127.0.0.1:5984/_utils#setup
-5. Aktiviere Cors **(Configurations/Enable Cors/All domains)**
+4. Datenbank ist konfigurierbar unter http://127.0.0.1:5984/_utils#setup
+5. Datenbank ist einsehbar unter http://127.0.0.1:5984/_utils/#login
+6. Aktiviere Cors **(Configurations/Enable Cors/All domains)**
 
 # Projekt installieren
 1. Installieren NodeJS [nodejs](https://nodejs.org/en/)
