@@ -2,6 +2,23 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "▶️ cypress",
+            "dependsOn": [
+                "Run application server",
+                "Run cypress tests"
+            ]
+        },
+        {
+            "label": "Run cypress tests",
+            "type": "shell",
+            "command": "npm run cypress:open",
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            },
+        },
+        {
             "label": "Run all servers",
             "dependsOn": [
                 "Run application server",

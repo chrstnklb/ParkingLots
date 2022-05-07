@@ -2,9 +2,9 @@
     <div class="input-group">
         <div class="input-group-text">
             <input class="form-check-input mt-0 parking-lot" type="checkbox"
-                value="" id=<%= id %>
+                value="" id=<%= id %> data-cy-parkinglot-checkbox=<%= id %>
                 aria-label="Checkbox for following text input">
         </div>
-        <label for=<%= id %> class="input-group-text"><%= parkingLot %></label>
+        <label for=<%= id %> class="input-group-text" data-cy-parkinglot-label=<%= id %> ><%= parkingLot %></label>
     </div>
 </div>
