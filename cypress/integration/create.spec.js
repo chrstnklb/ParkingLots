@@ -12,6 +12,9 @@ describe("Create new Parkerlaubniss successful", () => {
   });
 
   it.only("visit homepage", () => {
+
+    cy.task('deleteAllDbEntries').should('equal', true)
+
     cy.visit("http://localhost:3000/");
 
     cy.get("[data-cy=pageLoadsSpinner]")
@@ -81,5 +84,8 @@ describe("Create new Parkerlaubniss successful", () => {
     });
 
     cy.on("window:confirm", () => true); // accept the alert
+
+    const entry = cy.task('findDbEntry');
+    console.log('entry in test :>> ', entry );
   });
 });
