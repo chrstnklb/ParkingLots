@@ -3,11 +3,11 @@ function generateEditButtons(id) {
 
     let button = document.createElement("button");
     button.setAttribute("id", "editButtonId" + id)
-    button.setAttribute("class", "btn btn-primary editButton bi bi-pencil opacity-75");
+    button.setAttribute("class", "btn btn-success editButton opacity-75");
 
     
     button.setAttribute("type", "button");
-    button.textContent = "⚙"
+    button.textContent = "✎"
     button.setAttribute("data-bs-toggle", "modal");
     button.setAttribute("data-bs-target", "#insertPermissionModal");
     button.setAttribute("title", "Öffnet diesen Eintrag für die Bearbeitung");
@@ -16,14 +16,6 @@ function generateEditButtons(id) {
 
 
     return button;
-}
-
-function generateEditIcon(id){
-
-    let icon = document.createElement("i");
-    icon.setAttribute("class", "bi-pencil opacity-75");
-    document.getElementById(id).appendChild(icon);
-    return icon
 }
 
 function editSteps(id) {
