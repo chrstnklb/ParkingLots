@@ -4,12 +4,12 @@
         {
             "label": "▶️ cypress",
             "dependsOn": [
-                "Run application server",
-                "Run cypress tests"
+                "app server",
+                "cypress tests"
             ]
         },
         {
-            "label": "Run cypress tests",
+            "label": "cypress tests",
             "type": "shell",
             "command": "npm run cypress:open",
             "options": {
@@ -19,15 +19,15 @@
             },
         },
         {
-            "label": "Run all servers",
+            "label": "▶️ all servers",
             "dependsOn": [
-                "Run application server",
-                "Run ftp server",
-                "Run cron job"
+                "app server",
+                "ftp server",
+                "cron job"
             ]
         },
         {
-            "label": "Run application server",
+            "label": "▶️ app server",
             "type": "shell",
             "command": "npm run start-application",
             "options": {
@@ -40,7 +40,7 @@
             }
         },
         {
-            "label": "Run ftp server",
+            "label": "▶️ ftp server",
             "type": "shell",
             "command": "npm run start-ftp-server",
             "options": {
@@ -53,8 +53,8 @@
             }
         },
         {
+            "label": "▶️ cron job",
             "type": "shell",
-            "label": "Run cron job",
             "command": "npm run start-cron-job",
             "options": {
                 "statusbar": {
@@ -67,7 +67,7 @@
         },
         {
             "type": "shell",
-            "label": ">> Create Folder",
+            "label": "▶️ create folder",
             "command": "npm run start-create-ressources-folder",
             "options": {
                 "statusbar": {
