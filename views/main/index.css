@@ -5,7 +5,7 @@ body {
 :root {
     --main-bg-color: #F8F9FA;
     --main-text-color: #212529;
-    --main-hover-bg-color: #212529;
+    --main-hover-bg-color: #878787;
     --main-hover-text-color: #F8F9FA;
     --main-hover-highlight-row-color: yellow;
 }
