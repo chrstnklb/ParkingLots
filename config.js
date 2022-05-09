@@ -26,10 +26,12 @@ module.exports = {
     ftpAdmin: process.env.FTP_ADMIN,
 
     ftpFolderOutgoing: process.env.FTP_FOLDER_OUTGOING,
-
-
+    
     ftpPasvPortMin: process.env.FTP_PASV_PORT_MIN,
     ftpPasvPortMax: process.env.FTP_PASV_PORT_MAX,
+    
+    // EXCEL
+    excelFolder: process.env.EXCEL_FOLDER,
     
     // CRON JOB
     cronTime: process.env.CRON_TIME

@@ -1,24 +1,13 @@
-const { ftpFolderOutgoing, cronTime, dbUrl } = require("../../config.js");
-var excel = require("../excel");
-
 var PouchDB = require("pouchdb");
+const globals = require('../../globals.js');
+const excel = require("../excel");
 
-const parkingPlaces = [
-  "A75",
-  "Job Ticket",
-  "P1",
-  "P2",
-  "P3",
-  "P3 Erw",
-  "P4",
-  "P5",
-  "P6",
-  "Werk",
-];
+const {cronTime, dbUrl, excelFolder, ftpFolderOutgoing } = require("../../config.js");
 
-let cronDbConnection = new PouchDB(dbUrl);
+const cronDbConnection = new PouchDB(dbUrl);
 
 let CronJob = require("cron").CronJob;
+
 let job = new CronJob(
   cronTime,
   function () {
@@ -37,7 +26,7 @@ let read_db_rows;
 function exportAllCameraCsvImportFiles() {
   getAll();
   if (dbEntriesSuccessfullyRead()) {
-    parkingPlaces.forEach((parkingPlace) =>
+    globals.parkingPlaces.forEach((parkingPlace) =>
       exportCsvForCameraFor(parkingPlace)
     );
   }
@@ -78,7 +67,6 @@ function exportCsvForCameraFor(parking_space) {
   });
 
   require("./fileWriter").write(
-    // ftpFolderOutgoing + parking_space + "/" + parking_space,
     ftpFolderOutgoing + parking_space,
     "csv",
     data_entry,
@@ -95,7 +83,7 @@ function dbEntriesSuccessfullyRead() {
 function exportAllPermissionsAsExcelFile() {
   const timestamp =
     "_" + new Date(Date.now()).toLocaleDateString() + "_" + Date.now();
-  const filePath = ftpFolderOutgoing + "erlaubnisse" + timestamp + ".xlsx";
+  const filePath = excelFolder + "erlaubnisse" + timestamp + ".xlsx";
 
   let data = [];
 

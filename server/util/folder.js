@@ -2,7 +2,7 @@ const fs = require("fs")
 
 const { folderIncoming, folderOutgoing, ftpFolderOutgoing } = require('../../config.js');
 
-var consts = require('../../globals.js');
+const globals = require('../../globals.js');
 
 function createRessourcesFolder(folder) {
     fs.mkdir(folder, function (err) {
@@ -22,6 +22,6 @@ createRessourcesFolder(folderIncoming)
 createRessourcesFolder(folderOutgoing)
 createRessourcesFolder(ftpFolderOutgoing)
 
-consts.parkingPlaces.forEach(parkingLot => {
+globals.parkingPlaces.forEach(parkingLot => {
     createRessourcesFolder(ftpFolderOutgoing + parkingLot)
 })
