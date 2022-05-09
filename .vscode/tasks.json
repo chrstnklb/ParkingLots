@@ -21,9 +21,9 @@
         {
             "label": "▶️ all servers",
             "dependsOn": [
-                "app server",
-                "ftp server",
-                "cron job"
+                "▶️ app server",
+                "▶️ ftp server",
+                "▶️ cron job"
             ]
         },
         {
