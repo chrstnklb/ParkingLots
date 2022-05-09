@@ -1,11 +1,9 @@
-var PouchDB = require("pouchdb");
 const globals = require('../../globals.js');
 const excel = require("../excel");
 
-const {cronTime, dbUrl, excelFolder, ftpFolderOutgoing } = require("../../config.js");
+const {cronTime, excelFolder, ftpFolderOutgoing } = require("../../config.js");
 
-const cronDbConnection = new PouchDB(dbUrl);
-
+const db = require("../db").getDbConnection();
 let CronJob = require("cron").CronJob;
 
 let job = new CronJob(
@@ -33,7 +31,7 @@ function exportAllCameraCsvImportFiles() {
 }
 
 function getAll() {
-  cronDbConnection
+  db
     .allDocs({
       include_docs: true,
     })
@@ -87,7 +85,7 @@ function exportAllPermissionsAsExcelFile() {
 
   let data = [];
 
-  cronDbConnection.allDocs({ include_docs: true })
+  db.allDocs({ include_docs: true })
     .then(function (result) {
       result.rows.forEach((row) => {
         data.push({
