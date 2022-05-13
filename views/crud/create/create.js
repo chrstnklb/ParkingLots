@@ -20,11 +20,7 @@ function insertPermission() {
       break;
   }
 
-  let letzteAenderung = new Date(Date.now()).toLocaleString(undefined, {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
+  let letzteAenderung = createLetzteAenderung();
 
   fetch(fetchMode, {
     method: "POST",
@@ -33,7 +29,7 @@ function insertPermission() {
       parkerlaubnis: {
         _id: id.toString(),
 
-        letzteAenderung: letzteAenderung,
+        letzteAenderung: createLetzteAenderung(),
 
         nachname: domGetInputValueViaId("nachname"),
         vorname: domGetInputValueViaId("vorname"),
@@ -87,3 +83,13 @@ function showSuccessMessage(vorname, nachname) {
       "\nwurde ERFOLGREICH gespeichert!"
   );
 }
+
+function createLetzteAenderung() {
+  return new Date(Date.now()).toLocaleString(undefined, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
+
+module.exports = createLetzteAenderung;
