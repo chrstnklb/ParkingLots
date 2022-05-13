@@ -18,20 +18,13 @@
   "devDependencies": {
     "jest": "^27.3.1"
   },
-  "name": "parkplatz",
+  "jest": {
+    "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$"
+  },
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chrstnklb/Parkplatz.git"
-  },
-  "version": "1.0.0",
-  "description": "- [NodeJS http-server](https://www.npmjs.com/package/http-server)\r   - Installation `npm install http-server -g`\r   - tasks.json: `http-server server/public -p 8081`\r   - -p und 8081 für die gewünschte Portnummer\r   - Tutorial: [Einfacher File Server mit Node.js](https://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http)\r - [NodeJS pouchdb](https://www.npmjs.com/package/pouchdb)\r - [NodeJS pouchdb-server](https://www.npmjs.com/package/pouchdb-server)\r   - task.json: `pouchdb-server --port 3000 --dir output/database`\r   - [Install pouchdb for node and typescript](https://pouchdb.com/guides/setup-pouchdb.html):\r     - `npm install pouchdb @types/pouchdb`\r   - [Install pouch db server for node](https://github.com/pouchdb/pouchdb-server#readme):\r     - `npm install -g pouchdb-server`\r There is a [pouchdb admin ui](http://127.0.0.1:3000/_utils) for your browser.",
-  "bugs": {
-    "url": "https://github.com/chrstnklb/Parkplatz/issues"
-  },
-  "homepage": "https://github.com/chrstnklb/Parkplatz#readme",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
   },
   "scripts": {
     "cypress:open": "cypress open",
@@ -40,8 +33,8 @@
     "start-cron-job": "node server/ftp-server/cron.js",
     "start-create-ressources-folder": "node server/util/folder.js",
     "start-ftp-server": "node server/ftp-server/ftp-server.js",
-    "test": "jest"
+    "test": "jest",
+    "test-with-coverage": "jest --collect-coverage"
   },
-  "author": "",
-  "license": "ISC"
+  "version": "3.0.0"
 }
