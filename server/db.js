@@ -2,7 +2,7 @@ const PouchDB = require("pouchdb");
 PouchDB.plugin(require("pouchdb-find"));
 
 const { dbUrl, folderIncoming } = require("../config.js");
-var excel = require("./excel");
+var excel = require("./excel.js");
 
 let connection = new PouchDB(dbUrl);
 
@@ -105,67 +105,70 @@ function getMaxId() {
   return count;
 }
 
-// module.exports.uploadXlsx = function (files) {
+module.exports.uploadXlsx = function (files) {
+  if (!files) console.log("There are no files!");
 
-//   if (req.files) {
-//     const file = req.files.fileUploaded;
-//     const filePath = folderIncoming + file.name;
+  const file = files.fileUploaded;
+  const filePath = folderIncoming + file.name;
+  let parkerlaubnisArray;
+  let result;
 
-//     file.mv(`${filePath}`, (err) => {
-//       let count = getMaxId();
+  file.mv(`${filePath}`, (err) => {
+    if (err) console.log("There is error!");
 
-//       if (err) {
-//         console.log(err);
-//         res.send("There is error");
-//       } else {
-//         let rows = excel.writeExcelEntriesToDatabase(`${filePath}`);
-//         let parkerlaubnisArray = [];
-//         let letzteAenderung = new Date(Date.now()).toLocaleDateString();
-//         rows.forEach((row) => {
-//           parkerlaubnisArray.push({
-//             _id: (count++).toString(),
+    parkerlaubnisArray = getParkerlaubnisArray(filePath);
+    console.log("🚀 ~ file: db.js ~ line 123 ~ parkerlaubnisArray", parkerlaubnisArray.length)
+    result = connection
+      .bulkDocs(parkerlaubnisArray)
+      .then((result) => {
+        console.log("Documents inserted OK");
+        return 200;
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  });
+  return result;  
+};
 
-//             letzteAenderung: letzteAenderung,
+function getParkerlaubnisArray(filePath) {
+  let count = getMaxId();
+  let rows = excel.writeExcelEntriesToDatabase(`${filePath}`);
+  let parkerlaubnisArray = [];
+  let letzteAenderung = new Date(Date.now()).toLocaleDateString();
+  rows.forEach((row) => {
+    parkerlaubnisArray.push({
+      _id: (count++).toString(),
 
-//             nachname: row.Nachname,
-//             vorname: row.Vorname,
-//             unternehmen: row.Unternehmen,
-//             bereich: row.Bereich,
-//             telefon: row.Telefon,
-//             kennzeichen: row.Kennzeichen,
-//             land: row.Land,
-//             fahrzeug: row.Fahrzeug,
-//             farbe: row.Farbe,
-//             bemerkung: row.Bemerkung,
-//             parkplaetze: row.Parkplaetze,
+      letzteAenderung: letzteAenderung,
 
-//             searchHash:
-//               row.Nachname +
-//               row.Vorname +
-//               row.Unternehmen +
-//               row.Bereich +
-//               row.Telefon +
-//               row.Kennzeichen +
-//               row.Land +
-//               row.Fahrzeug +
-//               row.Farbe +
-//               row.Bemerkung +
-//               row.Parkplaetze,
-//           });
-//         });
+      nachname: row.Nachname,
+      vorname: row.Vorname,
+      unternehmen: row.Unternehmen,
+      bereich: row.Bereich,
+      telefon: row.Telefon,
+      kennzeichen: row.Kennzeichen,
+      land: row.Land,
+      fahrzeug: row.Fahrzeug,
+      farbe: row.Farbe,
+      bemerkung: row.Bemerkung,
+      parkplaetze: row.Parkplaetze,
 
-//         db.bulkDocs(parkerlaubnisArray, function (err) {
-//           if (err) return console.log(err);
-//         })
-//           .then(() => {
-//             res.redirect("/");
-//           })
-//           .catch(function (err) {
-//             console.log(err);
-//           });
-//       }
-//     });
-//   } else {
-//     res.send("There are no files");
-//   }
-// };
+      searchHash:
+        row.Nachname +
+        row.Vorname +
+        row.Unternehmen +
+        row.Bereich +
+        row.Telefon +
+        row.Kennzeichen +
+        row.Land +
+        row.Fahrzeug +
+        row.Farbe +
+        row.Bemerkung +
+        row.Parkplaetze,
+    });
+  });
+  
+  // console.log("🚀 ~ file: db.js ~ line 172 ~ getParkerlaubnisArray ~ parkerlaubnisArray", parkerlaubnisArray)
+  return parkerlaubnisArray;
+}

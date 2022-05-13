@@ -71,84 +71,80 @@ app.post("/delete", function (req, res) {
 
 app.post("/upload", (req, res) => {
   console.log("/upload");
-  db.uploadXlsx(req.files).then((result) => {
-    res.sendStatus(result);
-  });
+  db.uploadXlsx(req.files)
+    .then((result) => {
+      res.redirect("/");
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 });
 
+app.post("/upload2", (req, res) => {
+  console.log("/upload2");
 
-// app.post('/upload', (req, res) => {
-//   console.log("/upload");
+  if (req.files) {
+    const file = req.files.fileUploaded;
+    const filePath = folderIncoming + file.name;
 
-//   if (req.files) {
-//     const file = req.files.fileUploaded
-//     const filePath = folderIncoming + file.name
+    file.mv(`${filePath}`, (err) => {
+      let count = getMaxId();
 
-//     file.mv(`${filePath}`, err => {
+      if (err) {
+        console.log(err);
+        res.send("There is error");
+      } else {
+        let rows = excel.writeExcelEntriesToDatabase(`${filePath}`);
+        let parkerlaubnisArray = [];
+        let letzteAenderung = new Date(Date.now()).toLocaleDateString();
+        rows.forEach((row) => {
+          parkerlaubnisArray.push({
+            _id: (count++).toString(),
 
-//       let count = getMaxId();
+            letzteAenderung: letzteAenderung,
 
-//       if (err) { console.log(err); res.send('There is error'); }
-//       else {
+            nachname: row.Nachname,
+            vorname: row.Vorname,
+            unternehmen: row.Unternehmen,
+            bereich: row.Bereich,
+            telefon: row.Telefon,
+            kennzeichen: row.Kennzeichen,
+            land: row.Land,
+            fahrzeug: row.Fahrzeug,
+            farbe: row.Farbe,
+            bemerkung: row.Bemerkung,
+            parkplaetze: row.Parkplaetze,
 
-//         let rows = excel.writeExcelEntriesToDatabase(`${filePath}`);
-//         let parkerlaubnisArray = [];
-//         let letzteAenderung = (new Date(Date.now())).toLocaleDateString();
-//         rows.forEach(row => {
+            searchHash:
+              row.Nachname +
+              row.Vorname +
+              row.Unternehmen +
+              row.Bereich +
+              row.Telefon +
+              row.Kennzeichen +
+              row.Land +
+              row.Fahrzeug +
+              row.Farbe +
+              row.Bemerkung +
+              row.Parkplaetze,
+          });
+        });
 
-//           parkerlaubnisArray.push(
-//             {
-//               "_id": (count++).toString(),
-
-//               "letzteAenderung": letzteAenderung,
-
-//               "nachname": row.Nachname,
-//               "vorname": row.Vorname,
-//               "unternehmen": row.Unternehmen,
-//               "bereich": row.Bereich,
-//               "telefon": row.Telefon,
-//               "kennzeichen": row.Kennzeichen,
-//               "land": row.Land,
-//               "fahrzeug": row.Fahrzeug,
-//               "farbe": row.Farbe,
-//               "bemerkung": row.Bemerkung,
-//               "parkplaetze": row.Parkplaetze,
-
-//               "searchHash":
-//                 row.Nachname +
-//                 row.Vorname +
-//                 row.Unternehmen +
-//                 row.Bereich +
-//                 row.Telefon +
-//                 row.Kennzeichen +
-//                 row.Land +
-//                 row.Fahrzeug +
-//                 row.Farbe +
-//                 row.Bemerkung +
-//                 row.Parkplaetze
-//             }
-//           )
-//         })
-
-//         db.bulkDocs(parkerlaubnisArray, function (err) {
-
-//           if (err) return console.log(err);
-
-//         }).then(() => {
-
-//           res.redirect('/');
-
-//         }).catch(function (err) {
-
-//           console.log(err);
-
-//         });
-
-//       }
-//     })
-//   } else { res.send('There are no files') }
-
-// });
+        db.bulkDocs(parkerlaubnisArray, function (err) {
+          if (err) return console.log(err);
+        })
+          .then(() => {
+            res.redirect("/");
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+      }
+    });
+  } else {
+    res.send("There are no files");
+  }
+});
 
 // app.get("/downloadDbAsXlsx", (req, res) => {
 //   const timestamp =
