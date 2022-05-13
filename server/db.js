@@ -3,6 +3,7 @@ PouchDB.plugin(require("pouchdb-find"));
 
 const { dbUrl, folderIncoming } = require("../config.js");
 var excel = require("./excel.js");
+const time = require("./util/time.js");
 
 let connection = new PouchDB(dbUrl);
 
@@ -27,10 +28,25 @@ module.exports.search = function () {
 };
 
 module.exports.add = function (parkerlaubnis) {
+  ID_OF_ACTUAL_ENTRY = time.generateUniqueId();
+  parkerlaubnis._id = ID_OF_ACTUAL_ENTRY;
+  parkerlaubnis.letzteAenderung = time.createLetzteAenderung();
   return connection
     .put(parkerlaubnis)
     .then(() => {
       return 200;
+    })
+    .catch(function (err) {
+      console.log(err);
+      return err;
+    });
+};
+
+module.exports.getErlaubnis = function (id) {
+  return connection
+    .get(id)
+    .then(function (doc) {
+      return doc;
     })
     .catch(function (err) {
       console.log(err);
@@ -43,7 +59,7 @@ module.exports.edit = function (idToBeUpdated, parkerlaubnis) {
     .get(idToBeUpdated)
     .then(function (doc) {
       (doc._id = idToBeUpdated),
-        (doc.letzteAenderung = parkerlaubnis.letzteAenderung),
+        (doc.letzteAenderung = time.createLetzteAenderung()),
         (doc.nachname = parkerlaubnis.nachname),
         (doc.vorname = parkerlaubnis.vorname),
         (doc.unternehmen = parkerlaubnis.unternehmen),
@@ -56,7 +72,6 @@ module.exports.edit = function (idToBeUpdated, parkerlaubnis) {
         (doc.bemerkung = parkerlaubnis.bemerkung),
         (doc.parkplaetze = parkerlaubnis.parkplaetze),
         (doc.searchHash = parkerlaubnis.searchHash);
-
       return connection.put(doc);
     })
     .then(() => {
@@ -117,7 +132,6 @@ module.exports.uploadXlsx = function (files) {
     if (err) console.log("There is error!");
 
     parkerlaubnisArray = getParkerlaubnisArray(filePath);
-    console.log("🚀 ~ file: db.js ~ line 123 ~ parkerlaubnisArray", parkerlaubnisArray.length)
     result = connection
       .bulkDocs(parkerlaubnisArray)
       .then((result) => {
@@ -128,7 +142,7 @@ module.exports.uploadXlsx = function (files) {
         console.log(err);
       });
   });
-  return result;  
+  return result;
 };
 
 function getParkerlaubnisArray(filePath) {
@@ -168,7 +182,5 @@ function getParkerlaubnisArray(filePath) {
         row.Parkplaetze,
     });
   });
-  
-  // console.log("🚀 ~ file: db.js ~ line 172 ~ getParkerlaubnisArray ~ parkerlaubnisArray", parkerlaubnisArray)
   return parkerlaubnisArray;
 }

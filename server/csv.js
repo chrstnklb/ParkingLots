@@ -1,5 +1,5 @@
 const fs = require('fs')
-const timeServer = require("./util/time-server");
+const time = require("./util/time.js");
 
 const { folderOutgoing } = require('../config');
 const folder = folderOutgoing
@@ -20,9 +20,9 @@ module.exports.generateFileName = function (parkingLot) {
     return folder +
         parkingLot +
         "-" +
-        timeServer.getNowAsYYYYMMDD() +
+        time.getNowAsYYYYMMDD() +
         "-" +
-        timeServer.getNowAsHHMMSS() +
+        time.getNowAsHHMMSS() +
         ".csv";
 }
 

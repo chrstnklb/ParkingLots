@@ -9,7 +9,6 @@ function insertPermission() {
   switch (insertMode) {
     case "create":
       fetchMode = "/create";
-      id = Date.now().toString();
       break;
 
     case "edit":
@@ -20,17 +19,12 @@ function insertPermission() {
       break;
   }
 
-  let letzteAenderung = createLetzteAenderung();
-
   fetch(fetchMode, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       parkerlaubnis: {
-        _id: id.toString(),
-
-        letzteAenderung: createLetzteAenderung(),
-
+        _id: id?.toString(),
         nachname: domGetInputValueViaId("nachname"),
         vorname: domGetInputValueViaId("vorname"),
         unternehmen: domGetInputValueViaId("unternehmen"),
@@ -53,8 +47,7 @@ function insertPermission() {
           domGetInputValueViaId("fahrzeug") +
           domGetInputValueViaId("farbe") +
           domGetInputValueViaId("bemerkung") +
-          getInputValuesForParkingLotsAsString() +
-          letzteAenderung,
+          getInputValuesForParkingLotsAsString(),
       },
     }),
   })
@@ -83,13 +76,3 @@ function showSuccessMessage(vorname, nachname) {
       "\nwurde ERFOLGREICH gespeichert!"
   );
 }
-
-function createLetzteAenderung() {
-  return new Date(Date.now()).toLocaleString(undefined, {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
-}
-
-module.exports = createLetzteAenderung;

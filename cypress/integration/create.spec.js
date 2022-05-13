@@ -12,8 +12,7 @@ describe("Create new Parkerlaubniss successful", () => {
   });
 
   it.only("visit homepage", () => {
-
-    cy.task('deleteAllDbEntries').should('equal', true)
+    cy.task("deleteAllDbEntries").should("equal", true);
 
     cy.visit("http://localhost:3000/");
 
@@ -70,6 +69,8 @@ describe("Create new Parkerlaubniss successful", () => {
       .should("be.visible")
       .contains("A75");
 
+    cy.get("[data-cy=savePermission]").scrollIntoView();
+
     cy.get("[data-cy=savePermission]").should("be.visible").click();
 
     const alertText =
@@ -85,7 +86,7 @@ describe("Create new Parkerlaubniss successful", () => {
 
     cy.on("window:confirm", () => true); // accept the alert
 
-    const entry = cy.task('findDbEntry');
-    console.log('entry in test :>> ', entry );
+    const entry = cy.task("findDbEntry");
+    console.log("entry in test :>> ", entry);
   });
 });

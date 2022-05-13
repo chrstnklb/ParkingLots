@@ -1,3 +1,5 @@
+// TODO: expliziter zugriff dank export
+
 const parkingPlaces = [
     "A75",
     "Job Ticket",

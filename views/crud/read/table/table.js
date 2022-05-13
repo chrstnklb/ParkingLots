@@ -71,7 +71,7 @@ function appendTableBody(table) {
 }
 
 function createBodyRow(permission) {
-
+// TODO: undefined values in permission abfangen
     let rowTitle =
         "\n PARKERLAUBNIS" + 
         "\n " + 
