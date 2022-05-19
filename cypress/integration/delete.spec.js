@@ -23,22 +23,15 @@ describe("Delete a Parkerlaubnis successful", () => {
         cy.spinnerIsVisible(true);
         cy.spinnerIsVisible(false);
 
-        // delete entry
-        // cy.get(`[data-cy=${actId}]`).click();
+        // check ui for entry
 
-        // cy.on("window:alert", (str) => {
-        //     expect(str).to.equal('VORSICHT! Dieser Eintrag wird DAUERHAFT gelöscht.');
-        // });
-
-        // cy.on("window:confirm", () => true); // accept the alert
-
-        // cy.spinnerIsVisible(true);
-        // cy.spinnerIsVisible(false);
+        // delete entry via ui
+        cy.get('.deleteButton').click();
+        cy.contains('VORSICHT! Dieser Eintrag wird DAUERHAFT gelöscht.');
+        cy.contains("Löschen").click();
+        cy.on("window:confirm", () => true);
 
         // check in database that entry is deleted
-        // cy.task("findDbEntry").then((dbEntry) => {
-        //     expect(dbEntry).to.be.null;
-        // });
 
         // check in ui, that entry is deleted
 
