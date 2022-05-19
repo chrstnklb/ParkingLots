@@ -36,18 +36,6 @@ function insertPermission() {
         farbe: domGetInputValueViaId("farbe"),
         bemerkung: domGetInputValueViaId("bemerkung"),
         parkplaetze: getInputValuesForParkingLotsAsString(),
-        searchHash:
-          domGetInputValueViaId("nachname") +
-          domGetInputValueViaId("vorname") +
-          domGetInputValueViaId("unternehmen") +
-          domGetInputValueViaId("bereich") +
-          domGetInputValueViaId("telefon") +
-          domGetInputValueViaId("kennzeichen") +
-          domGetInputValueViaId("land") +
-          domGetInputValueViaId("fahrzeug") +
-          domGetInputValueViaId("farbe") +
-          domGetInputValueViaId("bemerkung") +
-          getInputValuesForParkingLotsAsString(),
       },
     }),
   })

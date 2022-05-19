@@ -117,16 +117,16 @@ var i;
 let placeholderText
 
 function typeWriter() {
-    
-    if (i === undefined){
+
+    if (i === undefined) {
         i = 0
         placeholderText = ""
     }
 
     if (i < PLACEHOLDER_TEXT.length) {
- 
+
         let searchField = document.getElementById("searchInput");
-        searchField.setAttribute("placeholder",placeholderText += PLACEHOLDER_TEXT.charAt(i))
+        searchField.setAttribute("placeholder", placeholderText += PLACEHOLDER_TEXT.charAt(i))
         i++
         setTimeout(typeWriter, PLACEHOLDER_TYPE_WRITER_SPEED)
     }

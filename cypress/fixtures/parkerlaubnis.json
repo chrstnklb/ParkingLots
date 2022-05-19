@@ -1,0 +1,13 @@
+{
+  "nachname": "cyTestNachname",
+  "vorname": "cyTestVorname",
+  "unternehmen": "cyTestUnternehmen",
+  "bereich": "cyTestBereich",
+  "telefon": "cyTestTelefon",
+  "kennzeichen": "cyTestKennzeichen",
+  "land": "cyTestLand",
+  "fahrzeug": "cyTestFahrzeug",
+  "farbe": "cyTestFarbe",
+  "bemerkung": "cyTestBemerkung",
+  "parkplaetze": "A75"
+}

@@ -48,7 +48,7 @@ app.listen(appPort, () => {
 
 app.post("/create", function (req, res) {
   console.log("/create");
-  db.add(req.body.parkerlaubnis).then((result) => {
+  db.create(req.body.parkerlaubnis).then((result) => {
     res.sendStatus(result);
   });
 });

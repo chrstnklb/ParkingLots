@@ -23,3 +23,10 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("spinnerIsVisible", (isVisible) => {
+    let display = isVisible ? "block" : "none";
+    cy.get("[data-cy=pageLoadsSpinner]")
+        .invoke("css", "display")
+        .should("equal", display);
+});
