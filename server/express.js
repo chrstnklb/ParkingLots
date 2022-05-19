@@ -24,7 +24,7 @@ app.use(fileUpload());
 app.set("view engine", "ejs");
 app.set("views", ["views", "views/table"]);
 
-const db = require("./db");
+const db = require('./db/db.js');
 // const con = db.getDbConnection();
 
 // #endregion

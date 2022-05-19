@@ -4,6 +4,7 @@ function generateDeleteButtons(id) {
     let button = document.createElement("button");
 
     button.setAttribute("id", "deleteButtonId" + id)
+    button.setAttribute("data-cy", "deleteButtonId" + id)
     button.setAttribute("class", "btn btn-xl btn-danger  deleteButton opacity-75");
     button.setAttribute("type", "button");
     button.textContent = "✘"

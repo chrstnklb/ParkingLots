@@ -20,27 +20,25 @@ module.exports = (on, config) => {
     // `on` is used to hook into various events Cypress emits
     // `config` is the resolved Cypress config
 
-    let databaseConnection = require("../../server/db.js");
+    let db = require("../../server/db/db.js");
 
     on("task", {
         deleteAllDbEntries() {
-            databaseConnection.deleteAll();
+            db.deleteAll();
             return true;
         },
 
         createDbEntry(entry) {
-            databaseConnection.create(entry.entry);
+            db.create(entry.entry);
             return true;
         },
 
         findDbEntry() {
-            let dbEntry;
-            databaseConnection.getErlaubnis({
+            db.getErlaubnis({
                 include_docs: true,
             }).then(function (result) {
                 result.rows.forEach(function (doc) {
-                    dbEntry = doc.doc;
-                    return dbEntry;
+                    return doc.doc;
                 });
             }).catch(function (err) {
                 console.log(err);

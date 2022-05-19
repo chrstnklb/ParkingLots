@@ -3,3 +3,4 @@ server/incoming-files
 server/outgoing-files
 .DS_Store
 cypress/videos
+cypress/screenshots

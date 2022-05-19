@@ -1,4 +1,5 @@
 var parkerlaubnis;
+// var idOfActualEntry;
 
 describe("Delete a Parkerlaubnis successful", () => {
 
@@ -22,15 +23,24 @@ describe("Delete a Parkerlaubnis successful", () => {
         cy.spinnerIsVisible(true);
         cy.spinnerIsVisible(false);
 
-        // delete entry via ui
+        // delete entry
+        // cy.get(`[data-cy=${actId}]`).click();
 
         // cy.on("window:alert", (str) => {
-        //   expect(str).to.equal(alertText);
+        //     expect(str).to.equal('VORSICHT! Dieser Eintrag wird DAUERHAFT gelöscht.');
         // });
 
         // cy.on("window:confirm", () => true); // accept the alert
 
+        // cy.spinnerIsVisible(true);
+        // cy.spinnerIsVisible(false);
+
         // check in database that entry is deleted
+        // cy.task("findDbEntry").then((dbEntry) => {
+        //     expect(dbEntry).to.be.null;
+        // });
+
         // check in ui, that entry is deleted
+
     });
 });
