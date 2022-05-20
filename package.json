@@ -27,14 +27,16 @@
     "url": "git+https://github.com/chrstnklb/Parkplatz.git"
   },
   "scripts": {
-    "cypress:open": "cypress open",
     "devStart": "nodemon server/express.js",
     "start-application": "node server/express.js",
     "start-cron-job": "node server/ftp-server/cron.js",
     "start-create-ressources-folder": "node server/util/folder.js",
     "start-ftp-server": "node server/ftp-server/ftp-server.js",
-    "test": "jest",
-    "test-with-coverage": "jest --collect-coverage"
+    "//": "----------          test area          ----------",
+    "cypress:open": "cypress open",
+    "cypress:headless": "$(npm bin)/cypress run",
+    "jest": "jest",
+    "jest-with-coverage": "jest --collect-coverage"
   },
   "version": "3.0.0"
 }

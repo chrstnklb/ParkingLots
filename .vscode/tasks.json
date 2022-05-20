@@ -2,10 +2,18 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "▶️ cypress",
+            "label": "▶️ cypress ui",
             "dependsOn": [
                 "app server",
                 "cypress tests"
+            ]
+        },
+        {
+            "label": "▶️ all tests",
+            "dependsOn": [
+                "▶️ app server",
+                "cypress headless",
+                "jest with coverage"
             ]
         },
         {
@@ -74,6 +82,32 @@
                     "hide": false
                 }
             },
+        },
+        {
+            "type": "shell",
+            "label": "cypress headless",
+            "command": "npm run cypress:headless",
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            },
+            "presentation": {
+                "group": "All Tests"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "jest with coverage",
+            "command": "npm run jest-with-coverage",
+            "options": {
+                "statusbar": {
+                    "hide": true
+                },
+            },
+            "presentation": {
+                "group": "All Tests"
+            }
         },
     ]
 }
