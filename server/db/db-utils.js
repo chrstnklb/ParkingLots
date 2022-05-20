@@ -1,27 +1,5 @@
 var excel = require("../excel.js");
 
-function getMaxId() {
-    let count = Date.now();
-    getDbConnection().allDocs({ include_docs: true })
-        .then(function (result) {
-            if (result.total_rows === 0) {
-                count = Date.now();
-            } else {
-                let allIds = [result.total_rows];
-                result.rows.forEach((doc) => {
-                    allIds.push(parseInt(doc.id));
-                });
-                count = Math.max(...allIds);
-            }
-        })
-        .catch(function (err) {
-            console.log(err);
-            return err;
-        });
-
-    return count;
-}
-
 module.exports.getParkerlaubnAsArray = function (filePath) {
     let count = getMaxId();
     let rows = excel.writeExcelEntriesToDatabase(`${filePath}`);
@@ -75,4 +53,38 @@ module.exports.getSearchHash = function (parkerlaubnis) {
         parkerlaubnis.farbe +
         parkerlaubnis.bemerkung +
         parkerlaubnis.parkplaetze);
+}
+
+module.exports.getTodayAsMs = function () {
+    return generateUniqueId()
+}
+
+function generateUniqueId() {
+    return Date.now().toString();
+}
+
+function getMaxId() {
+    let count = Date.now();
+    getDbConnection().allDocs({ include_docs: true })
+        .then(function (result) {
+            if (result.total_rows === 0) {
+                count = Date.now();
+            } else {
+                let allIds = [result.total_rows];
+                result.rows.forEach((doc) => {
+                    allIds.push(parseInt(doc.id));
+                });
+                count = Math.max(...allIds);
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+            return err;
+        });
+
+    return count;
+}
+
+module.exports.getNewId = function () {
+    return Date.now().toString()
 }

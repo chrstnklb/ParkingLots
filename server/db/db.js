@@ -5,8 +5,6 @@ const { dbUrl, folderIncoming } = require("../../config.js");
 const time = require("../util/time.js");
 const dbUtils = require("./db-utils.js");
 
-var actId = "110";
-
 let connection;
 getDbConnection();
 
@@ -32,7 +30,7 @@ module.exports.search = function () {
 
 module.exports.create = function (parkerlaubnis) {
     let entry = parkerlaubnis;
-    entry._id = time.generateUniqueId();;
+    entry._id = dbUtils.getNewId();
     entry.letzteAenderung = time.createLetzteAenderung();
     entry.searchHash = dbUtils.getSearchHash(parkerlaubnis);
 
