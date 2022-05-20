@@ -29,12 +29,9 @@ module.exports.search = function () {
 };
 
 module.exports.create = function (parkerlaubnis) {
-    let entry = parkerlaubnis;
-    entry._id = dbUtils.getNewId();
-    entry.letzteAenderung = time.createLetzteAenderung();
-    entry.searchHash = dbUtils.getSearchHash(parkerlaubnis);
+    let filledParkerlaubnis = dbUtils.fillUpFieldsForParkerlaubnis(parkerlaubnis);
 
-    return getDbConnection().put(entry)
+    return getDbConnection().put(filledParkerlaubnis)
         .then(() => {
             return 200;
         })

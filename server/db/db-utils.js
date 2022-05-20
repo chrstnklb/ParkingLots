@@ -1,10 +1,14 @@
 var excel = require("../excel.js");
 
-module.exports.getParkerlaubnAsArray = function (filePath) {
+const dbUtils = require("./db-utils.js");
+const time = require("../util/time.js");
+
+
+module.exports.getParkerlaubnisAsArray = function (filePath) {
     let count = getMaxId();
     let rows = excel.writeExcelEntriesToDatabase(`${filePath}`);
     let parkerlaubnisArray = [];
-    let letzteAenderung = new Date(Date.now()).toLocaleDateString();
+    let letzteAenderung = time.createLetzteAenderung();
     rows.forEach((row) => {
         parkerlaubnisArray.push({
             _id: (count++).toString(),
@@ -40,6 +44,14 @@ module.exports.getParkerlaubnAsArray = function (filePath) {
     return parkerlaubnisArray;
 }
 
+module.exports.fillUpFieldsForParkerlaubnis = function (parkerlaubnis) {
+    let entry = parkerlaubnis;
+    entry._id = dbUtils.getNewId();
+    entry.letzteAenderung = time.createLetzteAenderung();
+    entry.searchHash = dbUtils.getSearchHash(parkerlaubnis);
+    return entry;
+}
+
 module.exports.getSearchHash = function (parkerlaubnis) {
     return (parkerlaubnis.searchHash =
         parkerlaubnis.nachname +
@@ -55,12 +67,12 @@ module.exports.getSearchHash = function (parkerlaubnis) {
         parkerlaubnis.parkplaetze);
 }
 
-module.exports.getTodayAsMs = function () {
-    return generateUniqueId()
+function getTodayAsMs() {
+    return Date.now().toString();
 }
 
-function generateUniqueId() {
-    return Date.now().toString();
+module.exports.generateUniqueId = function () {
+    return getTodayAsMs()
 }
 
 function getMaxId() {

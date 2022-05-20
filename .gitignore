@@ -4,3 +4,4 @@ server/outgoing-files
 .DS_Store
 cypress/videos
 cypress/screenshots
+coverage
