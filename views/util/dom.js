@@ -1,3 +1,7 @@
+const NO_RESULT_FOUND_ELEMENT_ID = "noResult";
+const SPINNER_ELEMENT_ID = "spinner";
+const ADMIN_BUTTON_ELEMENT_ID = "admin";
+
 function domGetInputValueViaId(id) {
     return domGetValueOfElement(domGetElementViaId(id));
 }
@@ -51,9 +55,33 @@ function domRefreshPage() {
 
 function domShowOrHideElement(id, shouldShow) {
     let element = domGetElementViaId(id);
-    
+
     if (shouldShow)
         element.style.display = "block";
     else
         element.style.display = "none";
+}
+
+function domShowSpinner() {
+    domShowOrHideElement(SPINNER_ELEMENT_ID, true);
+}
+
+function domHideSpinner() {
+    domShowOrHideElement(SPINNER_ELEMENT_ID, false);
+}
+
+function domShowNoResultFoundHint() {
+    domShowOrHideElement(NO_RESULT_FOUND_ELEMENT_ID, true);
+}
+
+function domHideNoResultFoundHint() {
+    domShowOrHideElement(NO_RESULT_FOUND_ELEMENT_ID, false);
+}
+
+function domShowAdminButton() {
+    domShowOrHideElement(ADMIN_BUTTON_ELEMENT_ID, true);
+}
+
+function domHideAdminButton() {
+    domShowOrHideElement(ADMIN_BUTTON_ELEMENT_ID, false);
 }

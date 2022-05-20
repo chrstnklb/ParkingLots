@@ -23,7 +23,7 @@ function displayPermissionsFilterResult() {
 
     if (filteredPermissions.length > 0) {
         createTable();
-        domShowOrHideElement(NO_RESULT_FOUND_ELEMENT_ID, false)
+        domHideNoResultFoundHint();
     } else {
         showNoResultHint();
     }
@@ -38,10 +38,8 @@ function createTable() {
 function showNoResultHint() {
 
     if (domIdExists(TABLE_ID)) {
-
         domRemoveId(TABLE_ID);
-
-        domShowOrHideElement(NO_RESULT_FOUND_ELEMENT_ID, true);
+        domShowNoResultFoundHint();
     }
 }
 
@@ -71,24 +69,24 @@ function appendTableBody(table) {
 }
 
 function createBodyRow(permission) {
-// TODO: undefined values in permission abfangen
+    // TODO: undefined values in permission abfangen
     let rowTitle =
-        "\n PARKERLAUBNIS" + 
-        "\n " + 
-        "\n Vorname:             " + permission["vorname"] + 
-        "\n Nachname:          " + permission["nachname"] + 
-        "\n Kennzeichen:       " + permission["kennzeichen"] + 
-        "\n Land:                    " + permission["land"] + 
-        "\n Bemerkung:         " + permission["bemerkung"] + 
-        "\n Fahrzeug:             " + permission["fahrzeug"] + 
-        "\n Farbe:                   " + permission["farbe"] + 
-        "\n Unternehmen:      " + permission["unternehmen"] + 
-        "\n Bereich:                " + permission["bereich"] + 
-        "\n Telefon:                " + permission["telefon"] + 
-        "\n Parkplätze:           " + permission["parkplaetze"]?.trim().replaceAll("-",", ") + 
+        "\n PARKERLAUBNIS" +
+        "\n " +
+        "\n Vorname:             " + permission["vorname"] +
+        "\n Nachname:          " + permission["nachname"] +
+        "\n Kennzeichen:       " + permission["kennzeichen"] +
+        "\n Land:                    " + permission["land"] +
+        "\n Bemerkung:         " + permission["bemerkung"] +
+        "\n Fahrzeug:             " + permission["fahrzeug"] +
+        "\n Farbe:                   " + permission["farbe"] +
+        "\n Unternehmen:      " + permission["unternehmen"] +
+        "\n Bereich:                " + permission["bereich"] +
+        "\n Telefon:                " + permission["telefon"] +
+        "\n Parkplätze:           " + permission["parkplaetze"]?.trim().replaceAll("-", ", ") +
         "\n Letzte Änderung: " + permission["letzteAenderung"]
 
-    let tr = domCreateWithAttribute("tr","title",rowTitle);
+    let tr = domCreateWithAttribute("tr", "title", rowTitle);
 
     tr.appendChild(createTableBodyCellWithActionButtons(permission["_id"]));
 
@@ -100,10 +98,10 @@ function createBodyRow(permission) {
                 break;
             case "parkplaetze":
                 let parkplaetze = permission["parkplaetze"]
-                if(typeof parkplaetze !== 'undefined'){
+                if (typeof parkplaetze !== 'undefined') {
                     parkplaetze = parkplaetze.split("-").toString();
                     parkplaetze = parkplaetze.replaceAll(",", ", ");
-                } else{
+                } else {
                     parkplaetze = ""
                 }
                 child = createTableBodyCell(parkplaetze);

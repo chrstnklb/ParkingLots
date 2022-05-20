@@ -56,8 +56,8 @@ function checkIfPermissionFitsAllSearchTexts(permission) {
 
 function fetchAllPermissions() {
 
-    domShowOrHideElement(NO_RESULT_FOUND_ELEMENT_ID, false);
-    domShowOrHideElement(SPINNER_ELEMENT_ID, true);
+    domHideNoResultFoundHint();
+    domShowSpinner();
 
     fetch('/search', {
         method: 'GET',
@@ -73,7 +73,7 @@ function fetchAllPermissions() {
         });
 
     }).then(() => {
-        domShowOrHideElement(SPINNER_ELEMENT_ID, false);
+        domHideSpinner();
         searchAndShowPermissions();
         typeWriter()
 
