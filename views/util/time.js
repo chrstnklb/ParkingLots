@@ -1,4 +1,5 @@
-function calculateDaysSinceDateDDMMYYYY(letzteAenderung) {
+module.exports.calculateDaysSinceDateDDMMYYYY = function (letzteAenderung) {
+    letzteAenderung = letzteAenderung.replaceAll(".", "")
     let year = letzteAenderung.slice(4, 8);
     let month = letzteAenderung.slice(2, 4);
     let day = letzteAenderung.slice(0, 2);
