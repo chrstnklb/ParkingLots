@@ -10,8 +10,6 @@ it(`should, when add db entry, auto generates date 'letzte Aenderung' in format 
     // assert
 
     const expectedDate = time.createLetzteAenderung();
-    console.log("🚀 ~ file: db-utils.test.js ~ it ~ expectedDate", expectedDate)
-    console.log("🚀 ~ file: db-utils.test.js ~ it ~ filledParkerlaubnis.letzteAenderung", filledParkerlaubnis.letzteAenderung)
 
     expect(expectedDate).not.toBeUndefined();
 
