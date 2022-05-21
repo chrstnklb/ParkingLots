@@ -1,4 +1,5 @@
 const time = require('./time');
+const { extendLetzteAenderung, createLetzteAenderung } = require("./time");
 
 describe('time', () => {
 

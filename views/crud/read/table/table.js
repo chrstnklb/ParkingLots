@@ -1,5 +1,3 @@
-const { calculateDaysSinceDateDDMMYYYY } = require("../../../util/time.js")
-
 const SHOWN_ROWS_LIMIT = 50;
 const TABLE_ID = 'resultTableId';
 let table;
@@ -70,16 +68,6 @@ function appendTableBody(table) {
     table.appendChild(tbody);
 }
 
-module.exports.extendLetzteAenderung = function (letzteAenderung) {
-    let diff = calculateDaysSinceDateDDMMYYYY(letzteAenderung);
-    if (diff === 0) return letzteAenderung += " (neu)";
-    if (diff === 1) return letzteAenderung += " (vor einem Tag)";
-    if (diff < 7) return letzteAenderung += " (vor " + diff + " Tagen)";
-    if (diff < 30) return letzteAenderung += " (vor " + Math.floor(diff / 7) + " Wochen)";
-    if (diff < 365) return letzteAenderung += " (vor " + Math.floor(diff / 30) + " Monaten)";
-    if (diff > 365) return letzteAenderung += " (vor " + Math.floor(diff / 365) + " Jahren)";
-}
-
 function createBodyRow(permission) {
     // TODO: undefined values in permission abfangen
     let rowTitle =
@@ -106,7 +94,7 @@ function createBodyRow(permission) {
         let child;
         switch (key) {
             case "letzteAenderung":
-                child = createTableBodyCell(extendLetzteAenderung(permission["letzteAenderung"]));
+                child = createTableBodyCell(permission["letzteAenderung"]);
                 break;
             case "parkplaetze":
                 let parkplaetze = permission["parkplaetze"]
