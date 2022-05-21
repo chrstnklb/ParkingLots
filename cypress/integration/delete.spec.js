@@ -1,5 +1,4 @@
 var parkerlaubnis;
-// var idOfActualEntry;
 
 describe("Delete a Parkerlaubnis successful", () => {
 

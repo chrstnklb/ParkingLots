@@ -75,7 +75,4 @@ describe("Table Test", () => {
         // check entry in table via mouse hover effect
     });
 
-    it("check different time spans in letzteAenderung", () => {
-        cy.get('table[id="resultTableId"]>tbody>tr>td').eq(12).as("letzteAenderung").should('contain', '(neu)');
-    });
 });
