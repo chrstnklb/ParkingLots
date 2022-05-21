@@ -2,16 +2,16 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "▶️ cypress ui",
+            "label": "cypress ui",
             "dependsOn": [
                 "app server",
                 "cypress tests"
             ]
         },
         {
-            "label": "▶️ all tests",
+            "label": "all tests",
             "dependsOn": [
-                "▶️ app server",
+                "app server",
                 "cypress headless",
                 "jest with coverage"
             ]
@@ -27,15 +27,15 @@
             },
         },
         {
-            "label": "▶️ all servers",
+            "label": "▶all servers",
             "dependsOn": [
-                "▶️ app server",
-                "▶️ ftp server",
-                "▶️ cron job"
+                "▶app server",
+                "▶ftp server",
+                "▶cron job"
             ]
         },
         {
-            "label": "▶️ app server",
+            "label": "app server",
             "type": "shell",
             "command": "npm run start-application",
             "options": {
@@ -48,7 +48,7 @@
             }
         },
         {
-            "label": "▶️ ftp server",
+            "label": "ftp server",
             "type": "shell",
             "command": "npm run start-ftp-server",
             "options": {
@@ -61,7 +61,7 @@
             }
         },
         {
-            "label": "▶️ cron job",
+            "label": "cron job",
             "type": "shell",
             "command": "npm run start-cron-job",
             "options": {
@@ -75,7 +75,7 @@
         },
         {
             "type": "shell",
-            "label": "▶️ create folder",
+            "label": "create folder",
             "command": "npm run start-create-ressources-folder",
             "options": {
                 "statusbar": {
@@ -89,7 +89,7 @@
             "command": "npm run cypress:headless",
             "options": {
                 "statusbar": {
-                    "hide": true
+                    "hide": false
                 }
             },
             "presentation": {
@@ -102,7 +102,7 @@
             "command": "npm run jest-with-coverage",
             "options": {
                 "statusbar": {
-                    "hide": true
+                    "hide": false
                 },
             },
             "presentation": {
