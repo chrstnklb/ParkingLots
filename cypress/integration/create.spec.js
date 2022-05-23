@@ -84,7 +84,7 @@ describe("Create new Parkerlaubniss successful", () => {
       expect(str).to.equal(alertText);
     });
 
-    cy.on("window:confirm", () => true); // accept the alert
+    cy.on("window:confirm", () => true);
 
     const entry = cy.task("findDbEntry");
     console.log("entry in test :>> ", entry);

@@ -2,10 +2,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "cypress ui",
+            "label": "cypress ui + app server",
             "dependsOn": [
                 "app server",
-                "cypress tests"
+                "cypress ui"
             ]
         },
         {
@@ -17,7 +17,7 @@
             ]
         },
         {
-            "label": "cypress tests",
+            "label": "cypress ui",
             "type": "shell",
             "command": "npm run cypress:open",
             "options": {
@@ -27,11 +27,11 @@
             },
         },
         {
-            "label": "▶all servers",
+            "label": "all servers",
             "dependsOn": [
-                "▶app server",
-                "▶ftp server",
-                "▶cron job"
+                "app server",
+                "ftp server",
+                "cron job"
             ]
         },
         {
