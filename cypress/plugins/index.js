@@ -27,25 +27,11 @@ module.exports = (on, config) => {
             db.deleteAll();
             return true;
         },
-
         createDbEntry(entry) {
-            db.create(entry.entry);
-            return true;
+            return db.create(entry);
         },
-
-        findDbEntry() {
-            db.getErlaubnis({
-                include_docs: true,
-            }).then(function (result) {
-                result.rows.forEach(function (doc) {
-                    return doc.doc;
-                });
-            }).catch(function (err) {
-                console.log(err);
-            });
-
-            return true;
+        findDbEntry(id) {
+            return db.getErlaubnis(id);
         },
-
     });
 };

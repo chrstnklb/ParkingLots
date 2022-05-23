@@ -32,24 +32,14 @@ module.exports.create = function (parkerlaubnis) {
     let filledParkerlaubnis = dbUtils.fillUpFieldsForParkerlaubnis(parkerlaubnis);
 
     return getDbConnection().put(filledParkerlaubnis)
-        .then(() => {
-            return 200;
-        })
-        .catch(function (err) {
-            console.log(err);
-            return err;
-        });
+        .then(function (result) { return result; })
+        .catch(function (err) { console.log(err); return err; });
 };
 
 module.exports.getErlaubnis = function (id) {
     return getDbConnection().get(id)
-        .then(function (doc) {
-            return doc;
-        })
-        .catch(function (err) {
-            console.log(err);
-            return err;
-        });
+        .then(function (doc) { return doc; })
+        .catch(function (err) { console.log(err); return err; });
 };
 
 module.exports.edit = function (idToBeUpdated, parkerlaubnis) {
