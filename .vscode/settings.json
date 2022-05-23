@@ -7,5 +7,6 @@
     "files.autoSave": "onFocusChange",
     "workbench.sideBar.location": "right",
     "editor.minimap.enabled": false,
-    "workbench.tree.indent": 32
+    "workbench.tree.indent": 32,
+    "workbench.editor.revealIfOpen": true
 }
