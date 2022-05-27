@@ -17,15 +17,9 @@ function getDbConnection() {
 };
 
 module.exports.search = function () {
-    return getDbConnection()
-        .allDocs({ include_docs: true })
-        .then(function (result) {
-            return result.rows;
-        })
-        .catch(function (err) {
-            console.log(err);
-            return err;
-        });
+    return getDbConnection().allDocs({ include_docs: true })
+        .then(function (result) { return result.rows; })
+        .catch(function (err) { console.log(err); return err; });
 };
 
 module.exports.create = function (parkerlaubnis) {
@@ -74,27 +68,17 @@ module.exports.delete = function (parkerlaubnis) {
         .then(function (doc) {
             return getDbConnection().remove(doc);
         })
-        .then(() => {
-            return 200;
-        })
-        .catch(function (err) {
-            console.log(err);
-            return err;
-        });
+        .catch(function (err) { console.log(err); return err; });
 };
 
 module.exports.deleteAll = function () {
-    getDbConnection().allDocs({
-        include_docs: true,
-    }).then(function (result) {
-        result.rows.forEach(function (doc) {
-            getDbConnection().remove(doc.doc);
-        });
-    })
-        .catch(function (err) {
-            console.log(err);
-        });
-    return true;
+    getDbConnection().allDocs({ include_docs: true })
+        .then(function (result) {
+            return result.rows.forEach(function (doc) {
+                getDbConnection().remove(doc.doc);
+            })
+        })
+        .catch(function (err) { console.log(err); return err; });
 };
 
 module.exports.uploadXlsx = function (files) {

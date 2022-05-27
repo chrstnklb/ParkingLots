@@ -39,7 +39,7 @@ describe('time', () => {
             expect(now).toMatch(/^\d{2}\d{2}\d{2}$/);
         })
 
-        it(" should return from now containing actual year, month and day", () => {
+        it(" should return from now containing actual hour, minutes and seconds", () => {
             // arrange
             let hour = new Date().getHours();
             let minute = new Date().getMinutes();
@@ -49,7 +49,7 @@ describe('time', () => {
             const now = time.getNowAsHHMMSS();
 
             // assert
-            expect(now.substring(0, 2)).toBe(hour.toString());
+            expect(now.substring(0, 2).includes(hour.toString())).toBe(true);
             expect(now.substring(2, 4).includes(minute.toString())).toBe(true);
             expect(now.substring(4, 6).includes(second.toString())).toBe(true);
         });

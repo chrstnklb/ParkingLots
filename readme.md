@@ -69,7 +69,7 @@ Liefert die Anwendung und nutzt dafür HTML, CSS, Javscript, EJS und ExpressJS.
 
 Start des Anwendungsservers:
 ```
-node server/express.js
+node server/app-server.js
 ```
 # FTP-Server
 Bietet die CSV-Dateien für die Kamera-Systeme an.

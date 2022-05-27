@@ -48,6 +48,19 @@
             }
         },
         {
+            "label": "monitor app server",
+            "type": "shell",
+            "command": "npm run start-monitor-application",
+            "options": {
+                "statusbar": {
+                    "hide": false
+                }
+            },
+            "presentation": {
+                "group": "All servers"
+            }
+        },
+        {
             "label": "ftp server",
             "type": "shell",
             "command": "npm run start-ftp-server",

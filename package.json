@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.27.2",
     "cron": "^1.8.2",
     "cypress": "^9.6.0",
     "date-fns": "^2.25.0",
@@ -27,8 +28,9 @@
     "url": "git+https://github.com/chrstnklb/Parkplatz.git"
   },
   "scripts": {
-    "devStart": "nodemon server/express.js",
-    "start-application": "node server/express.js",
+    "devStart": "nodemon server/app-server.js",
+    "start-application": "node server/app-server.js",
+    "start-monitor-application": "node monitor-app/server/monitor-app-server.js",
     "start-cron-job": "node server/ftp-server/cron.js",
     "start-create-ressources-folder": "node server/util/folder.js",
     "start-ftp-server": "node server/ftp-server/ftp-server.js",

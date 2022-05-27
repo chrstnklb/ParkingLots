@@ -23,15 +23,8 @@ module.exports = (on, config) => {
     let db = require("../../server/db/db.js");
 
     on("task", {
-        deleteAllDbEntries() {
-            db.deleteAll();
-            return true;
-        },
-        createDbEntry(entry) {
-            return db.create(entry);
-        },
-        findDbEntry(id) {
-            return db.getErlaubnis(id);
-        },
+        deleteAllDbEntries() { return db.deleteAll(); },
+        createDbEntry(entry) { return db.create(entry); },
+        findDbEntry(id) { return db.getErlaubnis(id); },
     });
 };

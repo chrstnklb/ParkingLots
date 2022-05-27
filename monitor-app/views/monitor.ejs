@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Parkerlaubnisse</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="stylesheet" href="./monitor.css"> -->
+
+    <!-- JS -->
+    <script type="text/javascript" src="./monitor.js"></script>
+    <script>
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 5000);
+    </script>
+
+</head>
+
+<body>
+    <h1>
+        Aktuelle Parkprobleme
+    </h1>
+    <h6>
+        <div id="datetime">
+            <script>
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML = dt.toLocaleString();
+            </script>
+        </div>
+        (alle 5 Sekunden aktualisiert)
+    </h6>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Zeitpunkt</th>
+                <th>Parkplatz</th>
+                <th>Kennzeichen</th>
+                <th>Parkerlaubnisse</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% var i=1; %>
+                <% getWaitingCars().forEach(function(car) { %>
+                    <tr>
+                        <td>
+                            <%= i++ %>
+                        </td>
+                        <td>
+                            <%= car.time %>
+                        </td>
+                        <td>
+                            <%= car.parkingLot %>
+                        </td>
+                        <td>
+                            <%= car.plate %>
+                        </td>
+                        <td>
+                            <%= car.parkerlaubnisse %>
+                        </td>
+                    </tr>
+                    <% }); %>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

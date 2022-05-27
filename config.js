@@ -5,10 +5,14 @@ dotenvExpand(myEnv)
 dotenv.config();
 
 module.exports = {
-    
-    // APP
+
+    // APP-SERVER
     appPort: process.env.APP_PORT,
     appUrl: process.env.APP_URL,
+
+    // MONITOR-APP-SERVER
+    monitorAppPort: process.env.MONITOR_APP_PORT,
+    monitorAppUrl: process.env.MONITOR_APP_URL,
 
     // DB
     dbUrl: process.env.DB_URL,
@@ -16,7 +20,7 @@ module.exports = {
     // APP
     folderIncoming: process.env.FOLDER_INCOMING,
     folderOutgoing: process.env.FOLDER_OUTGOING,
-    
+
     // FTP SERVER
     ftpHostName: process.env.FTP_HOST_NAME,
     ftpPort: process.env.FTP_PORT,
@@ -26,13 +30,13 @@ module.exports = {
     ftpAdmin: process.env.FTP_ADMIN,
 
     ftpFolderOutgoing: process.env.FTP_FOLDER_OUTGOING,
-    
+
     ftpPasvPortMin: process.env.FTP_PASV_PORT_MIN,
     ftpPasvPortMax: process.env.FTP_PASV_PORT_MAX,
-    
+
     // EXCEL
     excelFolder: process.env.EXCEL_FOLDER,
-    
+
     // CRON JOB
     cronTime: process.env.CRON_TIME
 };

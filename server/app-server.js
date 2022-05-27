@@ -1,5 +1,3 @@
-// #region
-
 const {
   // folderIncoming,
   // folderOutgoing,
@@ -26,8 +24,6 @@ app.set("views", ["views", "views/table"]);
 
 const db = require('./db/db.js');
 // const con = db.getDbConnection();
-
-// #endregion
 
 app.get("/", function (_req, res, next) {
   console.log("/");
