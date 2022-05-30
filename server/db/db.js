@@ -48,7 +48,7 @@ module.exports.create = function (parkerlaubnis) {
 module.exports.getErlaubnis = function (id) {
     return getDbConnection().get(id)
         .then(function (doc) { return doc; })
-        .catch(function (err) { console.log(err); return err; });
+        .catch(function (err) { return err; });
 };
 
 module.exports.edit = function (idToBeUpdated, parkerlaubnis) {

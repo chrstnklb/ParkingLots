@@ -39,6 +39,7 @@ describe("Delete a Parkerlaubnis successful", () => {
         cy.task("findDbEntry", parkerlaubnisId).then((result) => {
             expect(result.docId).equals("undefined");
             expect(result.error).equals("not_found");
+            // 404 means that the entry was deleted
             expect(result.status).equals(404);
         });
     });
