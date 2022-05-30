@@ -7,12 +7,12 @@ dotenv.config();
 module.exports = {
 
     // APP-SERVER
-    appPort: process.env.APP_PORT,
     appUrl: process.env.APP_URL,
+    appPort: process.env.APP_PORT,
 
     // MONITOR-APP-SERVER
-    monitorAppPort: process.env.MONITOR_APP_PORT,
     monitorAppUrl: process.env.MONITOR_APP_URL,
+    monitorAppPort: process.env.MONITOR_APP_PORT,
 
     // DB
     dbUrl: process.env.DB_URL,
