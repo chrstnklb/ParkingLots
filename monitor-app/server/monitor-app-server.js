@@ -16,15 +16,15 @@ monitorApp.set("views", "monitor-app/views");
 
 monitorApp.get("/", function (req, res) {
     console.log("/");
-    console.log('req.headers :>> ', req.headers);
-    console.log('req.body :>> ', req.body);
+    // console.log('req.headers :>> ', req.headers);
+    // console.log('req.body :>> ', req.body);
     res.render("monitor", { getWaitingCars });
 });
 
 monitorApp.post("/plate", function (req, res) {
     console.log("/plate");
-    console.log('req.headers :>> ', req.headers);
-    console.log('req.body :>> ', req.body);
+    // console.log('req.headers :>> ', req.headers);
+    // console.log('req.body :>> ', req.body);
 
     let status = 400
     let message;
@@ -32,7 +32,6 @@ monitorApp.post("/plate", function (req, res) {
     if (!req.body.zeitpunkt) message += 'zeitpunkt is missing';
     else if (!req.body.parkplatz) message += 'parkplatz is missing';
     else if (!req.body.kennzeichen) message += 'kennzeichen is missing';
-    else if (!req.body.parkerlaubnisse) message += 'parkerlaubnisse is missing';
     else {
         addWaitingCar(req.body);
         status = 200

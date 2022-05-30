@@ -13,7 +13,7 @@ describe('test the monitor app server responses', () => {
 
     });
 
-    test('calling the monitor-app-server via "/" adds a car', async () => {
+    test('calling the monitor-app-server via "/plate" adds a car', async () => {
 
         //ARRANGE
         await axios({
@@ -23,7 +23,6 @@ describe('test the monitor app server responses', () => {
                 zeitpunkt: time.getNowAsHH_MM_SS(),
                 parkplatz: 'parkingLot',
                 kennzeichen: 'ABC123',
-                parkerlaubnisse: 'P1, P2'
             }
         })
 
@@ -31,24 +30,22 @@ describe('test the monitor app server responses', () => {
 
         // ASSERT
         expect(response.data).toContain('<!DOCTYPE html>');
-        expect(response.data).toContain('ABC123');
+        expect(response.data).toContain('Kennzeichen wurde nicht in Datenbank gefunden');
         expect(response.status).toBe(200);
 
     });
 
     test.each([
-        [time.getNowAsHH_MM_SS().toString(), 'P1', 'SAW TEST 1', 'P2, P3', 200],
-        ['', 'P2', 'SAW TEST 1', 'P3, P4', 400],
-        [time.getNowAsHH_MM_SS().toString(), '', 'SAW TEST 1', 'P4, P5', 400],
-        [time.getNowAsHH_MM_SS().toString(), 'P4', '', 'P5, P6', 400],
-        [time.getNowAsHH_MM_SS().toString(), 'P5', 'SAW TEST 1', '', 400]
+        [time.getNowAsHH_MM_SS().toString(), 'P1', 'SAW TEST 1', 200],
+        ['', 'P2', 'SAW TEST 1', 400],
+        [time.getNowAsHH_MM_SS().toString(), '', 'SAW TEST 1', 400],
+        [time.getNowAsHH_MM_SS().toString(), 'P4', '', 400]
     ])('calling the monitor-app-server via "/" adds a car event',
-        async (zeitpunkt, parkplatz, kennzeichen, parkerlaubnisse, statusCode) => {
+        async (zeitpunkt, parkplatz, kennzeichen, statusCode) => {
             await axios.post(monitorAppUrl + '/plate', {
                 zeitpunkt: zeitpunkt,
                 parkplatz: parkplatz,
-                kennzeichen: kennzeichen,
-                parkerlaubnisse: parkerlaubnisse
+                kennzeichen: kennzeichen
             })
                 .then(function (response) {
                     if (response) {

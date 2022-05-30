@@ -12,18 +12,19 @@ function sendPlateToServer(parkplatz, kennzeichen) {
             zeitpunkt: time.getNowAsHH_MM_SS(),
             parkplatz: parkplatz,
             kennzeichen: kennzeichen,
-            parkerlaubnisse: 'P1, P2'
+            // parkerlaubnisse: 'P1, P2'
         }
     }).then(function (response) {
-        console.log(response);
+        // console.log(response);
     }).catch(function (error) {
-        console.log(error);
+        // console.log(error);
     }).then(function () {// always executed});
     });
 }
 
-// callServer();
-sendPlateToServer('P1', 'PL AT 3 E');
-sendPlateToServer('P2', 'YOU R Gay');
-sendPlateToServer('P3', 'Zen Keichen');
-sendPlateToServer('P1', '123456 E');
+// sendPlateToServer('P1', 'PL AT 3 E');
+// sendPlateToServer('P2', 'YOU R Gay');
+// sendPlateToServer('P3', 'Zen Keichen');
+// sendPlateToServer('P1', '123456 E');
+
+sendPlateToServer('P1', 'cyTestKennzeichen');

@@ -22,6 +22,17 @@ module.exports.search = function () {
         .catch(function (err) { console.log(err); return err; });
 };
 
+module.exports.findByKennzeichen = function (kennzeichen) {
+
+    getDbConnection().createIndex({ index: { fields: ['kennzeichen'] } })
+
+    return getDbConnection().find({
+        selector: { kennzeichen: kennzeichen }, fields: ["parkplaetze"]
+    }).then(function (result) {
+        return result.docs[0].parkplaetze;
+    }).catch(function (err) { console.log(err); return "Kennzeichen wurde nicht in Datenbank gefunden!"; });
+}
+
 // In testing it became clear, that even though the usage of async/await, the database seems to have its own internal queue.
 // Therefore, the database we have to give the database more time to process the data.      
 async function waitForDatabase() {
@@ -54,7 +65,7 @@ module.exports.getErlaubnis = function (id) {
 module.exports.edit = function (idToBeUpdated, parkerlaubnis) {
     return getDbConnection().get(idToBeUpdated)
         .then(function (doc) {
-            (doc._id = idToBeUpdated),
+                (doc._id = idToBeUpdated),
                 (doc.letzteAenderung = time.createLetzteAenderung()),
                 (doc.nachname = parkerlaubnis.nachname),
                 (doc.vorname = parkerlaubnis.vorname),
