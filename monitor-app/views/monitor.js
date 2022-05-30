@@ -20,10 +20,3 @@ module.exports.addWaitingCar = function (waitEvent) {
 module.exports.getWaitingCars = function () {
     return waitingCars;
 }
-
-// function addWaitEventList() {
-//     alert("jo")
-//     let waitEventInUi = document.createElement("div");
-//     waitEventInUi.text = waitingCars;
-//     document.getElementById("monitor-body").appendChild(waitEventInUi);
-// }

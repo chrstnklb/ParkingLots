@@ -1,0 +1,4 @@
+/* set background color of whole document to red */
+body {
+    background-color: greenyellow;
+}

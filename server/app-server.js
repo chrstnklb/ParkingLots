@@ -45,7 +45,11 @@ app.listen(appPort, () => {
 app.post("/create", function (req, res) {
   console.log("/create");
   db.create(req.body.parkerlaubnis).then((result) => {
-    res.sendStatus(result);
+    if (result.ok) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(500);
+    }
   });
 });
 
@@ -60,8 +64,12 @@ app.post("/edit", function (req, res) {
 
 app.post("/delete", function (req, res) {
   console.log("/delete");
-  db.delete(req.body._id).then((result) => {
-    res.sendStatus(result);
+  db.remove(req.body._id).then((result) => {
+    if (result.ok) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(500);
+    }
   });
 });
 

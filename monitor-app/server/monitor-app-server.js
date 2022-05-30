@@ -14,13 +14,9 @@ monitorApp.use(fileUpload());
 monitorApp.set("view engine", "ejs");
 monitorApp.set("views", "monitor-app/views");
 
-monitorApp.get("/", function (_req, res, next) {
+monitorApp.get("/", function (_req, res) {
   console.log("/");
-  // res.render("monitor", { getWaitingCars });
-  // if (getWaitingCars)
   res.render("monitor", { getWaitingCars });
-  // else
-  // res.render("monitor")
 });
 
 monitorApp.post("/plate", function (req, res) {

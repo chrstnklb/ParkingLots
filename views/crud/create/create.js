@@ -58,9 +58,9 @@ function runStepsForSuccessfulPermissionSaving() {
 function showSuccessMessage(vorname, nachname) {
   alert(
     "\nParkerlaubnis für \n" +
-      vorname +
-      " " +
-      nachname +
-      "\nwurde ERFOLGREICH gespeichert!"
+    vorname +
+    " " +
+    nachname +
+    "\nwurde ERFOLGREICH gespeichert!"
   );
 }

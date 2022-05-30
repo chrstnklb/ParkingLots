@@ -6,23 +6,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- <link rel="stylesheet" href="./monitor.css"> -->
+    <!-- <link rel="stylesheet" href="monitor.css"> -->
 
     <!-- JS -->
-    <script type="text/javascript" src="./monitor.js"></script>
+    <!-- <script type="text/javascript" src="./monitor.js"></script> -->
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
     <script>
         setTimeout(function () {
             window.location.reload(1);
         }, 5000);
     </script>
 
+
 </head>
 
-<body>
-    <h1>
-        Aktuelle Parkprobleme
-    </h1>
+<body style="background-color: darkgray;">
     <h6>
+        Aktuelle Parkprobleme
         <div id="datetime">
             <script>
                 var dt = new Date();
@@ -31,7 +38,6 @@
         </div>
         (alle 5 Sekunden aktualisiert)
     </h6>
-
 
     <table>
         <thead>

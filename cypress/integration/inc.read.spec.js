@@ -16,7 +16,7 @@ describe("Table Test", () => {
             parkerlaubnis = dbUtils.fillUpFieldsForParkerlaubnis(data);
 
         }).then(() => {
-            cy.task("createDbEntry", { entry: parkerlaubnis });
+            cy.task("createDbEntry", parkerlaubnis);
         });
     });
 

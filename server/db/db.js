@@ -22,6 +22,21 @@ module.exports.search = function () {
         .catch(function (err) { console.log(err); return err; });
 };
 
+// In testing it became clear, that even though the usage of async/await, the database seems to have its own internal queue.
+// Therefore, the database we have to give the database more time to process the data.      
+async function waitForDatabase() {
+    await new Promise((r) => setTimeout(r, 1000));
+}
+
+async function getCount() {
+    await waitForDatabase();
+    return getDbConnection().allDocs()
+        .then(function (result) { return result.rows.length; })
+        .catch(function (err) { console.log(err); return err; });
+};
+
+module.exports.getCount = getCount;
+
 module.exports.create = function (parkerlaubnis) {
     let filledParkerlaubnis = dbUtils.fillUpFieldsForParkerlaubnis(parkerlaubnis);
 
@@ -63,22 +78,43 @@ module.exports.edit = function (idToBeUpdated, parkerlaubnis) {
         });
 };
 
-module.exports.delete = function (parkerlaubnis) {
+function remove(parkerlaubnis) {
+
     return connection.get(parkerlaubnis)
+
         .then(function (doc) {
             return getDbConnection().remove(doc);
         })
-        .catch(function (err) { console.log(err); return err; });
+
+        .then(function (result) {
+            return result;
+        })
+
+        .catch(function (err) {
+            console.log(err);
+            return err;
+
+        });
 };
 
-module.exports.deleteAll = function () {
-    getDbConnection().allDocs({ include_docs: true })
-        .then(function (result) {
-            return result.rows.forEach(function (doc) {
-                getDbConnection().remove(doc.doc);
-            })
+
+module.exports.deleteAll = async function () {
+
+    return getDbConnection().allDocs({ include_docs: true })
+
+        .then(function (allDocs) {
+            allDocs.rows.forEach((row) => { remove(row.id); });
         })
-        .catch(function (err) { console.log(err); return err; });
+
+        .then(function () {
+            return getCount()
+        })
+
+        .then(function (count) {
+            return count === 0
+        })
+
+        .catch(function (err) { console.log(err); return err; })
 };
 
 module.exports.uploadXlsx = function (files) {
@@ -104,3 +140,5 @@ module.exports.uploadXlsx = function (files) {
     });
     return result;
 };
+
+module.exports.remove = remove;
