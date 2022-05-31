@@ -11,6 +11,12 @@
     <!-- JS -->
     <!-- <script type="text/javascript" src="./monitor.js"></script> -->
     <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 22px;
+            padding: 16px;
+        }
+
         table,
         th,
         td {
@@ -24,29 +30,23 @@
         }, 5000);
     </script>
 
-
 </head>
 
 <body style="background-color: darkgray;">
-    <h6>
-        Aktuelle Parkprobleme
-        <div id="datetime">
-            <script>
-                var dt = new Date();
-                document.getElementById("datetime").innerHTML = dt.toLocaleString();
-            </script>
-        </div>
-        (alle 5 Sekunden aktualisiert)
-    </h6>
+    <h2 id="datetime">Aktuelle Parkprobleme am </h2>
+    <script>
+        var dt = new Date();
+        document.getElementById("datetime").textContent += dt.toLocaleString() + " Uhr (alle 5 Sekunden aktualisiert)";
+    </script>
 
     <table>
         <thead>
             <tr>
                 <th>#</th>
                 <th>Zeitpunkt</th>
-                <th>Parkplatz</th>
-                <th>Kennzeichen</th>
-                <th>Parkerlaubnisse</th>
+                <th>Meldung vom Parkplatz</th>
+                <th>Meldung vom Kennzeichen</th>
+                <th style="background-color: lightgrey;">Aktuelle Parkerlaubnisse</th>
             </tr>
         </thead>
         <tbody>
@@ -57,7 +57,7 @@
                             <%= i++ %>
                         </td>
                         <td>
-                            <%= car.zeitpunkt %>
+                            <%= car.zeitpunkt %> Uhr
                         </td>
                         <td>
                             <%= car.parkplatz %>
@@ -65,7 +65,7 @@
                         <td>
                             <%= car.kennzeichen %>
                         </td>
-                        <td>
+                        <td style="background-color: lightgrey;">
                             <%= car.parkerlaubnisse %>
                         </td>
                     </tr>
