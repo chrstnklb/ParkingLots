@@ -30,7 +30,6 @@ describe('test the monitor app server responses', () => {
 
         // ASSERT
         expect(response.data).toContain('<!DOCTYPE html>');
-        expect(response.data).toContain('Kennzeichen wurde nicht in Datenbank gefunden');
         expect(response.status).toBe(200);
 
     });
