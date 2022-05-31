@@ -28,3 +28,4 @@ function sendPlateToServer(parkplatz, kennzeichen) {
 // sendPlateToServer('P1', '123456 E');
 
 sendPlateToServer('P1', 'cyTestKennzeichen');
+sendPlateToServer('P1', 'SAW DE 52 E');

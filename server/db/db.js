@@ -16,10 +16,19 @@ function getDbConnection() {
     return connection;
 };
 
-module.exports.search = function () {
-    return getDbConnection().allDocs({ include_docs: true })
+module.exports.search = async function () {
+
+    const first = await getDbConnection().allDocs({ include_docs: true, 'endkey': '_design' })
         .then(function (result) { return result.rows; })
         .catch(function (err) { console.log(err); return err; });
+
+    const second = await getDbConnection().allDocs({ include_docs: true, 'startkey': '_design\uffff' })
+        .then(function (result) { return result.rows; })
+        .catch(function (err) { console.log(err); return err; });
+
+    const all = first.concat(second);
+
+    return all;
 };
 
 module.exports.findByKennzeichen = function (kennzeichen) {
@@ -30,7 +39,7 @@ module.exports.findByKennzeichen = function (kennzeichen) {
         selector: { kennzeichen: kennzeichen }, fields: ["parkplaetze"]
     }).then(function (result) {
         return result.docs[0].parkplaetze;
-    }).catch(function (err) { console.log(err); return "Kennzeichen wurde nicht in Datenbank gefunden!"; });
+    }).catch(function (err) { console.log(err); return "Kennzeichen unbekannt!"; });
 }
 
 // In testing it became clear, that even though the usage of async/await, the database seems to have its own internal queue.
@@ -65,7 +74,7 @@ module.exports.getErlaubnis = function (id) {
 module.exports.edit = function (idToBeUpdated, parkerlaubnis) {
     return getDbConnection().get(idToBeUpdated)
         .then(function (doc) {
-                (doc._id = idToBeUpdated),
+            (doc._id = idToBeUpdated),
                 (doc.letzteAenderung = time.createLetzteAenderung()),
                 (doc.nachname = parkerlaubnis.nachname),
                 (doc.vorname = parkerlaubnis.vorname),
