@@ -20,7 +20,7 @@ module.exports = (on, config) => {
     // `on` is used to hook into various events Cypress emits
     // `config` is the resolved Cypress config
 
-    let db = require("../../server/db/db.js");
+    let db = require("../../apps/database/db.js");
 
     on("task", {
         deleteAllDbEntries() { return db.deleteAll(); },

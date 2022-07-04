@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<!-- script import -->
+
+<head>
+    <title>Parkerlaubnisse</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../bootstrap/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="./../main/index.css">
+
+    <link rel="stylesheet" href="../crud/create/create.css">
+    <link rel="stylesheet" href="../crud/read/table/table.css">
+    <link rel="stylesheet" href="../darkmode/darkmode.css">
+
+    <!-- JS -->
+
+    <script type="text/javascript" src="../util/dom.js"></script>
+    <script type="text/javascript" src="../util/global-variables.js"></script>
+
+    <script type="text/javascript" src="../crud/create/create.js"></script>
+    <script type="text/javascript" src="../crud/create/parking-places.js"></script>
+    <script type="text/javascript" src="../crud/create/permission-details.js"></script>
+
+    <script type="text/javascript" src="../crud/read/search/search.js"></script>
+    <script type="text/javascript" src="../crud/read/table/table.js"></script>
+
+    <script type="text/javascript" src="../crud/update/update.js"></script>
+
+    <script type="text/javascript" src="../crud/delete/delete.js"></script>
+    <script type="text/javascript" src="../crud/delete/router.js"></script>
+
+    <script type="text/javascript" src="../darkmode/darkMode.js"></script>
+
+    <script type="text/javascript" src="../admin/admin.js"></script>
+
+
+
+</head>
+
+<body>
+
+    <nav class="navbar bg-dark navbar-expand-lg" id="navBar" data-cy="navBar">
+
+        <div class="container-fluid">
+
+            <div class="col-sm-1 p-1" id="admin" style="display: none;">
+                <%- include('admin/admin'); %>
+            </div>
+
+            <div class="col-sm-2 p-1">
+                <%- include('crud/create/create-button'); %>
+            </div>
+
+            <div class="col-sm-7 p-2">
+                <%- include('crud/read/search/search-field'); %>
+            </div>
+
+            <div class="col-sm-1 p-1">
+                <%- include('crud/read/search/search-result-count'); %>
+            </div>
+
+            <div class="col-sm-1 p-1" id="darkmode">
+                <%- include('darkmode/darkmode'); %>
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div id="delete" class="p-2 bd-highlight">
+        <%- include('crud/delete/delete'); %>
+    </div>
+
+    <div id="create" class="p-2 bd-highlight">
+        <%- include('crud/create/create-modal'); %>
+    </div>
+
+    <div id="table" class="p-2 bd-highlight">
+        <%- include('crud/read/table/table'); %>
+    </div>
+
+    <script type="text/javascript" src="../bootstrap/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
