@@ -1,6 +1,11 @@
 const dotenv = require('dotenv');
 var dotenvExpand = require('dotenv-expand')
-var myEnv = dotenv.config()
+var path = require('path');
+
+// var myEnv = dotenv.config()
+// var myEnv = dotenv.config({ path: path.join(__dirname, '.env'), debug: true })
+var myEnv = dotenv.config({ path: path.join(__dirname, '.env') })
+
 dotenvExpand(myEnv)
 dotenv.config();
 
