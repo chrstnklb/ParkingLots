@@ -1,5 +1,6 @@
 const { monitorAppUrl, monitorAppPort } = require('../../../config.js');
-const { addWaitingCar, getWaitingCars } = require("../views/monitor.js");
+const { getWaitingCars } = require("../views/monitor.js");
+const vorfaelle = require("./vorfaelle.js");
 
 const express = require("express");
 const fileUpload = require("express-fileupload");
@@ -17,7 +18,7 @@ monitorApp.set("views", "../views");
 
 monitorApp.get("/", function (req, res) {
     console.log("/");
-    res.render("monitor", { getWaitingCars });
+    res.render("monitor", { vorfaelle: vorfaelle.readVorfaelle() });
 });
 
 monitorApp.listen(monitorAppPort, () => {

@@ -1,9 +1,6 @@
 var net = require('net');
-var fs = require('fs');
 
-const date = require('../util/time.js');
-// import function creteVorfall from vorfall.js
-const createVorfall = require('../schranken-monitor-data-exchange/vorfall.js').createVorfall;
+const vorfaelle = require('../app-monitor/server/vorfaelle.js');
 
 let connectionCount = 0;
 
@@ -21,7 +18,7 @@ function startTcpServer() {
             console.log(`Add to list of waiting cars`);
 
             // writeToJson(chunk.toString());
-            createVorfall(chunk.toString());
+            vorfaelle.saveVorfall(chunk.toString());
 
             console.log(`Added`);
         });
@@ -36,20 +33,3 @@ function startTcpServer() {
 }
 
 startTcpServer();
-
-// function writes data to json file
-// function writeToJson(data) {
-//     let kamera = data.split("#")[0];
-//     let kennzeichen = data.split("#")[1];
-//     // timestamp for now
-//     let timestamp = date.getNowAsHH_MM_SS();
-//     const vorfall = {
-//         kamera: kamera,
-//         kennzeichen: kennzeichen,
-//         timestamp: timestamp
-//     }
-//     console.log(`Writing to json file`);
-//     fs.writeFileSync(`./${kamera}.json`, JSON.stringify(vorfall));
-
-//     // fs.writeFileSync('data.txt', data);
-// }

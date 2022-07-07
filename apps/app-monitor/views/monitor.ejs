@@ -10,6 +10,7 @@
 
     <!-- JS -->
     <!-- <script type="text/javascript" src="./monitor.js"></script> -->
+    <!-- <script type="text/javascript" src="../server/vo vorfaelle.js"></script> -->
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
@@ -43,13 +44,65 @@
         <thead>
             <tr>
                 <th>P1</th>
+                <th>P2</th>
+                <th>P3</th>
+                <th>P4</th>
+                <th>P5</th>
+                <th>P6</th>
             </tr>
         </thead>
         <tbody>
             <tr>
+
                 <td>
-                    P!
+                    <div>
+                        <%=vorfaelle.P1.kennzeichen %>
+                    </div>
+                    <div>
+                        <%=vorfaelle.P1.zeitpunkt %>
+                    </div>
                 </td>
+                <td>
+                    <div>
+                        <%=vorfaelle.P2.kennzeichen %>
+                    </div>
+                    <div>
+                        <%=vorfaelle.P2.zeitpunkt %>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <%=vorfaelle.P3.kennzeichen %>
+                    </div>
+                    <div>
+                        <%=vorfaelle.P3.zeitpunkt %>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <%=vorfaelle.P4.kennzeichen %>
+                    </div>
+                    <div>
+                        <%=vorfaelle.P4.zeitpunkt %>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <%=vorfaelle.P5.kennzeichen %>
+                    </div>
+                    <div>
+                        <%=vorfaelle.P5.zeitpunkt %>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <%=vorfaelle.P6.kennzeichen %>
+                    </div>
+                    <div>
+                        <%=vorfaelle.P6.zeitpunkt %>
+                    </div>
+                </td>
+
             </tr>
         </tbody>
     </table>
