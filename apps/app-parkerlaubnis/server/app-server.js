@@ -1,10 +1,10 @@
 const {
   // folderIncoming,
   // folderOutgoing,
-  appPort,
   appUrl,
+  appPort,
   // dbUrl,
-} = require("../../../config.js");
+} = require('../../../config.js');
 
 const path = require('path');
 // var excel = require("./excel");
@@ -23,16 +23,7 @@ app.use(fileUpload());
 app.set("view engine", "ejs");
 
 // app.set("views", ["views", "views/table", path.join(__dirname + "./../views")]);
-app.set("views", [path.join(__dirname + "./../views")]);
-
-console.log(`1: ${path.join(__dirname + "./../views")}`);
-console.log(`2: ${path.join(__dirname + "/../views")}`);
-console.log(`3: ${path.join(__dirname + "../views")}`);
-console.log(`4: ${path.join(__dirname + "./views")}`);
-console.log(`5: ${path.join(__dirname + "/views")}`);
-console.log(`6: ${path.join(__dirname + "views")}`);
-console.log(`6: ${path.join(__dirname + "//views")}`);
-console.log(`7: ${path.join(__dirname + "//apps/app-parkerlaubnis/views")}`);
+app.set("views", path.join(__dirname + "./../views"));
 
 const db = require('../../database/db.js');
 // const con = db.getDbConnection();

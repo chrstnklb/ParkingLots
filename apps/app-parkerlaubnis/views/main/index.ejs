@@ -48,23 +48,23 @@
         <div class="container-fluid">
 
             <div class="col-sm-1 p-1" id="admin" style="display: none;">
-                <%- include('admin/admin'); %>
+                <%- include('../admin/admin'); %>
             </div>
 
             <div class="col-sm-2 p-1">
-                <%- include('crud/create/create-button'); %>
+                <%- include('../crud/create/create-button'); %>
             </div>
 
             <div class="col-sm-7 p-2">
-                <%- include('crud/read/search/search-field'); %>
+                <%- include('../crud/read/search/search-field'); %>
             </div>
 
             <div class="col-sm-1 p-1">
-                <%- include('crud/read/search/search-result-count'); %>
+                <%- include('../crud/read/search/search-result-count'); %>
             </div>
 
             <div class="col-sm-1 p-1" id="darkmode">
-                <%- include('darkmode/darkmode'); %>
+                <%- include('../darkmode/darkmode'); %>
             </div>
 
         </div>
@@ -72,15 +72,15 @@
     </nav>
 
     <div id="delete" class="p-2 bd-highlight">
-        <%- include('crud/delete/delete'); %>
+        <%- include('../crud/delete/delete'); %>
     </div>
 
     <div id="create" class="p-2 bd-highlight">
-        <%- include('crud/create/create-modal'); %>
+        <%- include('../crud/create/create-modal'); %>
     </div>
 
     <div id="table" class="p-2 bd-highlight">
-        <%- include('crud/read/table/table'); %>
+        <%- include('../crud/read/table/table'); %>
     </div>
 
     <script type="text/javascript" src="../bootstrap/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
