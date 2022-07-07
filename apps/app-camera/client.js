@@ -2,8 +2,6 @@ var net = require('net');
 
 var client = new net.Socket();
 
-
-
 client.connect(1337, '127.0.0.1', function () {
     // client.connect(1337, '192.168.0.249', function () {
     console.log('Connected');

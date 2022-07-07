@@ -1,9 +1,9 @@
 var net = require('net');
 var fs = require('fs');
 
-const date = require('../server/util/time');
+const date = require('../util/time.js');
 // import function creteVorfall from vorfall.js
-const createVorfall = require('../schranken-monitor-data-share/vorfall').createVorfall;
+const createVorfall = require('../schranken-monitor-data-exchange/vorfall.js').createVorfall;
 
 let connectionCount = 0;
 

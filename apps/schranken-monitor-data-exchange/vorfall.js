@@ -1,11 +1,12 @@
-const date = require('../app-parkerlaubnis/server/util/time');
+const date = require('../util/time');
 
 const vorfaelle = [];
+const SPLIT_CHAR = '#';
 
 class Vorfall {
     constructor(request) {
-        this.kamera = request.split("#")[0];
-        this.kennzeichen = request.split("#")[1];
+        this.kamera = request.split(SPLIT_CHAR)[0];
+        this.kennzeichen = request.split(SPLIT_CHAR)[1];
         this.timestamp = date.getNowAsHH_MM_SS();
     }
 }
