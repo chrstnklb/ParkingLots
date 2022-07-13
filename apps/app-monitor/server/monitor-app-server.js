@@ -1,5 +1,4 @@
 const { monitorAppUrl, monitorAppPort } = require('../../../config.js');
-const { getWaitingCars } = require("../views/monitor.js");
 const vorfaelle = require("./vorfaelle.js");
 
 const express = require("express");

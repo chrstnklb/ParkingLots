@@ -4,20 +4,20 @@
         "kennzeichen": "BK-PO-123P2",
         "dbAussage": "keine Aussage möglich"
     },
-    "P3": {
-        "zeitpunkt": "20:46:33",
-        "kennzeichen": "BK-P3-123",
-        "dbAussage": "keine Aussage möglich"
-    },
     "P2": {
         "zeitpunkt": "09:40:15",
         "kennzeichen": "cyTestKennzeichen",
         "dbAussage": "keine Aussage möglich"
     },
+    "P3": {
+        "zeitpunkt": "20:46:33",
+        "kennzeichen": "BK-P3-123",
+        "dbAussage": "keine Aussage möglich"
+    },
     "P4": {
-        "zeitpunkt": "09:51:01",
+        "zeitpunkt": "09:45:02",
         "kennzeichen": "cyTestKennzeichen",
-        "dbAussage": {}
+        "dbAussage": "keine Aussage möglich"
     },
     "P5": {
         "zeitpunkt": "20:57:04",
@@ -25,8 +25,8 @@
         "dbAussage": "keine Aussage möglich"
     },
     "P6": {
-        "zeitpunkt": "20:00:00",
-        "kennzeichen": "SAW-AW-8 E",
+        "zeitpunkt": "",
+        "kennzeichen": "",
         "dbAussage": "keine Aussage möglich"
     }
 }
