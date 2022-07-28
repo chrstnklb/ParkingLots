@@ -1,7 +1,8 @@
 const date = require('../../util/time');
 const fs = require('fs');
 const SPLIT_CHAR = '#';
-const DEFAULT_DB_AUSSAGE = "keine Aussage möglich";
+const DEFAULT_DB_AUSSAGE = "keine Aussage";
+const search = require('../../database/db.js').search;
 
 module.exports.saveVorfall = function (newVorfallRequest) {
 
@@ -30,8 +31,8 @@ module.exports.saveVorfall = function (newVorfallRequest) {
         kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
         kennzeichen: newVorfallRequest.split(SPLIT_CHAR)[1],
         zeitpunkt: date.getNowAsHH_MM_SS(),
-        dbAussage: "keine Aussage möglich"
-        // dbAussage: checkDbAussage(newVorfallRequest.split(SPLIT_CHAR)[1])
+        // dbAussage: "keine Aussage möglich"
+        dbAussage: checkDbAussage(newVorfallRequest.split(SPLIT_CHAR)[1])
     }
 
     // add vorfaelleEntry to vorfaelle if kamera matches one of the keys
@@ -48,11 +49,12 @@ module.exports.saveVorfall = function (newVorfallRequest) {
 
 }
 
-async function checkDbAussage(kennzeichen) {
-    const db = require('../../database/db.js');
+function checkDbAussage(kennzeichen) {
+
+    // return "nicht in DB"
 
     // get all parkerlaubnisse from database
-    await db.search().then(parkerlaubnisse => {
+    search().then(parkerlaubnisse => {
 
         let result = "Kennzeichen ist keinen Parkplätzen zugeordnet";
 
@@ -67,6 +69,7 @@ async function checkDbAussage(kennzeichen) {
             kennzeichen = kennzeichen.replace(/\s/g, '');
             kennzeichen = kennzeichen.replace('-', '');
             kennzeichen = kennzeichen.toUpperCase();
+
 
             if (dbKennzeichen === kennzeichen) {
                 result = parkerlaubnisse[i].doc.parkplaetze;

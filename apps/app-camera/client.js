@@ -11,7 +11,8 @@ client.connect(1337, '127.0.0.1', function () {
     // client.write('P4#BK-P4-123');
     // client.write('P5#BK-P555-123');
     // client.write('P6#BK-666-E');
-    client.write('P4#cyTestKennzeichen');
+    // client.write('P4#cyTestKennzeichen');
+    client.write('P4#cyWhohoo');
 });
 
 client.on('data', function (data) {
