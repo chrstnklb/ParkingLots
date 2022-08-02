@@ -1,9 +1,9 @@
-const globals = require('../../globals.js');
+const globals = require('../../../../globals.js');
 const excel = require("../excel");
 
-const {cronTime, excelFolder, ftpFolderOutgoing } = require("../../config.js");
+const { cronTime, excelFolder, ftpFolderOutgoing } = require("../../../../config.js");
 
-const db = require("../db").getDbConnection();
+const db = require("../../../database/db");
 let CronJob = require("cron").CronJob;
 
 let job = new CronJob(
@@ -11,7 +11,7 @@ let job = new CronJob(
   function () {
     console.log("CRON STARTED");
     exportAllCameraCsvImportFiles();
-    exportAllPermissionsAsExcelFile();
+    // exportAllPermissionsAsExcelFile();
   },
   null,
   true,
@@ -31,17 +31,13 @@ function exportAllCameraCsvImportFiles() {
 }
 
 function getAll() {
-  db
-    .allDocs({
-      include_docs: true,
-    })
-    .then(function (result) {
-      read_db_rows_count = result.total_rows;
-      read_db_rows = result.rows;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+  db.searchResult().then((result) => {
+    console.log("🚀 ~ file: cron.js ~ line 35 ~ db.search ~ result", result)
+    read_db_rows_count = result.total_rows;
+    console.log("🚀 ~ file: cron.js ~ line 37 ~ db.search ~ read_db_rows_count", read_db_rows_count)
+    read_db_rows = result.rows;
+    console.log("🚀 ~ file: cron.js ~ line 39 ~ db.search ~ read_db_rows", read_db_rows)
+  });
 }
 
 function exportCsvForCameraFor(parking_space) {

@@ -16,10 +16,36 @@ function getDbConnection() {
     return connection;
 };
 
+module.exports.getAll = async function () {
+    await getDbConnection().allDocs({
+        include_docs: true,
+    }).then(function (result) {
+        console.log("🚀 ~ file: db.js ~ line 23 ~ awaitgetDbConnection ~ result", result)
+        return result
+    }).catch(function (err) {
+        console.log(err);
+    });
+}
+
 module.exports.search = async function () {
 
     const first = await getDbConnection().allDocs({ include_docs: true })
         .then(function (result) { return result.rows; })
+        .catch(function (err) { console.log(err); return err; });
+
+    // const second = await getDbConnection().allDocs({ include_docs: true, 'startkey': '_design\uffff' })
+    //     .then(function (result) { return result.rows; })
+    //     .catch(function (err) { console.log(err); return err; });
+
+    // const all = first.concat(second);
+
+    return first;
+};
+
+module.exports.searchResult = async function () {
+
+    const first = await getDbConnection().allDocs({ include_docs: true })
+        .then(function (result) { return result; })
         .catch(function (err) { console.log(err); return err; });
 
     // const second = await getDbConnection().allDocs({ include_docs: true, 'startkey': '_design\uffff' })
