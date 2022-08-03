@@ -48,9 +48,12 @@
             }
         },
         {
-            "label": "monitor app server",
-            "type": "shell",
             "command": "npm run start-monitor-application",
+            "icon": {
+                "id": "light-bulb",
+                "color": "terminal.ansiBlue"
+            },
+            "label": "monitor app server",
             "options": {
                 "statusbar": {
                     "hide": false
@@ -58,7 +61,8 @@
             },
             "presentation": {
                 "group": "All servers"
-            }
+            },
+            "type": "shell"
         },
         {
             "label": "ftp server",

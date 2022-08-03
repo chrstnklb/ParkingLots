@@ -17,7 +17,7 @@ monitorApp.set("views", "../views");
 
 monitorApp.get("/", function (req, res) {
     console.log("/");
-    res.render("monitor", { vorfaelle: vorfaelle.readVorfaelle() });
+    res.render("monitor", { vorfaelle: vorfaelle.readVorfaelle('../../app-schranke/vorfaelle.json') });
 });
 
 monitorApp.listen(monitorAppPort, () => {

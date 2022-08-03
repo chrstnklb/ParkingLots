@@ -6,6 +6,7 @@ let connectionCount = 0;
 
 function startTcpServer() {
 
+    console.log("----------------------------------")
     console.log("Gonna start TCP Server!")
 
     var server = net.createServer(function (socket) {

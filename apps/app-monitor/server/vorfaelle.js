@@ -2,9 +2,10 @@ const date = require('../../util/time');
 const fs = require('fs');
 const SPLIT_CHAR = '#';
 const DEFAULT_DB_AUSSAGE = "keine Aussage";
-const search = require('../../database/db.js').search;
+// const search = require('../../database/db.js').search;
+const db = require("../../database/db");
 
-module.exports.saveVorfall = function (newVorfallRequest) {
+module.exports.saveVorfall = async function (newVorfallRequest) {
 
     let knownVorfaelle = {
         P1: { zeitpunkt: '', kennzeichen: '', dbAussage: DEFAULT_DB_AUSSAGE },
@@ -27,13 +28,8 @@ module.exports.saveVorfall = function (newVorfallRequest) {
     }
 
     // extract data from request
-    let newVorfall = {
-        kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
-        kennzeichen: newVorfallRequest.split(SPLIT_CHAR)[1],
-        zeitpunkt: date.getNowAsHH_MM_SS(),
-        // dbAussage: "keine Aussage möglich"
-        dbAussage: checkDbAussage(newVorfallRequest.split(SPLIT_CHAR)[1])
-    }
+    let newVorfall = await createNewVorfall(newVorfallRequest);
+    console.log("🚀 ~ file: vorfaelle.js ~ line 32 ~ newVorfall", newVorfall)
 
     // add vorfaelleEntry to vorfaelle if kamera matches one of the keys
     for (let key in knownVorfaelle) {
@@ -45,23 +41,29 @@ module.exports.saveVorfall = function (newVorfallRequest) {
     }
 
     // write vorfaelle to json file named vorfaelle.json
+    console.log("🚀 ~ file: vorfaelle.js ~ line 46 ~ knownVorfaelle", knownVorfaelle)
     fs.writeFileSync('vorfaelle.json', JSON.stringify(knownVorfaelle));
+}
 
+async function createNewVorfall(newVorfallRequest) {
+    let aussage = await checkDbAussage(newVorfallRequest.split(SPLIT_CHAR)[1]);
+    console.log("🚀 ~ file: vorfaelle.js ~ line 49 ~ createNewVorfall ~ aussage", aussage)
+
+    return {
+        kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
+        kennzeichen: newVorfallRequest.split(SPLIT_CHAR)[1],
+        zeitpunkt: date.getNowAsHH_MM_SS(),
+        dbAussage: aussage
+    }
 }
 
 function checkDbAussage(kennzeichen) {
 
-    // return "nicht in DB"
+    return db.searchResult().then(function (allEntries) {
 
-    // get all parkerlaubnisse from database
-    search().then(parkerlaubnisse => {
+        for (let i = 0; i < allEntries.rows.length; i++) {
 
-        let result = "Kennzeichen ist keinen Parkplätzen zugeordnet";
-
-        // check if kennzeichen is in parkerlaubnisse
-        for (let i = 0; i < parkerlaubnisse.length; i++) {
-
-            dbKennzeichen = parkerlaubnisse[i].doc.kennzeichen;
+            dbKennzeichen = allEntries.rows[i].doc.kennzeichen;
             dbKennzeichen = dbKennzeichen.replace(/\s/g, '');
             dbKennzeichen = dbKennzeichen.replace('-', '');
             dbKennzeichen = dbKennzeichen.toUpperCase();
@@ -70,29 +72,21 @@ function checkDbAussage(kennzeichen) {
             kennzeichen = kennzeichen.replace('-', '');
             kennzeichen = kennzeichen.toUpperCase();
 
-
             if (dbKennzeichen === kennzeichen) {
-                result = parkerlaubnisse[i].doc.parkplaetze;
-                break;
+                console.log("inside if")
+                return `Hat Parkerlaubnisse für ${allEntries.rows[i].doc.parkplaetze}`;
             }
+            return "Hat keinerlei Parkerlaubnisse!";
         }
-        return result;
-    }).then(result => {
+    }).then(function (result) {
+        console.log("🚀 ~ file: vorfaelle.js ~ line 81 ~ result", result)
         return result;
     }).catch(err => {
-        console.log("error", err)
-        return "keine Aussgae möglich";
-    });
+        console.log("🚀 ~ file: vorfaelle.js ~ line 88 ~ checkDbAussage ~ err", err)
+    })
 }
 
-
-
-
-module.exports.readVorfaelle = function () {
-    JSON.parse(fs.readFileSync('../../app-schranke/vorfaelle.json', 'utf8'));
+module.exports.readVorfaelle = function (filePath) {
     // read all vorfaelle from json file named vorfaelle.json
-    return JSON.parse(fs.readFileSync('../../app-schranke/vorfaelle.json', 'utf8'));
-
-
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
-
