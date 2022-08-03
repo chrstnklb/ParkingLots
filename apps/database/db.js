@@ -151,7 +151,7 @@ module.exports.uploadXlsx = function (files) {
     file.mv(`${filePath}`, (err) => {
         if (err) console.log("There is error!");
 
-        parkerlaubnisArray = dbUtils.getParkerlaubnAsArray(filePath);
+        parkerlaubnisArray = dbUtils.getParkerlaubnisAsArray(filePath);
         result = getDbConnection().bulkDocs(parkerlaubnisArray)
             .then((result) => {
                 console.log("Documents inserted OK");
