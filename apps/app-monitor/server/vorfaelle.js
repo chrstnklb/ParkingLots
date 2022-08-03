@@ -1,37 +1,29 @@
 const date = require('../../util/time');
-const fs = require('fs');
 const SPLIT_CHAR = '#';
 const DEFAULT_DB_AUSSAGE = "keine Aussage";
-// const search = require('../../database/db.js').search;
 const db = require("../../database/db");
+const createObjectFromJsonFile = require('../../util/json.js').createObjectFromJsonFile;
+const writeObjectToJsonFile = require('../../util/json.js').writeObjectToJsonFile;
 
 module.exports.saveVorfall = async function (newVorfallRequest) {
 
-    let knownVorfaelle = {
-        P1: { zeitpunkt: '', kennzeichen: '', dbAussage: DEFAULT_DB_AUSSAGE },
-        P3: { zeitpunkt: '', kennzeichen: '', dbAussage: DEFAULT_DB_AUSSAGE },
-        P2: { zeitpunkt: '', kennzeichen: '', dbAussage: DEFAULT_DB_AUSSAGE },
-        P4: { zeitpunkt: '', kennzeichen: '', dbAussage: DEFAULT_DB_AUSSAGE },
-        P5: { zeitpunkt: '', kennzeichen: '', dbAussage: DEFAULT_DB_AUSSAGE },
-        P6: { zeitpunkt: '', kennzeichen: '', dbAussage: DEFAULT_DB_AUSSAGE },
-    }
-
-    let vorfaelleFromFile = JSON.parse(fs.readFileSync('vorfaelle.json', 'utf8'));
-
-    // read vorfaelle from file
-    for (let key in vorfaelleFromFile) {
-        if (key in knownVorfaelle) {
-            knownVorfaelle[key].kennzeichen = vorfaelleFromFile[key].kennzeichen;
-            knownVorfaelle[key].zeitpunkt = vorfaelleFromFile[key].zeitpunkt;
-            knownVorfaelle[key].dbAussage = vorfaelleFromFile[key].dbAussage;
-        }
-    }
-
-    // extract data from request
+    let knownVorfaelle = createObjectFromJsonFile('vorfaelle.json');
     let newVorfall = await createNewVorfall(newVorfallRequest);
-    console.log("🚀 ~ file: vorfaelle.js ~ line 32 ~ newVorfall", newVorfall)
+    addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle);
+    writeObjectToJsonFile('vorfaelle.json', knownVorfaelle);
+}
 
-    // add vorfaelleEntry to vorfaelle if kamera matches one of the keys
+async function createNewVorfall(newVorfallRequest) {
+    let kennzeichen = newVorfallRequest.split(SPLIT_CHAR)[1];
+    return {
+        kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
+        kennzeichen: kennzeichen,
+        zeitpunkt: date.getNowAsHH_MM_SS(),
+        dbAussage: await checkDbAussage(kennzeichen)
+    }
+}
+
+function addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle) {
     for (let key in knownVorfaelle) {
         if (newVorfall.kamera === key) {
             knownVorfaelle[key].kennzeichen = newVorfall.kennzeichen;
@@ -39,54 +31,31 @@ module.exports.saveVorfall = async function (newVorfallRequest) {
             knownVorfaelle[key].dbAussage = newVorfall.dbAussage;
         }
     }
-
-    // write vorfaelle to json file named vorfaelle.json
-    console.log("🚀 ~ file: vorfaelle.js ~ line 46 ~ knownVorfaelle", knownVorfaelle)
-    fs.writeFileSync('vorfaelle.json', JSON.stringify(knownVorfaelle));
 }
 
-async function createNewVorfall(newVorfallRequest) {
-    let aussage = await checkDbAussage(newVorfallRequest.split(SPLIT_CHAR)[1]);
-    console.log("🚀 ~ file: vorfaelle.js ~ line 49 ~ createNewVorfall ~ aussage", aussage)
+function checkDbAussage(kennzeichenFromVorfall) {
 
-    return {
-        kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
-        kennzeichen: newVorfallRequest.split(SPLIT_CHAR)[1],
-        zeitpunkt: date.getNowAsHH_MM_SS(),
-        dbAussage: aussage
-    }
-}
+    return db.getAllPermissions().then(function (allParkerlaubnisse) {
 
-function checkDbAussage(kennzeichen) {
+        for (let i = 0; i < allParkerlaubnisse.rows.length; i++) {
 
-    return db.searchResult().then(function (allEntries) {
+            let kennZeichenFromParkerlaubnisse = simplifyKennzeichen(allParkerlaubnisse.rows[i].doc.kennzeichen);
+            kennzeichenFromVorfall = simplifyKennzeichen(kennzeichenFromVorfall);
 
-        for (let i = 0; i < allEntries.rows.length; i++) {
-
-            dbKennzeichen = allEntries.rows[i].doc.kennzeichen;
-            dbKennzeichen = dbKennzeichen.replace(/\s/g, '');
-            dbKennzeichen = dbKennzeichen.replace('-', '');
-            dbKennzeichen = dbKennzeichen.toUpperCase();
-
-            kennzeichen = kennzeichen.replace(/\s/g, '');
-            kennzeichen = kennzeichen.replace('-', '');
-            kennzeichen = kennzeichen.toUpperCase();
-
-            if (dbKennzeichen === kennzeichen) {
-                console.log("inside if")
-                return `Hat Parkerlaubnisse für ${allEntries.rows[i].doc.parkplaetze}`;
+            if (kennZeichenFromParkerlaubnisse === kennzeichenFromVorfall) {
+                return `Hat Parkerlaubnisse für ${allParkerlaubnisse.rows[i].doc.parkplaetze}`;
             }
             return "Hat keinerlei Parkerlaubnisse!";
         }
-    }).then(function (result) {
-        console.log("🚀 ~ file: vorfaelle.js ~ line 81 ~ result", result)
-        return result;
     }).catch(err => {
-        console.log("🚀 ~ file: vorfaelle.js ~ line 88 ~ checkDbAussage ~ err", err)
+        console.log(err);
+        return DEFAULT_DB_AUSSAGE;
     })
 }
 
-module.exports.readVorfaelle = function (filePath) {
-    // read all vorfaelle from json file named vorfaelle.json
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+function simplifyKennzeichen(kennzeichen) {
+    kennzeichen = kennzeichen.replace(/\s/g, '');
+    kennzeichen = kennzeichen.replace('-', '');
+    kennzeichen = kennzeichen.toUpperCase();
+    return kennzeichen;
 }

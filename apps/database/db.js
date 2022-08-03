@@ -33,40 +33,17 @@ module.exports.search = async function () {
         .then(function (result) { return result.rows; })
         .catch(function (err) { console.log(err); return err; });
 
-    // const second = await getDbConnection().allDocs({ include_docs: true, 'startkey': '_design\uffff' })
-    //     .then(function (result) { return result.rows; })
-    //     .catch(function (err) { console.log(err); return err; });
-
-    // const all = first.concat(second);
-
     return first;
 };
 
-module.exports.searchResult = async function () {
+module.exports.getAllPermissions = async function () {
 
     const first = await getDbConnection().allDocs({ include_docs: true })
         .then(function (result) { return result; })
         .catch(function (err) { console.log(err); return err; });
 
-    // const second = await getDbConnection().allDocs({ include_docs: true, 'startkey': '_design\uffff' })
-    //     .then(function (result) { return result.rows; })
-    //     .catch(function (err) { console.log(err); return err; });
-
-    // const all = first.concat(second);
-
     return first;
 };
-
-// module.exports.findByKennzeichen = function (kennzeichen) {
-
-//     getDbConnection().createIndex({ index: { fields: ['kennzeichen'] } })
-
-//     return getDbConnection().find({
-//         selector: { kennzeichen: kennzeichen }, fields: ["parkplaetze"]
-//     }).then(function (result) {
-//         return result.docs[0].parkplaetze;
-//     }).catch(function (err) { console.log(err); return "Kennzeichen unbekannt!"; });
-// }
 
 // In testing it became clear, that even though the usage of async/await, the database seems to have its own internal queue.
 // Therefore, the database we have to give the database more time to process the data.      
