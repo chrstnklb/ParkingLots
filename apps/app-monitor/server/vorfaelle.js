@@ -36,17 +36,16 @@ function addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle) {
 function checkDbAussage(kennzeichenFromVorfall) {
 
     return db.getAllPermissions().then(function (allParkerlaubnisse) {
-
+        let result = "Hat keinerlei Parkerlaubnisse!";
         for (let i = 0; i < allParkerlaubnisse.rows.length; i++) {
-
             let kennZeichenFromParkerlaubnisse = simplifyKennzeichen(allParkerlaubnisse.rows[i].doc.kennzeichen);
             kennzeichenFromVorfall = simplifyKennzeichen(kennzeichenFromVorfall);
-
             if (kennZeichenFromParkerlaubnisse === kennzeichenFromVorfall) {
-                return `Hat Parkerlaubnisse für ${allParkerlaubnisse.rows[i].doc.parkplaetze}`;
+                result = `Hat Parkerlaubnisse für ${allParkerlaubnisse.rows[i].doc.parkplaetze.replaceAll('-', ' ')}`;
+                break
             }
-            return "Hat keinerlei Parkerlaubnisse!";
         }
+        return result;
     }).catch(err => {
         console.log(err);
         return DEFAULT_DB_AUSSAGE;

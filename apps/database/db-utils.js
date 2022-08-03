@@ -1,8 +1,8 @@
-var excel = require("../app-parkerlaubnis/server/excel.js");
+var excel = require("../app-parkerlaubnis/server/excel");
 
 const dbUtils = require("./db-utils.js");
 const time = require("../util/time.js");
-
+const db = require('../database/db');
 
 module.exports.getParkerlaubnisAsArray = function (filePath) {
     let count = getMaxId();
@@ -77,7 +77,7 @@ module.exports.generateUniqueId = function () {
 
 function getMaxId() {
     let count = Date.now();
-    getDbConnection().allDocs({ include_docs: true })
+    db.getAllPermissions({ include_docs: true })
         .then(function (result) {
             if (result.total_rows === 0) {
                 count = Date.now();
