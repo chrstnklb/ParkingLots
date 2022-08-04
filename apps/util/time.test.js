@@ -1,13 +1,12 @@
 const time = require('./time');
-const { extendLetzteAenderung, createLetzteAenderung } = require("./time");
 
 describe('time', () => {
 
-    describe('time.getNowAsYYYYMMDD', () => {
+    describe('time.getNowAsyyyyLLdd', () => {
 
         it('should return the date from now in format YYYYMMDD', () => {
             // act
-            const now = time.getNowAsYYYYMMDD();
+            const now = time.getNowAsyyyyLLdd();
             // assert
             expect(now).toMatch(/^\d{4}\d{2}\d{2}$/);
         });
@@ -19,7 +18,7 @@ describe('time', () => {
             let day = new Date().getDate();
 
             // act
-            const now = time.getNowAsYYYYMMDD();
+            const now = time.getNowAsyyyyLLdd();
 
             // assert
             expect(now.substring(0, 4)).toBe(year.toString());
@@ -29,11 +28,11 @@ describe('time', () => {
 
     });
 
-    describe('time.getNowAsHHMMSS', () => {
+    describe('time.getNowAsHHmmss', () => {
         it("should return the date from now in format HHMMSS", () => {
 
             // act
-            const now = time.getNowAsHHMMSS();
+            const now = time.getNowAsHHmmss();
 
             // assert
             expect(now).toMatch(/^\d{2}\d{2}\d{2}$/);
@@ -46,7 +45,7 @@ describe('time', () => {
             let second = new Date().getSeconds();
 
             // act
-            const now = time.getNowAsHHMMSS();
+            const now = time.getNowAsHHmmss();
 
             // assert
             expect(now.substring(0, 2).includes(hour.toString())).toBe(true);
@@ -55,11 +54,11 @@ describe('time', () => {
         });
     });
 
-    describe('time.getNowAsHH_MM_SS', () => {
+    describe('time.getNowAsHH_mm_ss', () => {
         it("should return the date from now in format HHMMSS", () => {
 
             // act
-            const now = time.getNowAsHH_MM_SS();
+            const now = time.getNowAsHH_mm_ss();
 
             // assert
             expect(now).toMatch(/^\d{2}:\d{2}:\d{2}$/);
@@ -72,7 +71,7 @@ describe('time', () => {
             let second = new Date().getSeconds();
 
             // act
-            const now = time.getNowAsHHMMSS();
+            const now = time.getNowAsHHmmss();
 
             // assert
             expect(now.substring(0, 2).includes(hour.toString())).toBe(true);
@@ -82,11 +81,11 @@ describe('time', () => {
     });
 
 
-    describe('time.createLetzteAenderung', () => {
+    describe('time.getNowAsdd_LL_yyyy', () => {
         it("should return the 'letzte Aenderung' date from now in format DD.MM.YYYY", () => {
 
             // act
-            const letzteAenderung = time.createLetzteAenderung();
+            const letzteAenderung = time.getNowAsdd_LL_yyyy();
 
             // assert
             expect(letzteAenderung).toMatch(/^\d{2}\.\d{2}\.\d{4}$/);
@@ -99,7 +98,7 @@ describe('time', () => {
             let day = new Date().getDate();
 
             // act
-            const now = time.createLetzteAenderung();
+            const now = time.getNowAsdd_LL_yyyy();
 
             // assert
             expect(now.split('.')[2]).toBe(year.toString());

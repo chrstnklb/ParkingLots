@@ -78,7 +78,7 @@ module.exports.edit = function (idToBeUpdated, parkerlaubnis) {
     return getDbConnection().get(idToBeUpdated)
         .then(function (doc) {
             (doc._id = idToBeUpdated),
-                (doc.letzteAenderung = time.createLetzteAenderung()),
+                (doc.letzteAenderung = time.getNowAsdd_LL_yyyy()),
                 (doc.nachname = parkerlaubnis.nachname),
                 (doc.vorname = parkerlaubnis.vorname),
                 (doc.unternehmen = parkerlaubnis.unternehmen),

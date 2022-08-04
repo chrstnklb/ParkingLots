@@ -9,7 +9,7 @@ it(`should, when add db entry, auto generates date 'letzte Aenderung' in format 
 
     // assert
 
-    const expectedDate = time.createLetzteAenderung();
+    const expectedDate = time.getNowAsdd_LL_yyyy();
 
     expect(expectedDate).not.toBeUndefined();
 

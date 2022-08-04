@@ -8,7 +8,7 @@ module.exports.getParkerlaubnisAsArray = function (filePath) {
     let count = getMaxId();
     let rows = excel.writeExcelEntriesToDatabase(`${filePath}`);
     let parkerlaubnisArray = [];
-    let letzteAenderung = time.createLetzteAenderung();
+    let letzteAenderung = time.getNowAsdd_LL_yyyy();
     rows.forEach((row) => {
         parkerlaubnisArray.push({
             _id: (count++).toString(),
@@ -47,7 +47,7 @@ module.exports.getParkerlaubnisAsArray = function (filePath) {
 module.exports.fillUpFieldsForParkerlaubnis = function (parkerlaubnis) {
     let entry = parkerlaubnis;
     entry._id = dbUtils.getNewId();
-    entry.letzteAenderung = time.createLetzteAenderung();
+    entry.letzteAenderung = time.getNowAsdd_LL_yyyy();
     entry.searchHash = dbUtils.getSearchHash(parkerlaubnis);
     return entry;
 }

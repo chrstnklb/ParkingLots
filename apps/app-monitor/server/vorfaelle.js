@@ -18,7 +18,7 @@ async function createNewVorfall(newVorfallRequest) {
     return {
         kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
         kennzeichen: kennzeichen,
-        zeitpunkt: date.getNowAsHH_MM_SS(),
+        zeitpunkt: date.getNowAsdd_LL_yyyy() + " \n " + date.getNowAsHH_mm_ss(),
         dbAussage: await checkDbAussage(kennzeichen)
     }
 }
