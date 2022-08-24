@@ -18,7 +18,7 @@ function startTcpServer() {
             console.log(`connectionCount: ${connectionCount++}.`)
             console.log(`Add to list of waiting cars`);
 
-            // writeToJson(chunk.toString());
+            console.log(chunk.toString());
             vorfaelle.saveVorfall(chunk.toString());
 
             console.log(`Added`);
@@ -28,8 +28,8 @@ function startTcpServer() {
         socket.on('error', function (err) { console.log(`Error: ${err}`); });
     });
 
-    server.listen(1337, '127.0.0.1');
-    // server.listen(1337, '192.168.0.182');
+    // server.listen(1337, '127.0.0.1');
+    server.listen(1337, '192.168.0.201');
     // server.listen(1337, '192.168.0.249');
 }
 

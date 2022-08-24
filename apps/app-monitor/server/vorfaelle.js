@@ -5,21 +5,23 @@ const db = require("../../database/db");
 const createObjectFromJsonFile = require('../../util/json.js').createObjectFromJsonFile;
 const writeObjectToJsonFile = require('../../util/json.js').writeObjectToJsonFile;
 
+let kennZeichenFromParkerlaubnisse = '';
+
 module.exports.saveVorfall = async function (newVorfallRequest) {
 
-    let knownVorfaelle = createObjectFromJsonFile('vorfaelle.json');
+    let knownVorfaelle = createObjectFromJsonFile('./apps/app-schranke/vorfaelle.json');
     let newVorfall = await createNewVorfall(newVorfallRequest);
     addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle);
-    writeObjectToJsonFile('vorfaelle.json', knownVorfaelle);
+    writeObjectToJsonFile('./apps/app-schranke/vorfaelle.json', knownVorfaelle);
 }
 
 async function createNewVorfall(newVorfallRequest) {
     let kennzeichen = newVorfallRequest.split(SPLIT_CHAR)[1];
     return {
         kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
-        kennzeichen: kennzeichen,
-        zeitpunkt: date.getNowAsdd_LL_yyyy() + " \n " + date.getNowAsHH_mm_ss(),
-        dbAussage: await checkDbAussage(kennzeichen)
+        zeitpunkt: date.getNowAsHH_mm_ss(),
+        dbAussage: await checkDbAussage(kennzeichen),
+        kennzeichen: kennZeichenFromParkerlaubnisse
     }
 }
 
@@ -38,9 +40,10 @@ function checkDbAussage(kennzeichenFromVorfall) {
     return db.getAllPermissions().then(function (allParkerlaubnisse) {
         let result = "Hat keinerlei Parkerlaubnisse!";
         for (let i = 0; i < allParkerlaubnisse.rows.length; i++) {
-            let kennZeichenFromParkerlaubnisse = simplifyKennzeichen(allParkerlaubnisse.rows[i].doc.kennzeichen);
+            kennZeichenFromParkerlaubnisse = allParkerlaubnisse.rows[i].doc.kennzeichen;
+            let simplifiedKennzeichenFromParkerlaubnisse = simplifyKennzeichen(allParkerlaubnisse.rows[i].doc.kennzeichen);
             kennzeichenFromVorfall = simplifyKennzeichen(kennzeichenFromVorfall);
-            if (kennZeichenFromParkerlaubnisse === kennzeichenFromVorfall) {
+            if (simplifiedKennzeichenFromParkerlaubnisse === kennzeichenFromVorfall) {
                 result = `Hat Parkerlaubnisse für ${allParkerlaubnisse.rows[i].doc.parkplaetze.replaceAll('-', ' ')}`;
                 break
             }

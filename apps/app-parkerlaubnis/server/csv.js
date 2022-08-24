@@ -20,9 +20,9 @@ module.exports.generateFileName = function (parkingLot) {
     return folder +
         parkingLot +
         "-" +
-        time.getNowAsyyyyLLdd() +
+        time.getNowAsYYYYMMDD() +
         "-" +
-        time.getNowAsHHmmss() +
+        time.getNowAsHHMMSS() +
         ".csv";
 }
 
