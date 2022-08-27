@@ -1,9 +1,9 @@
-const globals = require('../../globals.js');
+const globals = require('../../../../globals.js');
 const excel = require("../excel");
 
-const {cronTime, excelFolder, ftpFolderOutgoing } = require("../../config.js");
+const { cronTime, excelFolder, ftpFolderOutgoing } = require("../../../../config.js");
 
-const db = require("../db").getDbConnection();
+const db = require("../../../database/db");
 let CronJob = require("cron").CronJob;
 
 let job = new CronJob(
@@ -32,10 +32,9 @@ function exportAllCameraCsvImportFiles() {
 
 function getAll() {
   db
-    .allDocs({
-      include_docs: true,
-    })
+    .getAll()
     .then(function (result) {
+      // console.log("result: "+ result);
       read_db_rows_count = result.total_rows;
       read_db_rows = result.rows;
     })
@@ -85,9 +84,10 @@ function exportAllPermissionsAsExcelFile() {
 
   let data = [];
 
-  db.allDocs({ include_docs: true })
+  db.getAll()
     .then(function (result) {
-      result.rows.forEach((row) => {
+      console.log("result" + result)
+      result.doc.rows.forEach((row) => {
         data.push({
           Nachname: row.doc.nachname,
           Vorname: row.doc.vorname,

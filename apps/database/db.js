@@ -17,7 +17,7 @@ function getDbConnection() {
 };
 
 module.exports.getAll = async function () {
-    await getDbConnection().allDocs({
+    const stuff = await getDbConnection().allDocs({
         include_docs: true,
     }).then(function (result) {
         console.log("🚀 ~ file: db.js ~ line 23 ~ awaitgetDbConnection ~ result", result)
@@ -25,6 +25,7 @@ module.exports.getAll = async function () {
     }).catch(function (err) {
         console.log(err);
     });
+	return stuff;
 }
 
 module.exports.search = async function () {
