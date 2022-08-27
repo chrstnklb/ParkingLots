@@ -53,6 +53,12 @@
             <tr>
                 <% Object.values(vorfaelle).forEach(function(vorfall){ %>
                     <td>
+                        <!-- <div>
+                            <%=vorfall.kamera %>
+                        </div> -->
+                        <div>
+                            <%=vorfall.zeitpunkt %>
+                        </div>
                         <div>
                             <%=vorfall.kennzeichen %>
                         </div>
@@ -60,13 +66,7 @@
                             <%=vorfall.vorname %>
                         </div>
                         <div>
-                            <%#=vorfall.nachname %>
-                        </div>
-                        <div>
-                            <%=vorfall.zeitpunkt %>
-                        </div>
-                        <div>
-                            <%#=vorfall.dbAussage %>
+                            <%=vorfall.nachname %>
                         </div>
                     </td>
                     <% }); %>

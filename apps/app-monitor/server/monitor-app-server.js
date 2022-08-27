@@ -15,7 +15,7 @@ monitorApp.set("view engine", "ejs");
 monitorApp.set("views", __dirname + "./../views/");
 
 monitorApp.get("/", async function (req, res) {
-    let readVorfaelle = await createObjectFromJsonFile('./apps/app-schranke/vorfaelle.json')
+    let readVorfaelle = await createObjectFromJsonFile('../../app-schranke/vorfaelle.json')
     res.render("monitor", { vorfaelle: readVorfaelle });
 });
 

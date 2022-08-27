@@ -28,8 +28,8 @@ function startTcpServer() {
         socket.on('error', function (err) { console.log(`Error: ${err}`); });
     });
 
-    // server.listen(1337, '127.0.0.1');
-    server.listen(1337, '192.168.0.201');
+    server.listen(1337, '127.0.0.1');
+    // server.listen(1337, '192.168.0.201'); // Siemens
     // server.listen(1337, '192.168.0.249');
 }
 
