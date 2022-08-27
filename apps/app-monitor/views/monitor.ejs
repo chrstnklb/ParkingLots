@@ -51,74 +51,25 @@
         </thead>
         <tbody>
             <tr>
-
-                <td>
-                    <div>
-                        <%=vorfaelle.P1.kennzeichen %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P1.zeitpunkt %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P1.dbAussage %>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <%=vorfaelle.P2.kennzeichen %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P2.zeitpunkt %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P2.dbAussage %>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <%=vorfaelle.P3.kennzeichen %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P3.zeitpunkt %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P3.dbAussage %>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <%=vorfaelle.P4.kennzeichen %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P4.zeitpunkt %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P4.dbAussage %>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <%=vorfaelle.P5.kennzeichen %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P5.zeitpunkt %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P5.dbAussage %>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <%=vorfaelle.P6.kennzeichen %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P6.zeitpunkt %>
-                    </div>
-                    <div>
-                        <%=vorfaelle.P6.dbAussage %>
-                    </div>
-                </td>
-
+                <% Object.values(vorfaelle).forEach(function(vorfall){ %>
+                    <td>
+                        <div>
+                            <%=vorfall.kennzeichen %>
+                        </div>
+                        <div>
+                            <%=vorfall.vorname %>
+                        </div>
+                        <div>
+                            <%#=vorfall.nachname %>
+                        </div>
+                        <div>
+                            <%=vorfall.zeitpunkt %>
+                        </div>
+                        <div>
+                            <%#=vorfall.dbAussage %>
+                        </div>
+                    </td>
+                    <% }); %>
             </tr>
         </tbody>
     </table>
