@@ -53,9 +53,9 @@
             <tr>
                 <% Object.values(vorfaelle).forEach(function(vorfall){ %>
                     <td>
-                        <!-- <div>
+                        <div>
                             <%=vorfall.kamera %>
-                        </div> -->
+                        </div>
                         <div>
                             <%=vorfall.zeitpunkt %>
                         </div>
@@ -67,6 +67,9 @@
                         </div>
                         <div>
                             <%=vorfall.nachname %>
+                        </div>
+                        <div>
+                            <%=vorfall.parkplaetze %>
                         </div>
                     </td>
                     <% }); %>

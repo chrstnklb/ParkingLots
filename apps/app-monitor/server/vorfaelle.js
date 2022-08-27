@@ -18,10 +18,11 @@ async function createNewVorfall(newVorfallRequest) {
     let parkerlaubnisInfo = await getParkerlaubnisInfo(kennzeichen);
     let vorfall = {
         kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
-        zeitpunkt: date.getNowAsdd_LL_yyyy(),
+        zeitpunkt: date.getNowAsHH_mm_ss(),
         kennzeichen: kennzeichen,
         vorname: parkerlaubnisInfo.vorname,
         nachname: parkerlaubnisInfo.nachname,
+        parkerlaubnisse: parkerlaubnisInfo.parkplaetze,
     }
     console.log("🚀 ~ file: vorfaelle.js ~ line 26 ~ createNewVorfall ~ vorfall", vorfall)
 
@@ -31,7 +32,8 @@ async function createNewVorfall(newVorfallRequest) {
         // dbAussage: await getParkerlaubnisInfo(kennzeichen),
         kennzeichen: parkerlaubnisInfo.kennzeichen,
         vorname: parkerlaubnisInfo.vorname,
-        nachname: parkerlaubnisInfo.nachname
+        nachname: parkerlaubnisInfo.nachname,
+        parkerlaubnisse: parkerlaubnisInfo.parkplaetze,
     }
 }
 
@@ -46,6 +48,7 @@ function addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle) {
             knownVorfaelle[key].kennzeichen = newVorfall.kennzeichen;
             knownVorfaelle[key].vorname = newVorfall.vorname;
             knownVorfaelle[key].nachname = newVorfall.nachname;
+            knownVorfaelle[key].parkplaetze = newVorfall.parkerlaubnisse;
         }
     }
 }
