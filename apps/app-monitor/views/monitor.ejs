@@ -53,24 +53,30 @@
             <tr>
                 <% Object.values(vorfaelle).forEach(function(vorfall){ %>
                     <td>
-                        <div>
-                            <%=vorfall.kamera %>
-                        </div>
-                        <div>
-                            <%=vorfall.zeitpunkt %>
-                        </div>
-                        <div>
+                        <strong style="color:skyblue">
                             <%=vorfall.kennzeichen %>
-                        </div>
-                        <div>
-                            <%=vorfall.vorname %>
-                        </div>
-                        <div>
-                            <%=vorfall.nachname %>
-                        </div>
-                        <div>
+                        </strong>
+
+                        <a>wurde um </a><br>
+
+                        <strong style="color:skyblue">
+                            <%=vorfall.zeitpunkt %> Uhr
+                        </strong>
+
+                        <a>die Einfahrt untersagt.</a><br><br>
+
+
+                        <strong style="color:yellowgreen">
                             <%=vorfall.parkplaetze %>
-                        </div>
+                        </strong>
+
+                        <a>sind erlaubt für</a><br>
+
+                        <strong style="color:yellow">
+                            <%=vorfall.vorname %>
+                                <%=vorfall.nachname %>
+
+                        </strong>
                     </td>
                     <% }); %>
             </tr>
@@ -79,4 +85,4 @@
 
 </body>
 
-</html>
+</html
