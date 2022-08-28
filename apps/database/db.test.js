@@ -16,7 +16,7 @@ describe('should delete all', () => {
     })
 
     test('ARRANGE should have exactly one entry', async () => {
-        await expect(db.getCount()).resolves.not.toBe(0);
+        await expect(db.getCount()).resolves.toBe(1);
     })
 
     test('ACT should delete all entries, specific one', async () => {

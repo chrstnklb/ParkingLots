@@ -30,8 +30,8 @@
   },
   "scripts": {
     "devStart": "nodemon server/app-server.js",
-    "start-application": "node apps/app-parkerlaubnis/server/app-server.js",
-    "start-monitor-application": "node apps/app-monitor/server/monitor-app-server.js",
+    "start-application": "node apps/parkerlaubnis-app/server/app-server.js",
+    "start-monitor-application": "node apps/monitor-app/server/monitor-app-server.js",
     "start-cron-job": "node server/ftp-server/cron.js",
     "start-create-ressources-folder": "node server/util/folder.js",
     "start-ftp-server": "node server/ftp-server/ftp-server.js",

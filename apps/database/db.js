@@ -20,12 +20,11 @@ module.exports.getAll = async function () {
     const stuff = await getDbConnection().allDocs({
         include_docs: true,
     }).then(function (result) {
-        console.log("🚀 ~ file: db.js ~ line 23 ~ awaitgetDbConnection ~ result", result)
         return result
     }).catch(function (err) {
         console.log(err);
     });
-	return stuff;
+    return stuff;
 }
 
 module.exports.search = async function () {
@@ -115,7 +114,7 @@ function remove(parkerlaubnis) {
         })
 
         .catch(function (err) {
-            console.log(err);
+            // console.log(err);
             return err;
 
         });

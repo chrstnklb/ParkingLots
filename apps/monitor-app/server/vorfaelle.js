@@ -7,10 +7,10 @@ const writeObjectToJsonFile = require('../../util/json.js').writeObjectToJsonFil
 
 module.exports.saveVorfall = async function (newVorfallRequest) {
 
-    let knownVorfaelle = createObjectFromJsonFile('../app-schranke/vorfaelle.json');
+    let knownVorfaelle = createObjectFromJsonFile('../schranke-app/vorfaelle.json');
     let newVorfall = await createNewVorfall(newVorfallRequest);
     addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle);
-    writeObjectToJsonFile('../app-schranke/vorfaelle.json', knownVorfaelle);
+    writeObjectToJsonFile('../schranke-app/vorfaelle.json', knownVorfaelle);
 }
 
 async function createNewVorfall(newVorfallRequest) {
@@ -75,9 +75,9 @@ function getParkerlaubnisInfo(kennzeichenFromVorfall) {
     })
 }
 
-function simplifyKennzeichen(kennzeichen) {
-    kennzeichen = kennzeichen.replace(/\s/g, '');
-    kennzeichen = kennzeichen.replace('-', '');
+module.exports.simplifyKennzeichen = function (kennzeichen) {
+    kennzeichen = kennzeichen.replace(/\s/g, ''); // deletes whitespaces
+    kennzeichen = kennzeichen.replaceAll('-', '');
     kennzeichen = kennzeichen.toUpperCase();
     return kennzeichen;
 }

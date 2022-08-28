@@ -13,7 +13,7 @@ describe('test the monitor app server responses', () => {
 
     afterAll(async () => { await server.close() })
 
-    test("GET /", async () => {
+    test.skip("GET /", async () => {
         let res;
         await request.get("/")
             // .expect(200)

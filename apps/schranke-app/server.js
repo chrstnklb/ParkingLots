@@ -1,6 +1,6 @@
 var net = require('net');
 
-const vorfaelle = require('../app-monitor/server/vorfaelle.js');
+const vorfaelle = require('../monitor-app/server/vorfaelle.js');
 
 let connectionCount = 0;
 
