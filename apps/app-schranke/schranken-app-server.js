@@ -1,6 +1,6 @@
 var net = require('net');
 
-const vorfaelle = require('../monitor-app/server/vorfaelle.js');
+const vorfaelle = require('../app-monitor/server/vorfaelle.js');
 
 let connectionCount = 0;
 
@@ -28,8 +28,9 @@ function startTcpServer() {
         socket.on('error', function (err) { console.log(`Error: ${err}`); });
     });
 
-    server.listen(1337, '127.0.0.1');
-    // server.listen(1337, '192.168.0.201'); // Siemens
+    //server.listen(1337, '127.0.0.1');
+    server.listen(1337, '192.168.0.201'); // Siemens
+    console.log('Now listening on 1337, 192.168.0.201')
     // server.listen(1337, '192.168.0.249');
 }
 

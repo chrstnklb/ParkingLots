@@ -15,7 +15,7 @@ module.exports = {
     appUrl: process.env.APP_URL,
     appPort: process.env.APP_PORT,
 
-    // MONITOR-APP-SERVER
+    // APP-MONITOR-SERVER
     monitorAppUrl: process.env.MONITOR_APP_URL,
     monitorAppPort: process.env.MONITOR_APP_PORT,
 

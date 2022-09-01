@@ -1,5 +1,5 @@
 node_modules
-apps/parkerlaubnis-app/server/outgoing-files
+apps/app-parkerlaubnis/server/outgoing-files
 .DS_Store
 cypress/videos
 cypress/screenshots

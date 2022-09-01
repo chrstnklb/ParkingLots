@@ -4,6 +4,8 @@ const localHost = '127.0.0.1';
 const prodHost = '192.168.0.201'
 const port = 1337;
 
+console.log('Welcome to client.js')
+
 let schrankenVorfaelle = [
     { parkplatz: 'P1', kennzeichen: 'SAW AB 123', },
     { parkplatz: 'P2', kennzeichen: 'BK-PO-123', },
@@ -14,9 +16,10 @@ let schrankenVorfaelle = [
 ]
 
 
-module.exports.sendSchrankenVorfall = function () {
-    //client.connect(port, prodHost, function () { // Siemens
-    client.connect(port, localHost, function () {
+function sendSchrankenVorfall() {
+    client.connect(port, prodHost, function () { // Siemens
+        console.log('Try to send stuff to ' + prodHost + ':' + port)
+        //client.connect(port, localHost, function () {
         console.log('Connected');
         console.log(client.write(newMsg(schrankenVorfaelle[0])));
         console.log("done");
@@ -31,6 +34,8 @@ module.exports.sendSchrankenVorfall = function () {
     })
 }
 
-module.exports.newMsg = function (schrankenVorfall) {
+function newMsg(schrankenVorfall) {
     return `${schrankenVorfall.parkplatz}#${schrankenVorfall.kennzeichen}`;
 }
+
+sendSchrankenVorfall();

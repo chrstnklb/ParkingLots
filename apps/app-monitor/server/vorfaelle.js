@@ -7,10 +7,10 @@ const writeObjectToJsonFile = require('../../util/json.js').writeObjectToJsonFil
 
 module.exports.saveVorfall = async function (newVorfallRequest) {
 
-    let knownVorfaelle = createObjectFromJsonFile('../schranke-app/vorfaelle.json');
+    let knownVorfaelle = createObjectFromJsonFile('/apps/app-schranke/vorfaelle.json');
     let newVorfall = await createNewVorfall(newVorfallRequest);
     addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle);
-    writeObjectToJsonFile('../schranke-app/vorfaelle.json', knownVorfaelle);
+    writeObjectToJsonFile('/apps/app-schranke/vorfaelle.json', knownVorfaelle);
 }
 
 async function createNewVorfall(newVorfallRequest) {
@@ -24,7 +24,7 @@ async function createNewVorfall(newVorfallRequest) {
         nachname: parkerlaubnisInfo.nachname,
         parkerlaubnisse: parkerlaubnisInfo.parkplaetze,
     }
-    console.log("🚀 ~ file: vorfaelle.js ~ line 26 ~ createNewVorfall ~ vorfall", vorfall)
+    //console.log("🚀 ~ file: vorfaelle.js ~ line 26 ~ createNewVorfall ~ vorfall", vorfall)
 
     return {
         kamera: newVorfallRequest.split(SPLIT_CHAR)[0],
@@ -38,8 +38,8 @@ async function createNewVorfall(newVorfallRequest) {
 }
 
 function addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle) {
-    console.log("🚀 ~ file: vorfaelle.js ~ line 30 ~ addNewVorfallToKnownVorfaelle ~ knownVorfaelle", knownVorfaelle)
-    console.log("🚀 ~ file: vorfaelle.js ~ line 30 ~ addNewVorfallToKnownVorfaelle ~ newVorfall", newVorfall)
+    //console.log("🚀 ~ file: vorfaelle.js ~ line 30 ~ addNewVorfallToKnownVorfaelle ~ knownVorfaelle", knownVorfaelle)
+    //console.log("🚀 ~ file: vorfaelle.js ~ line 30 ~ addNewVorfallToKnownVorfaelle ~ newVorfall", newVorfall)
 
     for (let key in knownVorfaelle) {
         if (newVorfall.kamera === key) {
@@ -51,6 +51,14 @@ function addNewVorfallToKnownVorfaelle(newVorfall, knownVorfaelle) {
             knownVorfaelle[key].parkplaetze = newVorfall.parkerlaubnisse;
         }
     }
+}
+
+
+function simplifyKennzeichen(kennzeichen) {
+    kennzeichen = kennzeichen.replace(/\s/g, ''); // deletes whitespaces
+    kennzeichen = kennzeichen.replaceAll('-', '');
+    kennzeichen = kennzeichen.toUpperCase();
+    return kennzeichen;
 }
 
 function getParkerlaubnisInfo(kennzeichenFromVorfall) {
@@ -73,11 +81,4 @@ function getParkerlaubnisInfo(kennzeichenFromVorfall) {
         console.log(err);
         return DEFAULT_DB_AUSSAGE;
     })
-}
-
-module.exports.simplifyKennzeichen = function (kennzeichen) {
-    kennzeichen = kennzeichen.replace(/\s/g, ''); // deletes whitespaces
-    kennzeichen = kennzeichen.replaceAll('-', '');
-    kennzeichen = kennzeichen.toUpperCase();
-    return kennzeichen;
 }
