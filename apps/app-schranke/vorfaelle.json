@@ -1,1 +1,44 @@
-{"P1":{"zeitpunkt":"16:26:37","kennzeichen":"WF-FX32E","dbAussage":"Hat Parkerlaubnisse für P1"},"P3":{"zeitpunkt":"15:29:25","kennzeichen":"BS-EH1620","dbAussage":"Hat keinerlei Parkerlaubnisse!"},"P2":{"zeitpunkt":"15:10:28","kennzeichen":"ESW-BT60","dbAussage":"Hat Parkerlaubnisse für P2"},"P4":{"zeitpunkt":"00:19:46","dbAussage":"Hat keinerlei Parkerlaubnisse!","kamera":"P4","kennzeichen":"cyTestKennzeichen","vorname":"cyTestVorname","nachname":"cyTestNachname","parkerlaubnisse":"P4, P5, A75","parkplaetze":"P4, P5, A75"},"P5":{"zeitpunkt":"16:25:32","kennzeichen":"WF-JF2810","dbAussage":"Hat Parkerlaubnisse für P5"},"P6":{"zeitpunkt":"23:51:10","dbAussage":"Hat keinerlei Parkerlaubnisse!","kamera":"P6"}}
+{
+    "P1": {
+        "zeitpunkt": "20:42:36",
+        "vorname": "Kerstin",
+        "nachname": "Sander",
+        "kennzeichen": "WF-QQ9000",
+        "parkplaetze": "P3"
+    },
+    "P2": {
+        "zeitpunkt": "20:42:36",
+        "vorname": "Kerstin",
+        "nachname": "Sander",
+        "kennzeichen": "WF-QQ9000",
+        "parkplaetze": "P3"
+    },
+    "P3": {
+        "zeitpunkt": "20:42:36",
+        "vorname": "Kerstin",
+        "nachname": "Sander",
+        "kennzeichen": "WF-QQ9000",
+        "parkplaetze": "P3"
+    },
+    "P4": {
+        "zeitpunkt": "20:42:36",
+        "vorname": "Kerstin",
+        "nachname": "Sander",
+        "kennzeichen": "WF-QQ9000",
+        "parkplaetze": "P3"
+    },
+    "P5": {
+        "zeitpunkt": "20:42:36",
+        "vorname": "Kerstin",
+        "nachname": "Sander",
+        "kennzeichen": "WF-QQ9000",
+        "parkplaetze": "P3"
+    },
+    "P6": {
+        "zeitpunkt": "20:42:36",
+        "vorname": "Kerstin",
+        "nachname": "Sander",
+        "kennzeichen": "WF-QQ9000",
+        "parkplaetze": "P3"
+    }
+}
