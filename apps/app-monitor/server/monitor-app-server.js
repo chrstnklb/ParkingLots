@@ -1,6 +1,6 @@
 const { monitorAppUrl, monitorAppPort, monitorAppVorfaelle } = require('../../../config.js');
 const createObjectFromJsonFile = require('../../util/json.js').createObjectFromJsonFile;
-const log = require('../../util/log.js');
+const console = require('../../util/log.js');
 
 const express = require("express");
 const fileUpload = require("express-fileupload");
@@ -21,7 +21,7 @@ monitorApp.get("/", async function (req, res) {
 });
 
 monitorApp.listen(monitorAppPort, () => {
-    log.withTime('Server Started at', monitorAppUrl);
+    console.log('Server Started at', monitorAppUrl);
 });
 
 module.exports = monitorApp;

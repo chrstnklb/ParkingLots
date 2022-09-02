@@ -1,0 +1,2 @@
+- fileWriter für camera exporte  in utils packen
+- npm vulnarablitites auflösen

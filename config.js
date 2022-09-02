@@ -19,6 +19,10 @@ module.exports = {
     monitorAppPort: process.env.MONITOR_APP_PORT,
     monitorAppVorfaelle: process.env.MONITOR_APP_VORFAELLE,
 
+    schrankenAppIp: process.env.SCHRANKEN_APP_IP,
+    schrankenAppPort: process.env.SCHRANKEN_APP_PORT,
+    schrankenAppVorfaelle: process.env.SCHRANKEN_APP_VORFAELLE,
+
     // DB
     dbUrl: process.env.DB_URL,
 
