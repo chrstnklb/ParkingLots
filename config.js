@@ -1,10 +1,8 @@
 const dotenv = require('dotenv');
-var dotenvExpand = require('dotenv-expand')
-var path = require('path');
+const dotenvExpand = require('dotenv-expand')
+const path = require('path');
 
-// var myEnv = dotenv.config()
-// var myEnv = dotenv.config({ path: path.join(__dirname, '.env'), debug: true })
-var myEnv = dotenv.config({ path: path.join(__dirname, '.env') })
+const myEnv = dotenv.config({ path: path.join(__dirname, '.env') })
 
 dotenvExpand(myEnv)
 dotenv.config();
@@ -15,9 +13,11 @@ module.exports = {
     appUrl: process.env.APP_URL,
     appPort: process.env.APP_PORT,
 
-    // APP-MONITOR-SERVER
+    // MONITOR-APP
+    // SCHRANKE-APP
     monitorAppUrl: process.env.MONITOR_APP_URL,
     monitorAppPort: process.env.MONITOR_APP_PORT,
+    monitorAppVorfaelle: process.env.MONITOR_APP_VORFAELLE,
 
     // DB
     dbUrl: process.env.DB_URL,
@@ -27,17 +27,7 @@ module.exports = {
     folderOutgoing: process.env.FOLDER_OUTGOING,
 
     // FTP SERVER
-    ftpHostName: process.env.FTP_HOST_NAME,
-    ftpPort: process.env.FTP_PORT,
-    ftpPasvUrl: process.env.FTP_PASV_URL,
-
-    ftpUser: process.env.FTP_USER,
-    ftpAdmin: process.env.FTP_ADMIN,
-
     ftpFolderOutgoing: process.env.FTP_FOLDER_OUTGOING,
-
-    ftpPasvPortMin: process.env.FTP_PASV_PORT_MIN,
-    ftpPasvPortMax: process.env.FTP_PASV_PORT_MAX,
 
     // EXCEL
     excelFolder: process.env.EXCEL_FOLDER,

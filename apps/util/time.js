@@ -15,6 +15,11 @@ module.exports.getNowAsHH_mm_ss = function () {
     return date.format(new Date(), "HH:mm:ss")
 }
 
+module.exports.getNowAsHH_mm_ss_SSS = function () {
+
+    return date.format(new Date(), "HH:mm:ss.SSS")
+}
+
 module.exports.getNowAsdd_LL_yyyy = function () {
     return date.format(new Date(), "dd.LL.yyyy")
 }

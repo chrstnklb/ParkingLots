@@ -1,5 +1,6 @@
-const { monitorAppUrl, monitorAppPort } = require('../../../config.js');
+const { monitorAppUrl, monitorAppPort, monitorAppVorfaelle } = require('../../../config.js');
 const createObjectFromJsonFile = require('../../util/json.js').createObjectFromJsonFile;
+const log = require('../../util/log.js');
 
 const express = require("express");
 const fileUpload = require("express-fileupload");
@@ -15,13 +16,12 @@ monitorApp.set("view engine", "ejs");
 monitorApp.set("views", __dirname + "./../views/");
 
 monitorApp.get("/", async function (req, res) {
-    console.log('path: ' + process.cwd() + '../apps/app-schranke/vorfaelle.json')
-    let readVorfaelle = await createObjectFromJsonFile(process.cwd() + '/apps/app-schranke/vorfaelle.json')
+    let readVorfaelle = await createObjectFromJsonFile(monitorAppVorfaelle)
     res.render("monitor", { vorfaelle: readVorfaelle });
 });
 
 monitorApp.listen(monitorAppPort, () => {
-    console.log(`Server Started at ${monitorAppUrl}`);
+    log.withTime('Server Started at', monitorAppUrl);
 });
 
 module.exports = monitorApp;
