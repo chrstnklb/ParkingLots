@@ -20,8 +20,8 @@ async function sendSchrankenVorfall() {
 
         client.connect(schrankenAppPort, schrankenAppIp, function () {
 
-            console.log('Try to send stuff to ', schrankenAppIp + ':' + schrankenAppPort)
-            client.write(newMsg(schrankenVorfaelle[randomIndex]))
+            console.log('Try to send stuff to ', schrankenAppIp + ':' + schrankenAppPort);
+            client.write(newMsg(schrankenVorfaelle[randomIndex]));
 
         }).on('data', function (data) {
             console.log('Received an answer from the server:', data);
