@@ -18,8 +18,6 @@ function logWithTime(message, value = '') {
     );
 }
 
-
-
 module.exports = { log: logWithTime };
 
 // withTime("Hello World");
