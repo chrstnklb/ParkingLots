@@ -5,8 +5,8 @@ let fahrzeugDetails;
 
 describe("Create new Parkerlaubniss successful", () => {
   before(() => {
-    personenDetails = require("../../globals.js").personenDetails;
-    fahrzeugDetails = require("../../globals.js").fahrzeugDetails;
+    personenDetails = require("../../../globals.js").personenDetails;
+    fahrzeugDetails = require("../../../globals.js").fahrzeugDetails;
     console.log("personenDetails :>> ", personenDetails);
     console.log("fahrzeugDetails :>> ", fahrzeugDetails);
   });

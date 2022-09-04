@@ -1,4 +1,4 @@
-var excel = require("../app-parkerlaubnis/server/excel");
+var excel = require("../util/file-handler/excel.js");
 
 const dbUtils = require("./db-utils.js");
 const time = require("../util/time.js");

@@ -1,1 +1,26 @@
-{"P1":{"zeitpunkt":"01:24:55","kamera":"P1"},"P2":{"zeitpunkt":"01:24:50","kamera":"P2"},"P3":{"zeitpunkt":"01:24:20","kamera":"P3"},"P4":{"zeitpunkt":"01:25:00","kamera":"P4"},"P5":{"zeitpunkt":"01:24:15","kamera":"P5"},"P6":{"zeitpunkt":"01:24:45","kamera":"P6"}}
+{
+    "P1": {
+        "zeitpunkt": "01:52:19",
+        "kamera": "P1"
+    },
+    "P2": {
+        "zeitpunkt": "01:52:24",
+        "kamera": "P2"
+    },
+    "P3": {
+        "zeitpunkt": "01:52:29",
+        "kamera": "P3"
+    },
+    "P4": {
+        "zeitpunkt": "01:52:09",
+        "kamera": "P4"
+    },
+    "P5": {
+        "zeitpunkt": "01:51:49",
+        "kamera": "P5"
+    },
+    "P6": {
+        "zeitpunkt": "01:51:04",
+        "kamera": "P6"
+    }
+}

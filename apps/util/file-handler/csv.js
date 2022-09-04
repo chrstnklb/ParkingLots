@@ -1,5 +1,5 @@
 const fs = require('fs')
-const time = require("../../util/time.js");
+const time = require("../time.js");
 
 const { folderOutgoing } = require('../../../config');
 const folder = folderOutgoing

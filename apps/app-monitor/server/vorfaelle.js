@@ -2,8 +2,8 @@ const date = require('../../util/time');
 const SPLIT_CHAR = '#';
 const DEFAULT_DB_AUSSAGE = "keine Aussage";
 const db = require("../../database/db");
-const createObjectFromJsonFile = require('../../util/json.js').createObjectFromJsonFile;
-const writeObjectToJsonFile = require('../../util/json.js').writeObjectToJsonFile;
+const createObjectFromJsonFile = require('../../util/file-handler/json.js').createObjectFromJsonFile;
+const writeObjectToJsonFile = require('../../util/file-handler/json.js').writeObjectToJsonFile;
 
 module.exports.saveVorfall = async function (newVorfallRequest) {
 

@@ -1,5 +1,5 @@
 const { monitorAppUrl, monitorAppPort, monitorAppVorfaelle } = require('../../../config.js');
-const createObjectFromJsonFile = require('../../util/json.js').createObjectFromJsonFile;
+const createObjectFromJsonFile = require('../../util/file-handler/json.js').createObjectFromJsonFile;
 const console = require('../../util/log.js');
 
 const express = require("express");

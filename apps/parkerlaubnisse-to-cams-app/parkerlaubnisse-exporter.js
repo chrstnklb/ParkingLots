@@ -1,9 +1,9 @@
-const globals = require('../../../../globals.js');
-const excel = require("../excel");
+const globals = require('../../globals.js');
+const excel = require("../app-parkerlaubnis/server/excel");
 
-const { cronTime, excelFolder, ftpFolderOutgoing } = require("../../../../config.js");
+const { cronTime, excelFolder, ftpFolderOutgoing } = require("../../config.js");
 
-const db = require("../../../database/db");
+const db = require("../database/db");
 let CronJob = require("cron").CronJob;
 
 let job = new CronJob(
@@ -63,7 +63,7 @@ function exportCsvForCameraFor(parking_space) {
     }
   });
 
-  require("./fileWriter").write(
+  require("../util/file-handler/fileWriter").write(
     ftpFolderOutgoing + parking_space,
     "csv",
     data_entry,
