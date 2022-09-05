@@ -17,6 +17,7 @@
     - ⭐️ Speicher Schrankendurchfahrten als 'last-time-parked'
 - ⭐️ Vofaelle werden nach 15 Minuten gelöscht 
 - 🔜 🛠 Erstelle Dummy Tests für jede Datei in utils und fülle sie soweit wie möglich mit leben
+- 🛠 appUrl und Port vereinfachen
 - 🛠 release datei erstellen
 - 🛠 fileWriter für camera exporte in utils packen
 - 🛠 cron als app auslagern

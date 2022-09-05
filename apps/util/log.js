@@ -16,6 +16,7 @@ function logWithTime(message, value = '') {
                 : ('')) + '\n'
         )
     );
+
 }
 
 module.exports = { log: logWithTime };

@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "cypress": "^10.3.0",
-    "jest": "^27.5.1"
+    "jest": "^29.0.2"
   },
   "jest": {
     "testRegex": "(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$"
@@ -31,7 +31,7 @@
     "start-job-create-ressources-folder": "node server/util/folder.js",
     "start-job-cron": "node server/ftp-server/cron.js",
     "start-job-camera-send-vorfall 🎥": "node apps/app-schranke/client.js",
-    "start-server-parkerlaubnisse-application": "node apps/app-parkerlaubnis/server/app-server.js",
+    "🅿️ start-server-parkerlaubnisse-application": "node apps/app-parkerlaubnis/server/app-server.js",
     "start-server-monitor-application": "node apps/app-monitor/server/monitor-app-server.js",
     "start-server-schranken🚦": "node apps/app-schranke/schranken-app-server.js",
     "start-ftp-server": "node server/ftp-server/ftp-server.js",

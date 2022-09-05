@@ -7,26 +7,37 @@ const {
 } = require('../../../config.js');
 
 const path = require('path');
+const express = require("express");
+const fileUpload = require("express-fileupload");
+const db = require('../../database/db.js');
 // var excel = require("./excel");
 // var csv = require("./csv");
 
-const express = require("express");
-const fileUpload = require("express-fileupload");
+let app = express();
+let def = false
 
-const app = express();
+async function getStartedServer() {
 
-app.use(express.static(path.join(__dirname + "./../views")));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(fileUpload());
+  if (!def) {
+    def = true;
+    app.use(express.static(path.join(__dirname + "./../views")));
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
+    app.use(fileUpload());
 
-app.set("view engine", "ejs");
+    app.set("view engine", "ejs");
 
-// app.set("views", ["views", "views/table", path.join(__dirname + "./../views")]);
-app.set("views", path.join(__dirname + "./../views"));
+    app.set("views", path.join(__dirname + "./../views"));
+  }
 
-const db = require('../../database/db.js');
-// const con = db.getDbConnection();
+  return app;
+}
+
+function startServer() {
+  app.listen(appPort, () => {
+    console.log(`Server Started at ${appUrl}`);
+  });
+}
 
 app.get("/", function (_req, res, next) {
   console.log("/");
@@ -35,18 +46,15 @@ app.get("/", function (_req, res, next) {
 });
 
 app.get("/search", (_req, res) => {
-  console.log("/search");
+  // console.log("/search");
   db.search().then((result) => {
     res.json(result);
   });
 });
 
-app.listen(appPort, () => {
-  console.log(`Server Started at ${appUrl}`);
-});
 
 app.post("/create", function (req, res) {
-  console.log("/create");
+  // console.log("/create");
   db.create(req.body.parkerlaubnis).then((result) => {
     if (result.ok) {
       res.sendStatus(200);
@@ -191,3 +199,11 @@ app.post("/upload2", (req, res) => {
 //       console.log(err);
 //     });
 // });
+
+module.exports = {
+  app,
+  getStartedServer,
+};
+
+getStartedServer();
+startServer();
