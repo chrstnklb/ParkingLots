@@ -1,5 +1,8 @@
 # Inhaltsverzeichnis
 
+![ParkingLotArchitecture drawio](https://github.com/chrstnklb/parking-lots/assets/803705/7a4e1353-1dbd-4f57-9c21-815301f563ee)
+
+
 0. [Offene Vorbereitungen](#Offene-Vorbereitungen)
 0. [Quick Start](#Quick-Start)
 1. [Einrichtung der Datenbank](#Einrichtung-der-Datenbank)
